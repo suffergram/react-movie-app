@@ -1,0 +1,32 @@
+.card {
+    width: 322px;
+}
+
+img {
+    width: 322px;
+    height: 455px;
+    object-fit: cover;
+    margin-bottom: 26px;
+}
+
+.description {
+    width: 100%;
+}
+
+.title {
+    font-size: 14px;
+    margin-bottom: 17px;
+}
+
+.year {
+    font-size: 10px;
+    float: right;
+    border: 1px solid #555555;
+    padding: 7px 14px;
+    border-radius: 4px;
+}
+
+.genre {
+    font-size: 10px;
+    color: #aaaaaa;
+}
