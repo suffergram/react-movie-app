@@ -1,15 +1,11 @@
 import "./style.css";
 
-export default function Header() {
-    const addMovie = () => {
-        return <div className="bg" />;
-    }
-
+export default function Header({ onAddMovie }) {
     return (
-        <div className="header">
+        <header>
             <div className="header-content">
                 <p className="logo"><strong>netflix</strong>roulette</p>
-                <button onClick={addMovie} className="add-movie">+ ADD MOVIE</button>
+                <button onClick={onAddMovie} className="add-movie">+ ADD MOVIE</button>
                 <div>
                     <h1>FIND YOUR MOVIE</h1>
                     <div className="search-line">
@@ -19,6 +15,6 @@ export default function Header() {
                 </div>
             </div>
             <div className="header-background"><div></div></div>
-        </div>
+        </header>
     );
 }

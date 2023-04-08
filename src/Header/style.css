@@ -1,4 +1,4 @@
-.header {
+header {
     height: 396px;
     width: 100%;
     overflow: hidden;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.header > * {
+header > * {
     z-index: 2;
     position: relative;
 }
@@ -51,13 +51,13 @@ h1 {
     border: none;
     border-radius: 4px;
     background-color: rgba(35, 35, 35, 0.5);
-    color: white;
+    color: var(--color-5);
     padding: 15px;
     font-size: 14px;
 }
 
 .logo {
-    color: #f65261;
+    color: var(--color-1);
     position: absolute;
     top: 28px;
     left: 0;
@@ -70,7 +70,7 @@ h1 {
     height: 46px;
     border-radius: 4px;
     background-color: rgba(85, 85, 85, 0.75);
-    color: #f65261;
+    color: var(--color-1);
     position: absolute;
     top: 20px;
     right: 0;

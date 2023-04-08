@@ -2,8 +2,8 @@ import './style.css';
 
 export default function Footer() {
     return (
-        <div className='footer'>
+        <footer>
             <p><strong>netflix</strong>roulette</p>
-        </div>
+        </footer>
     );
 }
