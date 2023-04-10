@@ -29,11 +29,6 @@ header > * {
     transform: scale(1.7);
 }
 
-h1 {
-    font-weight: lighter;
-    letter-spacing: 3px;
-}
-
 .search-line {
     height: 57px;
     width: 960px;
@@ -65,10 +60,8 @@ h1 {
 }
 
 .add-movie {
-    border: none;
     width: 177px;
     height: 46px;
-    border-radius: 4px;
     background-color: rgba(85, 85, 85, 0.75);
     color: var(--color-1);
     position: absolute;
@@ -84,10 +77,3 @@ h1 {
     padding: 64px;
 }
 
-.bg {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.2);
-}

@@ -1,0 +1,28 @@
+button {
+    border: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    height: 57px;
+    width: 180px;
+}
+
+.confirm {
+    color: var(--color-5);
+    background-color: var(--color-1);
+}
+
+.cancel {
+    color: var(--color-1);
+    border: 1px solid var(--color-1);
+    background-color: transparent;
+    border-radius: 4px;
+}
+
+.close {
+    background-color: transparent;
+    color: var(--color-5);
+    width: 21px !important;
+    height: 21px !important;
+    padding: 0;
+}
