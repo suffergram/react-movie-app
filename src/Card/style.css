@@ -1,5 +1,6 @@
 .card {
     width: 100%;
+    position: relative;
 }
 
 img {
@@ -30,4 +31,18 @@ img {
     font-size: 10px;
     color: var(--color-5);
     opacity: 0.5;
+}
+
+.edit {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    display: none;
+}
+
+img:hover + .edit, .edit:hover {
+    display: block;
 }

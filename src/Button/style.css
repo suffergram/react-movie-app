@@ -26,3 +26,12 @@ button {
     height: 21px !important;
     padding: 0;
 }
+
+.edit {
+    background-color: rgba(35, 35, 35, 0.75);
+    color: white;
+    border-radius: 50%;
+    width: 31px !important;
+    height: 31px !important;
+    padding: 0;
+}
