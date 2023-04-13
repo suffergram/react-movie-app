@@ -2,7 +2,7 @@ import "./style.css";
 import * as info from './info'
 import Card from "../Card/Card";
 
-export default function Main() {
+export default function Main({ newModal }) {
     return (
         <main>
             <div className="content">
@@ -25,7 +25,7 @@ export default function Main() {
                     </div>
                 </div>
                 <div className="found">
-                    {info.movies.map(item => <Card key={item.name} movie={item} />)}
+                    {info.movies.map(item => <Card newModal={newModal} key={item.name} movie={item} />)}
                 </div>
             </div>
         </main>

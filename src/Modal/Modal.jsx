@@ -2,10 +2,12 @@ import ReactModal from "react-modal";
 import Button from "../Button/Button"
 import './style.css';
 
-export default function Modal({ toOpen, toClose }) {
-    return (
+export default function Modal({ type, toClose }) {
+    ReactModal.setAppElement('body')
+
+    if (type == 'add') return (
         <ReactModal 
-        isOpen={toOpen} 
+        isOpen={true} 
         onRequestClose={toClose}
         className="modal" 
         overlayClassName="overlay"
@@ -60,6 +62,21 @@ export default function Modal({ toOpen, toClose }) {
                         <Button className="confirm" text="submit" />
                     </div>
                 </form>
+            </div>
+        </ReactModal>
+    );
+
+    if (type == 'edit') return (
+        <ReactModal 
+        isOpen={true} 
+        onRequestClose={toClose}
+        className="modal" 
+        overlayClassName="overlay"
+        >
+            <Button onButtonClick={toClose} className="close" />
+            <div>
+                <h2>edit movie</h2>
+                <p>kore wa edito desu</p>
             </div>
         </ReactModal>
     );

@@ -5,16 +5,21 @@ import Modal from '../Modal/Modal';
 import { useState } from "react";
 
 export default function App() {
-    const [addWindow, setAddWindow] = useState(false);
-    const openWindow = () => setAddWindow(true);
-    const closeWindow = () => setAddWindow(false);
+    const [modal, setModal] = useState(false);
+    const openWindow = (name) => {
+        setModalType(name);
+        setModal(true);
+    }
+    const closeWindow = () => setModal(false);
+
+    const [modalType, setModalType] = useState(null);
 
     return (
         <>
-            <Header onAddMovie={openWindow} />
-            <Main />
+            <Header newModal={openWindow} />
+            <Main newModal={openWindow} />
             <Footer />
-            {addWindow ? <Modal toOpen={addWindow} toClose={closeWindow} /> : null}
+            {modal ? <Modal type={modalType} toClose={closeWindow} /> : null}
         </>
     );
 }

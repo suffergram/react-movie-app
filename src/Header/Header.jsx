@@ -1,12 +1,12 @@
 import "./style.css";
 import Button from "../Button/Button";
 
-export default function Header({ onAddMovie }) {
+export default function Header({ newModal }) {
     return (
         <header>
             <div className="header-content">
                 <p className="logo"><strong>netflix</strong>roulette</p>
-                <Button onButtonClick={onAddMovie} className="add-movie" text="+ add movie" />
+                <Button onButtonClick={newModal} className="add" text="+ add movie" />
                 <div>
                     <h1>FIND YOUR MOVIE</h1>
                     <div className="search-line">
