@@ -8,7 +8,13 @@ export default function Main({ newModal }) {
             <div className="content">
                 <div className="row">
                     <div className="results filter">
-                        {info.genres.map(item => <div key={item}>{item}</div>)}
+                        {/* {info.genres.map(item => <div key={item}>{item}</div>)} */}
+                        {info.genres.map(item =>
+                            <div key={item}>
+                                <input className="radio" name="genre" type="radio" key={item} />
+                                {item}
+                            </div>
+                        )}
                     </div>
                     <div className="results sort">
                         <p>SORT BY</p>
