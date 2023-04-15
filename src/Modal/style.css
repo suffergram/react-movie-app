@@ -90,3 +90,25 @@
     height: 35px;
     width: 110px;
 }
+
+.menuModal {
+    position: absolute;
+    /* left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); */
+    width: 200px;
+    background-color: var(--color-3);
+}
+
+.menuOverlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+.menuModal .close {
+    float: right;
+    margin: 12px;
+    z-index: 10;
+}

@@ -2,24 +2,23 @@ import "./style.css";
 import * as info from './info'
 import Card from "../Card/Card";
 
-export default function Main({ newModal }) {
+export default function Main({ newModal, newDeleteModal }) {
     return (
         <main>
             <div className="content">
                 <div className="row">
                     <div className="results filter">
-                        {/* {info.genres.map(item => <div key={item}>{item}</div>)} */}
                         {info.genres.map(item =>
-                            <div key={item}>
-                                <input className="radio" name="genre" type="radio" key={item} />
-                                {item}
+                            <div key={item.id}>
+                                <input className="radio" name="genre" type="radio" key={item.id} defaultChecked={item.id == 0} />
+                                {item.name}
                             </div>
                         )}
                     </div>
                     <div className="results sort">
                         <p>SORT BY</p>
                         <div>
-                            {info.sortBy.map(item => <div key={item}>{item}</div>)}
+                            {info.sortBy.map(item => <div key={item.id} >{item.name}</div>)}
                             <div className="arrow">▼</div>
                         </div>
                     </div>
@@ -31,7 +30,7 @@ export default function Main({ newModal }) {
                     </div>
                 </div>
                 <div className="found">
-                    {info.movies.map(item => <Card newModal={newModal} key={item.name} movie={item} />)}
+                    {info.movies.map(item => <Card newModal={newModal} newDeleteModal={newDeleteModal} key={item.id} movie={item} />)}
                 </div>
             </div>
         </main>

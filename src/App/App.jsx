@@ -1,25 +1,35 @@
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
-import Modal from '../Modal/Modal';
 import { useState } from "react";
+import MovieModal from '../MovieModal/MovieModal';
+import DeleteModal from '../DeleteModal/DeleteModal';
 
 export default function App() {
-    const [modal, setModal] = useState(false);
-    const openWindow = (name) => {
-        setModalType(name);
-        setModal(true);
-    }
-    const closeWindow = () => setModal(false);
-
+    const [isMovieModalOpen, setIsMovieModalOpen] = useState(false);
     const [modalType, setModalType] = useState(null);
+
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+
+    const openMovieModalWindow = (name) => {
+        setModalType(name);
+        setIsMovieModalOpen(true);
+    }
+
+    const closeMovieModalWindow = () => setIsMovieModalOpen(false);
+
+    const openDeleteModalWindow = () => setIsDeleteModalOpen(true);
+
+    const closeDeleteModalWindow = () => setIsDeleteModalOpen(false);
 
     return (
         <>
-            <Header newModal={openWindow} />
-            <Main newModal={openWindow} />
+            <Header newModal={openMovieModalWindow} />
+            <Main newModal={openMovieModalWindow} newDeleteModal={openDeleteModalWindow} />
             <Footer />
-            {modal ? <Modal type={modalType} toClose={closeWindow} /> : null}
+            <MovieModal isOpen={isMovieModalOpen} onClose={closeMovieModalWindow} modalType={modalType} />
+            <DeleteModal isOpen={isDeleteModalOpen} onClose={closeDeleteModalWindow} />
         </>
     );
 }

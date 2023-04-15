@@ -27,11 +27,25 @@ button {
     padding: 0;
 }
 
-.edit {
-    background-color: rgba(35, 35, 35, 0.75);
+.menu {
+    background-color: var(--color-3);
     color: white;
     border-radius: 50%;
     width: 31px !important;
     height: 31px !important;
     padding: 0;
+}
+
+.edit, .delete {
+    width: 100%;
+    height: 34px;
+    color: white;
+    background: transparent;
+    text-transform: capitalize;
+    text-align: left;
+    border-radius: 0;
+}
+
+.edit:hover, .delete:hover {
+    background-color: var(--color-1);
 }
