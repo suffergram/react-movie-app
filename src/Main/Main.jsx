@@ -1,33 +1,21 @@
 import "./style.css";
 import * as info from './info'
 import Card from "../Card/Card";
+import TabSection from "../TabSection/TabSection";
+import SortSection from "../SortSection/SortSection";
+import FoundMovieCounter from "../FoundMovieCounter/FoundMovieCounter";
 
 export default function Main({ newModal, newDeleteModal }) {
     return (
         <main>
             <div className="content">
                 <div className="row">
-                    <div className="results filter">
-                        {info.genres.map(item =>
-                            <div key={item.id}>
-                                <input className="radio" name="genre" type="radio" key={item.id} defaultChecked={item.id == 0} />
-                                {item.name}
-                            </div>
-                        )}
-                    </div>
-                    <div className="results sort">
-                        <p>SORT BY</p>
-                        <div>
-                            {info.sortBy.map(item => <div key={item.id} >{item.name}</div>)}
-                            <div className="arrow">▼</div>
-                        </div>
-                    </div>
+                    <TabSection genres={info.genres} />
+                    <SortSection sort={info.sortBy} />
                 </div>
                 <hr />
                 <div className="row">
-                    <div className="results">
-                        <div><strong>39</strong> movies found</div>
-                    </div>
+                    <FoundMovieCounter number={39} />
                 </div>
                 <div className="found">
                     {info.movies.map(item => <Card newModal={newModal} newDeleteModal={newDeleteModal} key={item.id} movie={item} />)}
