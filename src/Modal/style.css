@@ -20,11 +20,6 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 10;
-    text-transform: uppercase;
-}
-
-.overlay p {
-    color: var(--color-1);
 }
 
 .overlay .close {
@@ -35,6 +30,7 @@
 
 .overlay h2 {
     margin-top: 0;
+    text-transform: uppercase;
 }
 
 .overlay form {
@@ -62,9 +58,11 @@
     margin-top: 30px;
 }
 
-.overlay p {
+form p {
+    color: var(--color-1);
     font-size: 13px;
     margin: 5px 0;
+    text-transform: uppercase;
 }
 
 .overlay input, .overlay select {

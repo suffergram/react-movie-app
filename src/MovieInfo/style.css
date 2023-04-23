@@ -1,0 +1,21 @@
+.movie-info-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 15;
+    background-color: var(--color-3);
+}
+
+.movie-info {
+    width: 1080px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 55px;
+    outline: 1px solid red;
+}

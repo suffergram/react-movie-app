@@ -1,4 +1,6 @@
 import Button from "../Button/Button";
+import { genres } from "../Main/info.js";
+import "./style.css";
 
 export default function EditForm() {
     return (
@@ -23,17 +25,11 @@ export default function EditForm() {
                 <p>genre</p>
                 <select>
                     <option value="">Select Genre</option>
-                    <option value="documentary">Documentary</option>
-                    <option value="comedy">Comedy</option>
-                    <option value="horror">Horror</option>
-                    <option value="crime">Crime</option>
-                    <option value="drama">Drama</option>
-                    <option value="fantasy">Fantasy</option>
-                    <option value="mystery">Mystery</option>
-                    <option value="action">Action</option>
-                    <option value="adventure">Adventure</option>
-                    <option value="sci-fi">Sci-fi</option>
-                    <option value="thriller">Thriller</option>
+                    {
+                        genres.map(item => 
+                            <option key={item.id} value={item.name}>{item.name}</option>    
+                        )
+                    }
                 </select>
             </div>
             <div>

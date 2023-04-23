@@ -1,6 +1,7 @@
 header {
     height: 396px;
     width: 100%;
+    position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -57,6 +58,7 @@ header > * {
     top: 28px;
     left: 0;
     margin: 0;
+    z-index: 100;
 }
 
 .add {

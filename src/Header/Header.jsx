@@ -1,5 +1,6 @@
 import "./style.css";
 import Button from "../Button/Button";
+import MovieInfo from "../MovieInfo/MovieInfo";
 
 export default function Header({ newModal }) {
     const handleClick = () => {
@@ -20,6 +21,7 @@ export default function Header({ newModal }) {
                 </div>
             </div>
             <div className="header-background"><div></div></div>
+            <MovieInfo />
         </header>
     );
 }
