@@ -22,17 +22,18 @@ button {
 .close {
     background-color: transparent;
     color: var(--color-5);
-    width: 21px !important;
-    height: 21px !important;
+    width: 21px;
+    height: 21px;
     padding: 0;
+    font-size: 21px;
 }
 
 .menu {
     background-color: var(--color-3);
     color: white;
     border-radius: 50%;
-    width: 31px !important;
-    height: 31px !important;
+    width: 36px !important;
+    height: 36px !important;
     padding: 0;
 }
 
@@ -44,6 +45,8 @@ button {
     text-transform: capitalize;
     text-align: left;
     border-radius: 0;
+    padding-left: 16px;
+    font-size: 16px;
 }
 
 .edit:hover, .delete:hover {

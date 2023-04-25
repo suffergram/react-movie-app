@@ -4,7 +4,7 @@ import React from 'react';
 import { useState } from 'react';
 import Modal from '../Modal/Modal';
 
-export default function Card({ newModal, newDeleteModal, movie }) {
+export default function Card({ newModal, newDeleteModal, newMovieInfo, movie }) {
     const ref = React.useRef();
 
     const [modal, setModal] = useState(false);
@@ -17,10 +17,14 @@ export default function Card({ newModal, newDeleteModal, movie }) {
         setModal(false);
     }
 
+    const handleCardClick = (event) => {
+        newMovieInfo(event.target.id);
+    }
+
     return (
         <>
             <div className='card' ref={ref}>
-                <img src={movie.url}/>
+                <img src={movie.url} onClick={handleCardClick} id={movie.id} />
                 <Button onClick={handleClick} className="menu">⋮</Button>
                 <div className='description'>
                     <div className='year'>{movie.year}</div>

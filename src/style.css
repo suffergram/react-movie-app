@@ -20,5 +20,8 @@ body {
 
 h1, h2 {
     font-weight: lighter;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
+    font-size: 40px;
+    margin: 0;
+    text-transform: uppercase;
 }

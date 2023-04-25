@@ -8,21 +8,25 @@ main {
 }
 
 .content {
-    width: 1080px;
+    width: 1200px;
+    box-sizing: border-box;
+    padding: 0 60px;
 }
 
 .row {
-    height: 63px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .results {
     display: flex;
-    gap: 31px;
-    font-size: 12px;
+    gap: 30px;
+    font-size: 16px;
 }
 
 .results > * {
-    padding: 24px 0;
+    padding: 20px 0;
 }
 
 .filter {
@@ -55,7 +59,9 @@ p {
 
 hr {
     margin: 0;
-    border: 1px solid var(--color-2);
+    border: none;
+    border-top: 2px solid var(--color-2);
+    border-bottom: 2px solid black;
 }
 
 .found {
@@ -80,5 +86,5 @@ hr {
 }
 
 .radio:checked, .radio:hover {
-    box-shadow: 0 2px 0 0 var(--color-1);
+    box-shadow: 0 4px 0 0 var(--color-1);
 }

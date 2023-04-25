@@ -5,7 +5,7 @@ import TabSection from "../TabSection/TabSection";
 import SortSection from "../SortSection/SortSection";
 import FoundMovieCounter from "../FoundMovieCounter/FoundMovieCounter";
 
-export default function Main({ newModal, newDeleteModal }) {
+export default function Main({ newModal, newDeleteModal, newMovieInfo }) {
     return (
         <main>
             <div className="content">
@@ -18,7 +18,14 @@ export default function Main({ newModal, newDeleteModal }) {
                     <FoundMovieCounter number={39} />
                 </div>
                 <div className="found">
-                    {info.movies.map(item => <Card newModal={newModal} newDeleteModal={newDeleteModal} key={item.id} movie={item} />)}
+                    {info.movies.map(item => 
+                        <Card 
+                            newModal={newModal} 
+                            newDeleteModal={newDeleteModal} 
+                            newMovieInfo={newMovieInfo} 
+                            key={item.id} 
+                            movie={item} 
+                        />)}
                 </div>
             </div>
         </main>

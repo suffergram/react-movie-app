@@ -7,10 +7,11 @@ import DeleteModal from '../DeleteModal/DeleteModal';
 
 export default function App() {
     const [isMovieModalOpen, setIsMovieModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [modalType, setModalType] = useState(null);
 
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
+    const [isMovieInfoOpen, setIsMovieInfoOpen] = useState(false);
+    const [movieId, setMovieId] = useState(null);
 
     const openMovieModalWindow = (name) => {
         setModalType(name);
@@ -23,13 +24,36 @@ export default function App() {
 
     const closeDeleteModalWindow = () => setIsDeleteModalOpen(false);
 
+    const openMovieInfoWindow = (id) => {
+        setIsMovieInfoOpen(true);
+        setMovieId(id);
+    }
+
+    const closeMovieInfoWindow = () => setIsMovieInfoOpen(false);
+
     return (
         <>
-            <Header newModal={openMovieModalWindow} />
-            <Main newModal={openMovieModalWindow} newDeleteModal={openDeleteModalWindow} />
+            <Header 
+                newModal={openMovieModalWindow} 
+                isMovieInfoOpen={isMovieInfoOpen} 
+                onCloseMovieInfo={closeMovieInfoWindow}
+                movieId={movieId} 
+            />
+            <Main 
+                newModal={openMovieModalWindow} 
+                newDeleteModal={openDeleteModalWindow} 
+                newMovieInfo={openMovieInfoWindow} 
+            />
             <Footer />
-            <MovieModal isOpen={isMovieModalOpen} onClose={closeMovieModalWindow} modalType={modalType} />
-            <DeleteModal isOpen={isDeleteModalOpen} onClose={closeDeleteModalWindow} />
+            <MovieModal 
+                isOpen={isMovieModalOpen}  
+                onClose={closeMovieModalWindow} 
+                modalType={modalType} 
+            />
+            <DeleteModal 
+                isOpen={isDeleteModalOpen} 
+                onClose={closeDeleteModalWindow} 
+            />
         </>
     );
 }
