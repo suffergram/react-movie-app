@@ -14,6 +14,8 @@ export const genres = [
 
 export const sortBy = [
     { id : 0, name : 'release date' },
+    { id : 1, name : 'rating' },
+    { id : 2, name : 'name' },
 ];
 
 class Movie {

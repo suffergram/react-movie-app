@@ -96,28 +96,3 @@ form p {
     width: 180px;
     font-size: 20px;
 }
-
-.menuModal {
-    position: absolute;
-    transform: translate(-100%);
-    width: 190px;
-    height: 111px;
-    background-color: var(--color-3);
-    border-radius: 4px;
-}
-
-.menuOverlay {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    z-index: 10;
-}
-
-.menuModal .close {
-    float: right;
-    margin: 8px;
-    z-index: 10;
-    width: 12px;
-    height: 12px;
-    font-size: 12px;
-}

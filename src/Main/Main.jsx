@@ -15,7 +15,7 @@ export default function Main({ newModal, newDeleteModal, newMovieInfo }) {
                 </div>
                 <hr />
                 <div className="row">
-                    <FoundMovieCounter number={39} />
+                    <FoundMovieCounter number={info.movies.length} />
                 </div>
                 <div className="found">
                     {info.movies.map(item => 
