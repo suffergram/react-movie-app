@@ -1,15 +1,12 @@
 import './style';
-import Button from '../Button/Button';
 import React from 'react';
-import { useState } from 'react';
-import Modal from '../Modal/Modal';
 import Popover from '../Popover/Popover';
 
 export default function Card({ newModal, newDeleteModal, newMovieInfo, movie }) {
     const ref = React.useRef();
 
-    const handleCardClick = (event) => {
-        newMovieInfo(event.target.id);
+    const handleCardClick = () => {
+        newMovieInfo(movie);
     }
 
     return (

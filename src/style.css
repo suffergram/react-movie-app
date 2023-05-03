@@ -7,7 +7,7 @@
 
 body {
     font-family: "Montserrat";
-    background-color: #333;
+    background-color: var(--color-body-bg);
     color: var(--color-5);
     margin: 0;
 
@@ -16,6 +16,9 @@ body {
     --color-3: #232323;
     --color-4: #555555;
     --color-5: #FFFFFF;
+    --color-white: white;
+    --color-form-input: #323232;
+    --color-body-bg: #444444;
 }
 
 h1, h2 {

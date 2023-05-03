@@ -31,7 +31,7 @@
 }
 
 .movie-name-rating > p {
-    border: 1px solid white;
+    border: 1px solid var(--color-5);
     width: 60px;
     height: 60px;
     display: flex;

@@ -1,8 +1,7 @@
 import "./style.css";
-import { movies } from "../Main/info";
 import Button from "../Button/Button";
 
-export default function MovieInfo({ movieId, onCloseMovieInfo }) {
+export default function MovieInfo({ onCloseMovieInfo, movie }) {
     return (
         <div className="movie-info-container">
             <div>
@@ -14,18 +13,18 @@ export default function MovieInfo({ movieId, onCloseMovieInfo }) {
                     </div>
                     </Button>
                 <div className="movie-info">
-                    <img src={movies[movieId].url} />
+                    <img src={movie.url} />
                     <div>
                         <div className="movie-name-rating">
-                            <h2>{movies[movieId].name}</h2>
-                            <p>{movies[movieId].rating}</p>
+                            <h2>{movie.name}</h2>
+                            <p>{movie.rating}</p>
                         </div>
-                        <p className="movie-genre">{movies[movieId].genre}</p>
+                        <p className="movie-genre">{movie.genre}</p>
                         <div className="movie-year-duration">
-                            <p>{movies[movieId].year}</p>
-                            <p>{movies[movieId].duration}</p>
+                            <p>{movie.year}</p>
+                            <p>{movie.duration}</p>
                         </div>
-                        <p className="movie-description">{movies[movieId].description}</p>
+                        <p className="movie-description">{movie.description}</p>
                     </div>
                 </div>
             </div>

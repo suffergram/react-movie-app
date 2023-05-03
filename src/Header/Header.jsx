@@ -2,7 +2,7 @@ import "./style.css";
 import Button from "../Button/Button";
 import MovieInfo from "../MovieInfo/MovieInfo";
 
-export default function Header({ newModal, isMovieInfoOpen, onCloseMovieInfo, movieId }) {
+export default function Header({ newModal, isMovieInfoOpen, onCloseMovieInfo, movie }) {
     const handleClick = () => {
         newModal('add')
     }
@@ -21,7 +21,7 @@ export default function Header({ newModal, isMovieInfoOpen, onCloseMovieInfo, mo
                 </div>
             </div>
             <div className="header-background"><div></div></div>
-            {isMovieInfoOpen ? <MovieInfo movieId={movieId} onCloseMovieInfo={onCloseMovieInfo} /> : null}
+            {isMovieInfoOpen ? <MovieInfo movie={movie} onCloseMovieInfo={onCloseMovieInfo} /> : null}
         </header>
     );
 }

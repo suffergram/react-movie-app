@@ -3,11 +3,8 @@ import EditForm from "../EditForm/EditForm";
 
 export default function MovieModal({ isOpen, onClose, modalType }) {
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
-            <div>
-                {modalType === 'add' ? <h2>add movie</h2> : modalType === 'edit' ? <h2>edit movie</h2> : null}
+        <Modal isOpen={isOpen} onClose={onClose} modalType={modalType}>
                 <EditForm />
-            </div>
         </Modal>
     );
 }

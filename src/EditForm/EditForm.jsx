@@ -4,25 +4,25 @@ import "./style.css";
 
 export default function EditForm() {
     return (
-        <form>
-            <div>
-                <p>title</p>
+        <form className="modal-edit-form">
+            <label>
+                title
                 <input placeholder="Select Title" />
-            </div>
-            <div>
-                <p>release date</p>
+            </label>
+            <label>
+                release date
                 <input type="date" placeholder="Select Date" />
-            </div>
-            <div>
-                <p>movie url</p>
+            </label>
+            <label>
+                movie url
                 <input placeholder="https://" />
-            </div>
-            <div>
-                <p>rating</p>
+            </label>
+            <label>
+                rating
                 <input placeholder="7.8" />
-            </div>
-            <div>
-                <p>genre</p>
+            </label>
+            <label>
+                genre
                 <select>
                     <option value="">Select Genre</option>
                     {
@@ -31,18 +31,18 @@ export default function EditForm() {
                         )
                     }
                 </select>
-            </div>
-            <div>
-                <p>runtime</p>
+            </label>
+            <label>
+                runtime
                 <input placeholder="minutes" />
-            </div>
-            <div>
-                <p>overview</p>
+            </label>
+            <label>
+                overview
                 <textarea placeholder="Movie description" />
-            </div>
+            </label>
             <div>
-                <Button className="cancel">reset</Button>
-                <Button className="confirm">submit</Button>
+                <Button className="cancel modal-edit-button">reset</Button>
+                <Button className="confirm modal-edit-button">submit</Button>
             </div>
         </form>
     );

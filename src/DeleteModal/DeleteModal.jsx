@@ -3,13 +3,12 @@ import Button from "../Button/Button";
 import "./style.css";
 
 export default function DeleteModal({ isOpen, onClose }) {
+    const modalType = "delete";
+
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
-            <div className="delete-modal">
-                <h2>delete movie</h2>
+        <Modal isOpen={isOpen} onClose={onClose} modalType={modalType}>
                 <p>Are you sure you want to delete this movie?</p>
-                <Button className="confirm">confirm</Button>
-            </div>
+                <Button className="confirm delete-modal">confirm</Button>
         </Modal>
     );
 }

@@ -11,7 +11,7 @@ export default function App() {
     const [modalType, setModalType] = useState(null);
 
     const [isMovieInfoOpen, setIsMovieInfoOpen] = useState(false);
-    const [movieId, setMovieId] = useState(null);
+    const [movie, setMovie] = useState(null);
 
     const openMovieModalWindow = (name) => {
         setModalType(name);
@@ -24,9 +24,9 @@ export default function App() {
 
     const closeDeleteModalWindow = () => setIsDeleteModalOpen(false);
 
-    const openMovieInfoWindow = (id) => {
+    const openMovieInfoWindow = (currentMovie) => {
         setIsMovieInfoOpen(true);
-        setMovieId(id);
+        setMovie(currentMovie);
     }
 
     const closeMovieInfoWindow = () => setIsMovieInfoOpen(false);
@@ -37,7 +37,7 @@ export default function App() {
                 newModal={openMovieModalWindow} 
                 isMovieInfoOpen={isMovieInfoOpen} 
                 onCloseMovieInfo={closeMovieInfoWindow}
-                movieId={movieId} 
+                movie={movie} 
             />
             <Main 
                 newModal={openMovieModalWindow} 

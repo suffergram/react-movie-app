@@ -23,36 +23,37 @@
     z-index: 10;
 }
 
-.overlay .close {
+.modal-close {
     position: absolute;
     right: 31px;
     top: 31px;
 }
 
-.overlay h2 {
+.modal-title {
     margin-top: 0;
+    margin-bottom: 38px;
     text-transform: uppercase;
     font-size: 40px;
 }
 
-.overlay form {
+.modal-edit-form {
     width: 856px;
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 30px;
 }
 
-.overlay form > * > * {
+.modal-edit-form > * > * {
     box-sizing: border-box;
     width: 100%;
     padding: 0;
 }
 
-.overlay form > *:nth-child(7) {
+.modal-edit-form > *:nth-child(7) {
     grid-column: auto / span 2;
 }
 
-.overlay form > *:nth-child(8) {
+.modal-edit-form > *:nth-child(8) {
     grid-column: auto / span 2;
     display: flex;
     gap: 13px;
@@ -60,17 +61,21 @@
     margin-top: 30px;
 }
 
-form p {
+.modal-edit-form label {
     color: var(--color-1);
     font-size: 16px;
     margin: 0 0 13px;
     text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
 }
 
-.overlay input, .overlay select {
+.modal-edit-form input, 
+.modal-edit-form select {
     height: 57px;
     min-width: 301px;
-    color: var(--color-5);
+    color: var(--color-white);
 }
 
 .overlay select {
@@ -81,17 +86,19 @@ form p {
     resize: none;
     width: 100%;
     height: 197px;
-    color: white;
+    color: var(--color-white);
 }
 
-.overlay input, .overlay select, .overlay textarea {
-    background-color: #323232;
+.modal-edit-form input, 
+.modal-edit-form select, 
+.modal-edit-form textarea {
+    background-color: var(--color-form-input);
     border: none;
     padding: 16px;
     font-size: 20px;
 }
 
-.overlay .cancel, .overlay .confirm {
+.modal-edit-button {
     height: 57px;
     width: 180px;
     font-size: 20px;
