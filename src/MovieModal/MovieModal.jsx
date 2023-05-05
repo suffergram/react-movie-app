@@ -1,5 +1,5 @@
-import Modal from "../Modal/Modal";
-import EditForm from "../EditForm/EditForm";
+import Modal from '../Modal/Modal';
+import EditForm from '../EditForm/EditForm';
 
 export default function MovieModal({ isOpen, onClose, modalType }) {
     return (

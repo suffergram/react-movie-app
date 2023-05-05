@@ -1,9 +1,9 @@
-import './style.css'
+import './style.css';
 
-export default function Button({ children = "╳", ...delegatedProps }) {
-    return (
-        <button {...delegatedProps}>
-            {children}
-        </button>
-    );
+export default function Button({ children = '╳', ...delegatedProps }) {
+  return (
+    <button {...delegatedProps} type="button">
+      {children}
+    </button>
+  );
 }

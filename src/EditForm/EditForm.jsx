@@ -1,6 +1,6 @@
-import Button from "../Button/Button";
-import { genres } from "../Main/info.js";
-import "./style.css";
+import Button from '../Button/Button';
+import { genres } from '../Main/info';
+import './style.css';
 
 export default function EditForm() {
     return (

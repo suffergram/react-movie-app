@@ -1,9 +1,16 @@
-import './style';
+import './style.css';
 
 export default function FoundMovieCounter({ number }) {
-    return (
-        <div className="results">
-            <div className="movie-counter"><strong>{number}</strong> movies found</div>
-        </div>
-    );
+  return (
+    <div className="results">
+      <div className="movie-counter">
+        <strong>
+          {number}
+        </strong>
+
+        {' '}
+        movies found
+      </div>
+    </div>
+  );
 }

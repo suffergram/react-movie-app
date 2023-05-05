@@ -6,7 +6,7 @@ module.exports = (env, argv) => {
     console.log(env, argv);
     const isProduction = argv.mode === 'production';
     return {
-        entry: "./src/index.js",
+        entry: "./src/index.jsx",
         output: {
             filename: "main.js",
             path: path.resolve(__dirname, "build"),

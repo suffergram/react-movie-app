@@ -1,5 +1,5 @@
-import ReactModal from "react-modal";
-import Button from "../Button/Button"
+import ReactModal from 'react-modal';
+import Button from '../Button/Button';
 import './style.css';
 
 ReactModal.setAppElement('body');

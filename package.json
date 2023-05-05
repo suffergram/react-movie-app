@@ -2,11 +2,15 @@
   "name": "react",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "build": "webpack --mode production",
     "build-dev": "webpack --mode development",
-    "start": "webpack serve --mode development"
+    "start": "webpack serve --mode development",
+    "lint": "eslint --ext .jsx,.js,.json src/",
+    "lint-fix": "eslint --ext .jsx,.js,.json --fix src/",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged -c lint-staged.config.js"
   },
   "keywords": [],
   "author": "",
@@ -17,9 +21,12 @@
     "@babel/preset-react": "^7.18.6",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
+    "eslint": "^8.39.0",
+    "eslint-config-airbnb": "^19.0.4",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
     "mini-css-extract-plugin": "^2.7.5",
-    "react-modal": "^3.16.1",
     "style-loader": "^3.3.2",
     "webpack": "^5.76.3",
     "webpack-cli": "^5.0.1",
@@ -28,6 +35,8 @@
   "dependencies": {
     "@floating-ui/react": "^0.23.1",
     "@floating-ui/react-dom-interactions": "^0.13.3",
+    "prop-types": "^15.8.1",
+    "react-modal": "^3.16.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

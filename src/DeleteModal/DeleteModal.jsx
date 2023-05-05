@@ -1,6 +1,6 @@
-import Modal from "../Modal/Modal";
-import Button from "../Button/Button";
-import "./style.css";
+import Modal from '../Modal/Modal';
+import Button from '../Button/Button';
+import './style.css';
 
 export default function DeleteModal({ isOpen, onClose }) {
     const modalType = "delete";
