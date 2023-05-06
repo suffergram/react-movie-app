@@ -45,15 +45,13 @@ export default function Popover({ newModal, newDeleteModal }) {
 
   return (
     <>
-      {/* <Button ref={refs.reference} {...getReferenceProps()} className="menu">⋮</Button> */}
-      <button
-        ref={refs.reference}
+      <Button
         {...getReferenceProps()}
+        ref={refs.reference}
         className="menu"
-        type="button"
       >
         ⋮
-      </button>
+      </Button>
 
       {isOpen
         ? (
@@ -62,6 +60,7 @@ export default function Popover({ newModal, newDeleteModal }) {
             modal={false}
           >
             <div
+              {...getFloatingProps()}
               className="menuPopover"
               ref={refs.floating}
               style={{
@@ -69,7 +68,6 @@ export default function Popover({ newModal, newDeleteModal }) {
                 top: y ?? 16,
                 right: x ?? 16,
               }}
-              {...getFloatingProps()}
             >
               <Button
                 className="close"

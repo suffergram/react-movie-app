@@ -1,9 +1,10 @@
+import React from 'react';
 import './style.css';
 
-export default function Button({ children = '╳', ...delegatedProps }) {
-  return (
-    <button {...delegatedProps} type="button">
-      {children}
-    </button>
-  );
-}
+const Button = React.forwardRef(({ children = '╳', ...delegatedProps }, ref) => (
+  <button type="button" {...delegatedProps} ref={ref}>
+    {children}
+  </button>
+));
+
+export default Button;

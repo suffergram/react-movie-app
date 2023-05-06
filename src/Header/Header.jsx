@@ -2,10 +2,12 @@ import './style.css';
 import Button from '../Button/Button';
 import MovieInfo from '../MovieInfo/MovieInfo';
 
-export default function Header({ newModal, isMovieInfoOpen, onCloseMovieInfo, movie }) {
-    const handleClick = () => {
-        newModal('add')
-    }
+export default function Header({
+  newModal, isMovieInfoOpen, onCloseMovieInfo, movie,
+}) {
+  const handleClick = () => {
+    newModal('add');
+  };
 
   return (
     <header>
@@ -46,7 +48,7 @@ export default function Header({ newModal, isMovieInfoOpen, onCloseMovieInfo, mo
       {isMovieInfoOpen
         ? (
           <MovieInfo
-            movieId={movieId}
+            movie={movie}
             onCloseMovieInfo={onCloseMovieInfo}
           />
         )

@@ -7,9 +7,9 @@ export default function Card({
 }) {
   const ref = React.useRef();
 
-    const handleCardClick = () => {
-        newMovieInfo(movie);
-    }
+  const handleCardClick = () => {
+    newMovieInfo(movie);
+  };
 
   return (
     <div
