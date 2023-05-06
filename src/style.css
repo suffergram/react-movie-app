@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: normal;
+    src: url("./fonts/Montserrat.ttf") format("truetype");
+}
+
+body {
+    font-family: "Montserrat";
+    background-color: var(--color-body-bg);
+    color: var(--color-5);
+    margin: 0;
+
+    --color-1: #F65261;
+    --color-2: #424242;
+    --color-3: #232323;
+    --color-4: #555555;
+    --color-5: #FFFFFF;
+    --color-white: white;
+    --color-form-input: #323232;
+    --color-body-bg: #444444;
+}
+
+h1, h2 {
+    font-weight: lighter;
+    letter-spacing: 1px;
+    font-size: 40px;
+    margin: 0;
+    text-transform: uppercase;
+}
