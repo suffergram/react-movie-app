@@ -1,14 +1,16 @@
-import './style.css';
+import PropTypes from 'prop-types';
 import React from 'react';
 import Popover from '../Popover/Popover';
 
-export default function Card({
-  newModal, newDeleteModal, newMovieInfo, movie,
+import './style.css';
+
+function Card({
+  onMovieModalOpen, onDeleteModalOpen, onMovieInfoOpen, movie,
 }) {
   const ref = React.useRef();
 
   const handleCardClick = () => {
-    newMovieInfo(movie);
+    onMovieInfoOpen(movie);
   };
 
   return (
@@ -30,8 +32,8 @@ export default function Card({
       </button>
 
       <Popover
-        newDeleteModal={newDeleteModal}
-        newModal={newModal}
+        onDeleteModalOpen={onDeleteModalOpen}
+        onMovieModalOpen={onMovieModalOpen}
       />
 
       <div className="description">
@@ -50,3 +52,21 @@ export default function Card({
     </div>
   );
 }
+
+Card.propTypes = {
+  onMovieModalOpen: PropTypes.func.isRequired,
+  onDeleteModalOpen: PropTypes.func.isRequired,
+  onMovieInfoOpen: PropTypes.func.isRequired,
+  movie: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    year: PropTypes.number,
+    duration: PropTypes.string,
+    rating: PropTypes.number,
+    genre: PropTypes.string,
+    url: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
+};
+
+export default Card;

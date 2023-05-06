@@ -1,12 +1,14 @@
-import './style.css';
+import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 
-export default function MovieInfo({ onCloseMovieInfo, movie }) {
+import './style.css';
+
+function MovieInfo({ onMovieInfoClose, movie }) {
   return (
     <div className="movie-info-container">
       <div>
         <p className="logo">netflixroulette</p>
-        <Button onClick={onCloseMovieInfo} className="close-search">
+        <Button onClick={onMovieInfoClose} className="close-search">
           <div className="search-icon">
             <div className="line" />
             <div className="circle" />
@@ -31,3 +33,19 @@ export default function MovieInfo({ onCloseMovieInfo, movie }) {
     </div>
   );
 }
+
+MovieInfo.propTypes = {
+  onMovieInfoClose: PropTypes.func.isRequired,
+  movie: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    year: PropTypes.number,
+    duration: PropTypes.string,
+    rating: PropTypes.number,
+    genre: PropTypes.string,
+    url: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
+};
+
+export default MovieInfo;

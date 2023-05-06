@@ -13,46 +13,46 @@ export default function App() {
   const [isMovieInfoOpen, setIsMovieInfoOpen] = useState(false);
   const [movie, setMovie] = useState(null);
 
-  const openMovieModalWindow = (name) => {
+  const handleMovieModalOpen = (name) => {
     setModalType(name);
     setIsMovieModalOpen(true);
   };
 
-  const closeMovieModalWindow = () => setIsMovieModalOpen(false);
+  const handleMovieModalClose = () => setIsMovieModalOpen(false);
 
-  const openDeleteModalWindow = () => setIsDeleteModalOpen(true);
+  const handleDeleteModalOpen = () => setIsDeleteModalOpen(true);
 
-  const closeDeleteModalWindow = () => setIsDeleteModalOpen(false);
+  const handleDeleteModalClose = () => setIsDeleteModalOpen(false);
 
-  const openMovieInfoWindow = (currentMovie) => {
+  const handleMovieInfoOpen = (currentMovie) => {
     setIsMovieInfoOpen(true);
     setMovie(currentMovie);
   };
 
-  const closeMovieInfoWindow = () => setIsMovieInfoOpen(false);
+  const handleMovieInfoClose = () => setIsMovieInfoOpen(false);
 
   return (
     <>
       <Header
-        newModal={openMovieModalWindow}
+        onMovieModalOpen={handleMovieModalOpen}
+        onMovieInfoClose={handleMovieInfoClose}
         isMovieInfoOpen={isMovieInfoOpen}
-        onCloseMovieInfo={closeMovieInfoWindow}
         movie={movie}
       />
       <Main
-        newModal={openMovieModalWindow}
-        newDeleteModal={openDeleteModalWindow}
-        newMovieInfo={openMovieInfoWindow}
+        onMovieModalOpen={handleMovieModalOpen}
+        onDeleteModalOpen={handleDeleteModalOpen}
+        onMovieInfoOpen={handleMovieInfoOpen}
       />
       <Footer />
       <MovieModal
-        isOpen={isMovieModalOpen}
-        onClose={closeMovieModalWindow}
-        modalType={modalType}
+        onModalClose={handleMovieModalClose}
+        isModalOpen={isMovieModalOpen}
+        title={`${modalType} movie`}
       />
       <DeleteModal
-        isOpen={isDeleteModalOpen}
-        onClose={closeDeleteModalWindow}
+        onModalClose={handleDeleteModalClose}
+        isModalOpen={isDeleteModalOpen}
       />
     </>
   );

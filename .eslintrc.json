@@ -19,7 +19,6 @@
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
-        "react/prop-types": "off", // исправить
         "react/jsx-props-no-spreading": "off",
         "linebreak-style": ["error", "windows"],
         "jsx-a11y/label-has-associated-control": "off"

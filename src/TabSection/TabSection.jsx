@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import Tab from '../Tab/Tab';
 
-export default function TabSection({ genres }) {
+function TabSection({ genres }) {
   return (
     <div className="results filter">
       <Tab defaultChecked>
@@ -20,3 +21,12 @@ export default function TabSection({ genres }) {
     </div>
   );
 }
+
+TabSection.propTypes = {
+  genres: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  })).isRequired,
+};
+
+export default TabSection;

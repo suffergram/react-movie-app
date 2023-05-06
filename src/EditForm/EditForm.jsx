@@ -1,5 +1,6 @@
 import Button from '../Button/Button';
 import { genres } from '../Main/info';
+
 import './style.css';
 
 export default function EditForm() {

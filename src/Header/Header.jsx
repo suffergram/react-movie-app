@@ -1,12 +1,14 @@
-import './style.css';
+import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import MovieInfo from '../MovieInfo/MovieInfo';
 
-export default function Header({
-  newModal, isMovieInfoOpen, onCloseMovieInfo, movie,
+import './style.css';
+
+function Header({
+  onMovieModalOpen, isMovieInfoOpen, onMovieInfoClose, movie,
 }) {
   const handleClick = () => {
-    newModal('add');
+    onMovieModalOpen('add');
   };
 
   return (
@@ -49,10 +51,32 @@ export default function Header({
         ? (
           <MovieInfo
             movie={movie}
-            onCloseMovieInfo={onCloseMovieInfo}
+            onMovieInfoClose={onMovieInfoClose}
           />
         )
         : null}
     </header>
   );
 }
+
+Header.propTypes = {
+  onMovieModalOpen: PropTypes.func.isRequired,
+  isMovieInfoOpen: PropTypes.bool.isRequired,
+  onMovieInfoClose: PropTypes.func.isRequired,
+  movie: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    year: PropTypes.number,
+    duration: PropTypes.string,
+    rating: PropTypes.number,
+    genre: PropTypes.string,
+    url: PropTypes.string,
+    description: PropTypes.string,
+  }),
+};
+
+Header.defaultProps = {
+  movie: undefined,
+};
+
+export default Header;

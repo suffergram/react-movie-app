@@ -11,10 +11,12 @@ import {
   useRole,
 } from '@floating-ui/react-dom-interactions';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import Button from '../Button/Button';
+
 import './style.css';
 
-export default function Popover({ newModal, newDeleteModal }) {
+function Popover({ onMovieModalOpen, onDeleteModalOpen }) {
   const [
     isOpen,
     setIsOpen,
@@ -76,14 +78,14 @@ export default function Popover({ newModal, newDeleteModal }) {
 
               <Button
                 className="edit"
-                onClick={() => newModal('edit')}
+                onClick={() => onMovieModalOpen('edit')}
               >
                 edit
               </Button>
 
               <Button
                 className="delete"
-                onClick={newDeleteModal}
+                onClick={onDeleteModalOpen}
               >
                 delete
               </Button>
@@ -94,3 +96,10 @@ export default function Popover({ newModal, newDeleteModal }) {
     </>
   );
 }
+
+Popover.propTypes = {
+  onMovieModalOpen: PropTypes.func.isRequired,
+  onDeleteModalOpen: PropTypes.func.isRequired,
+};
+
+export default Popover;

@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
+
 import './style.css';
 
-export default function FoundMovieCounter({ number }) {
+function FoundMovieCounter({ number }) {
   return (
     <div className="results">
       <div className="movie-counter">
@@ -14,3 +16,9 @@ export default function FoundMovieCounter({ number }) {
     </div>
   );
 }
+
+FoundMovieCounter.propTypes = {
+  number: PropTypes.number.isRequired,
+};
+
+export default FoundMovieCounter;

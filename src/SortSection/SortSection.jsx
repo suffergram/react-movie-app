@@ -1,4 +1,6 @@
-export default function SortSection({ sort }) {
+import PropTypes from 'prop-types';
+
+function SortSection({ sort }) {
   return (
     <div className="results sort">
       <p>
@@ -17,3 +19,12 @@ export default function SortSection({ sort }) {
     </div>
   );
 }
+
+SortSection.propTypes = {
+  sort: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  })).isRequired,
+};
+
+export default SortSection;

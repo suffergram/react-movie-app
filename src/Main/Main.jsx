@@ -1,11 +1,13 @@
-import './style.css';
-import * as info from './info';
+import PropTypes from 'prop-types';
 import Card from '../Card/Card';
 import TabSection from '../TabSection/TabSection';
 import SortSection from '../SortSection/SortSection';
 import FoundMovieCounter from '../FoundMovieCounter/FoundMovieCounter';
+import * as info from './info';
 
-export default function Main({ newModal, newDeleteModal, newMovieInfo }) {
+import './style.css';
+
+function Main({ onMovieModalOpen, onDeleteModalOpen, onMovieInfoOpen }) {
   return (
     <main>
       <div className="content">
@@ -26,9 +28,9 @@ export default function Main({ newModal, newDeleteModal, newMovieInfo }) {
             <Card
               key={item.id}
               movie={item}
-              newDeleteModal={newDeleteModal}
-              newModal={newModal}
-              newMovieInfo={newMovieInfo}
+              onDeleteModalOpen={onDeleteModalOpen}
+              onMovieModalOpen={onMovieModalOpen}
+              onMovieInfoOpen={onMovieInfoOpen}
             />
           ))}
         </div>
@@ -36,3 +38,11 @@ export default function Main({ newModal, newDeleteModal, newMovieInfo }) {
     </main>
   );
 }
+
+Main.propTypes = {
+  onMovieModalOpen: PropTypes.func.isRequired,
+  onDeleteModalOpen: PropTypes.func.isRequired,
+  onMovieInfoOpen: PropTypes.func.isRequired,
+};
+
+export default Main;
