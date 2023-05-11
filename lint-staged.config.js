@@ -3,4 +3,8 @@ module.exports = {
       () => 
       "npm run lint-fix",
     ],
+    // '*.{ts,tsx}': [
+    //   () => 
+    //   'npx tsc -p tsconfig.json --noEmit'
+    // ],
 };

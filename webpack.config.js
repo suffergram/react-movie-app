@@ -5,11 +5,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = (argv) => {
     const isProduction = argv.mode === 'production';
     return {
-        entry: "./src/index.jsx",
+        entry: "./src/index.tsx",
         output: {
             filename: "main.js",
             path: path.resolve(__dirname, "build"),
         },
+        devtool: "inline-source-map",
         plugins: [
             new HtmlWebpackPlugin({
                 template: path.join(__dirname, "public", "index.html"),
@@ -30,6 +31,10 @@ module.exports = (argv) => {
                     use: ["babel-loader"],
                 },
                 {
+                    test: /\.(ts|tsx)$/,
+                    use: ["ts-loader"],
+                },
+                {
                     test: /\.css$/,
                     use: [isProduction ? MiniCssExtractPlugin.loader : "style-loader", "css-loader"],
                 },
@@ -40,7 +45,7 @@ module.exports = (argv) => {
             ],
         },
         resolve: {
-            extensions: ["*", ".js", ".jsx", ".css"],
+            extensions: ["*", ".js", ".jsx", ".ts", ".tsx", ".css"],
         }
     };
 }
