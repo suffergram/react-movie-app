@@ -7,8 +7,6 @@ import './style.css';
 function Card({
   onMovieModalOpen, onDeleteModalOpen, onMovieInfoOpen, movie,
 }) {
-  const ref = React.useRef();
-
   const handleCardClick = () => {
     onMovieInfoOpen(movie);
   };
@@ -16,7 +14,7 @@ function Card({
   return (
     <div
       className="card"
-      ref={ref}
+      ref={React.createRef()}
     >
       <button
         id={movie.id}
