@@ -1,65 +1,105 @@
-import { 
-    FloatingFocusManager, 
-    autoUpdate, 
-    flip, 
-    offset, 
-    shift, 
-    useClick, 
-    useDismiss, 
-    useFloating, 
-    useInteractions, 
-    useRole
-} from "@floating-ui/react-dom-interactions";
-import { useState } from "react";
-import Button from "../Button/Button";
-import "./style";
+import {
+  FloatingFocusManager,
+  autoUpdate,
+  flip,
+  offset,
+  shift,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+  useRole,
+} from '@floating-ui/react-dom-interactions';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import Button from '../Button/Button';
 
-export default function Popover({ newModal, newDeleteModal }) {
-    const [isOpen, setIsOpen] = useState(false);
+import './style.css';
 
-    const { x, y, refs, strategy, context } = useFloating({
-        open: isOpen,
-        onOpenChange: setIsOpen,
-        middleware: [
-            offset(10),
-            flip(),
-            shift()
-        ],
-        whileElementsMounted: autoUpdate
-    });
+function Popover({ onMovieModalOpen, onDeleteModalOpen }) {
+  const [
+    isOpen,
+    setIsOpen,
+  ] = useState(false);
 
-    const click = useClick(context);
-    const dismiss = useDismiss(context);
-    const role = useRole(context);
+  const {
+    x, y, refs, strategy, context,
+  } = useFloating({
+    open: isOpen,
+    onOpenChange: setIsOpen,
+    middleware: [
+      offset(10),
+      flip(),
+      shift(),
+    ],
+    whileElementsMounted: autoUpdate,
+  });
 
-    const { getReferenceProps, getFloatingProps } = useInteractions([
-        click,
-        dismiss,
-        role
-    ]);
- 
-    return (
-        <>
-            {/* <Button ref={refs.reference} {...getReferenceProps()} className="menu">⋮</Button> */}
-            <button ref={refs.reference} {...getReferenceProps()} className="menu">⋮</button>
-            {isOpen && (
-                <FloatingFocusManager context={context} modal={false}>
-                    <div
-                        className="menuPopover"
-                        ref={refs.floating}
-                        style={{
-                            position: strategy,
-                            top: y ?? 16,
-                            right: x ?? 16
-                        }}
-                        {...getFloatingProps()}
-                    >
-                        <Button onClick={() => setIsOpen(false)} className="close" />
-                        <Button onClick={() => newModal('edit')} className="edit">edit</Button>
-                        <Button onClick={newDeleteModal} className="delete">delete</Button>
-                    </div>
-                </FloatingFocusManager>
-            )}
-        </>
-    );
+  const click = useClick(context);
+  const dismiss = useDismiss(context);
+  const role = useRole(context);
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    click,
+    dismiss,
+    role,
+  ]);
+
+  return (
+    <>
+      <Button
+        {...getReferenceProps()}
+        ref={refs.reference}
+        className="menu"
+      >
+        ⋮
+      </Button>
+
+      {isOpen
+        ? (
+          <FloatingFocusManager
+            context={context}
+            modal={false}
+          >
+            <div
+              {...getFloatingProps()}
+              className="menuPopover"
+              ref={refs.floating}
+              style={{
+                position: strategy,
+                top: y ?? 16,
+                right: x ?? 16,
+              }}
+            >
+              <Button
+                className="close"
+                onClick={() => setIsOpen(false)}
+              />
+
+              <Button
+                className="edit"
+                onClick={() => onMovieModalOpen('edit')}
+              >
+                edit
+              </Button>
+
+              <Button
+                className="delete"
+                onClick={onDeleteModalOpen}
+              >
+                delete
+              </Button>
+            </div>
+          </FloatingFocusManager>
+        )
+        : null}
+    </>
+  );
 }
+
+Popover.propTypes = {
+  onMovieModalOpen: PropTypes.func.isRequired,
+  onDeleteModalOpen: PropTypes.func.isRequired,
+};
+
+export default Popover;

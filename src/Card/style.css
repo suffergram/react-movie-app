@@ -5,7 +5,7 @@
 
 img {
     width: 100%;
-    height: 455px;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -51,7 +51,7 @@ img {
     display: none;
 }
 
-img:hover + .menu, .menu:hover {
+.card-image-container:hover + .menu, .menu:hover {
     display: block;
 }
 
@@ -74,4 +74,11 @@ img:hover + .menu, .menu:hover {
     outline: 1px solid red;
     position: relative;
     top: 41px;
+}
+
+.card-image-container {
+    height: 455px;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
 }

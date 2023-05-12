@@ -2,11 +2,10 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = (env, argv) => {
-    console.log(env, argv);
+module.exports = (argv) => {
     const isProduction = argv.mode === 'production';
     return {
-        entry: "./src/index.js",
+        entry: "./src/index.jsx",
         output: {
             filename: "main.js",
             path: path.resolve(__dirname, "build"),
