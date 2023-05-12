@@ -14,7 +14,6 @@ function Card({
   return (
     <div
       className="card"
-      ref={React.createRef()}
     >
       <button
         id={movie.id}
