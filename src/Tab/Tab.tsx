@@ -1,10 +1,6 @@
-const defaultProps = {
-  defaultChecked: false,
-};
-
 export default function Tab(
   { children, defaultChecked = false }:
-  { children: string, defaultChecked?: boolean } & typeof defaultProps,
+  { children: string, defaultChecked?: boolean },
 ) {
   return (
     <div>
@@ -20,5 +16,3 @@ export default function Tab(
     </div>
   );
 }
-
-Tab.defaultProps = defaultProps;

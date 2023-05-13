@@ -1,13 +1,14 @@
 {
     "compilerOptions": {
-        "jsx": "react-jsx",
+        "jsx": "preserve",
         "esModuleInterop": true,
-        "sourceMap": true,
+        // "sourceMap": true, // check
         "strict": true,
         "allowJs": true,
         "checkJs": false,
         "outDir": "./",
+        "skipLibCheck": true,
     },
     "include": ["src"],
-    "exclude": ["node_modules"],
+    "exclude": ["node_modules", "./lint-staged.config.js", "./webpack.config.js"],
 }

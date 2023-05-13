@@ -2,19 +2,15 @@ import React from 'react';
 
 import './style.css';
 
-type ButtonProps = React.ComponentPropsWithoutRef<'button'>;
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
-  children,
+  children = '╳',
   ...delegatedProps
 }, ref) => (
   <button type="button" ref={ref} {...delegatedProps}>
     {children}
   </button>
 ));
-
-Button.defaultProps = {
-  children: '╳',
-};
 
 export default Button;

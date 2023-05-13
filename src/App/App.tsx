@@ -4,6 +4,7 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import MovieModal from '../MovieModal/MovieModal';
 import DeleteModal from '../DeleteModal/DeleteModal';
+import * as info from '../Main/info';
 
 interface MovieObject {
   id: number,
@@ -54,6 +55,7 @@ export default function App() {
         onMovieModalOpen={handleMovieModalOpen}
         onDeleteModalOpen={handleDeleteModalOpen}
         onMovieInfoOpen={handleMovieInfoOpen}
+        movies={info.movies}
       />
       <Footer />
       <MovieModal

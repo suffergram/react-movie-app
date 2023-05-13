@@ -33,7 +33,7 @@ export default function Header(
   };
 
   return (
-    <header>
+    <header className="header-container">
       <div className="header-content">
         <p className="logo logo-pos">
           <strong>
@@ -62,10 +62,6 @@ export default function Header(
             </Button>
           </div>
         </div>
-      </div>
-
-      <div className="header-background">
-        <div />
       </div>
 
       {isMovieInfoOpen

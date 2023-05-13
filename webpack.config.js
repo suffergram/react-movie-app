@@ -10,7 +10,7 @@ module.exports = (argv) => {
             filename: "main.js",
             path: path.resolve(__dirname, "build"),
         },
-        devtool: "inline-source-map",
+        // devtool: "inline-source-map", // check
         plugins: [
             new HtmlWebpackPlugin({
                 template: path.join(__dirname, "public", "index.html"),

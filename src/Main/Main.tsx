@@ -3,30 +3,22 @@ import TabSection from '../TabSection/TabSection';
 import SortSection from '../SortSection/SortSection';
 import FoundMovieCounter from '../FoundMovieCounter/FoundMovieCounter';
 import * as info from './info';
+import { Movie } from '../Types/MovieTypes';
 
 import './style.css';
-
-interface MovieObject {
-  id: number,
-  name: string,
-  year: number,
-  duration: string,
-  rating: number,
-  genre: string,
-  url: string,
-  description: string
-}
 
 export default function Main(
   {
     onMovieModalOpen,
     onDeleteModalOpen,
     onMovieInfoOpen,
+    movies,
   }:
   {
     onMovieModalOpen: (name: string) => void,
     onDeleteModalOpen: () => void,
-    onMovieInfoOpen: (currentMovie: MovieObject) => void
+    onMovieInfoOpen: (currentMovie: Movie) => void
+    movies: Movie[],
   },
 ) {
   return (
@@ -41,11 +33,11 @@ export default function Main(
         <hr />
 
         <div className="row">
-          <FoundMovieCounter number={info.movies.length} />
+          <FoundMovieCounter number={movies.length} />
         </div>
 
         <div className="found">
-          {info.movies.map((item: MovieObject) => (
+          {movies.map((item: Movie) => (
             <Card
               key={item.id}
               movie={item}

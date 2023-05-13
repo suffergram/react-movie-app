@@ -1,13 +1,13 @@
 import Tab from '../Tab/Tab';
 
-interface itemObject {
+interface Genre {
   id: number,
   name: string
 }
 
-export default function TabSection(
+export default function TabSection( // rename GenreSection
   { genres }:
-  { genres: itemObject[] },
+  { genres: Genre[] },
 ) {
   return (
     <div className="results filter">

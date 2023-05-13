@@ -1,18 +1,15 @@
 import React from 'react';
 import Popover from '../Popover/Popover';
 
+import { Movie } from '../Types/MovieTypes';
 import './style.css';
 
-interface MovieObject {
-  id: number,
-  name: string,
-  year: number,
-  duration: string,
-  rating: number,
-  genre: string,
-  url: string,
-  description: string
-}
+type CardProps = {
+  movie: Movie,
+  onMovieModalOpen: (name: string) => void,
+  onDeleteModalOpen: () => void,
+  onMovieInfoOpen: (currentMovie: Movie) => void,
+};
 
 export default function Card(
   {
@@ -20,16 +17,8 @@ export default function Card(
     onDeleteModalOpen,
     onMovieInfoOpen,
     movie,
-  }:
-  {
-    onMovieModalOpen: (name: string) => void,
-    onDeleteModalOpen: () => void,
-    onMovieInfoOpen: (currentMovie: MovieObject) => void,
-    movie: MovieObject
-  },
+  }: CardProps,
 ) {
-  const ref = React.createRef<HTMLDivElement>();
-
   const handleCardClick = () => {
     onMovieInfoOpen(movie);
   };
@@ -37,7 +26,6 @@ export default function Card(
   return (
     <div
       className="card"
-      ref={ref}
     >
       <button
         id={movie.id.toString()}
