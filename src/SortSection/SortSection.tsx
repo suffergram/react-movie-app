@@ -1,11 +1,14 @@
-interface itemObject {
+interface SortOption {
   id: number,
   name: string
 }
 
+type SortSectionProps = {
+  sort: SortOption[]
+};
+
 export default function SortSection(
-  { sort }:
-  { sort: itemObject[] },
+  { sort }: SortSectionProps,
 ) {
   return (
     <div className="results sort">

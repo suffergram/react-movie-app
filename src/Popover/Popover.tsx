@@ -26,7 +26,7 @@ export default function Popover(
 
   const {
     x, y, refs, strategy, context,
-  } = useFloating({
+  } = useFloating<HTMLButtonElement>({
     open: isOpen,
     onOpenChange: setIsOpen,
     middleware: [
@@ -51,7 +51,7 @@ export default function Popover(
     <>
       <Button
         {...getReferenceProps()}
-        ref={refs.reference as React.RefObject<HTMLButtonElement>}
+        ref={refs.reference}
         className="menu"
       >
         ⋮

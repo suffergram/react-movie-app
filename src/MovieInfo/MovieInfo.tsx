@@ -1,21 +1,14 @@
 import Button from '../Button/Button';
-
+import { Movie } from '../Types/MovieTypes';
 import './style.css';
 
-interface MovieObject {
-  id: number,
-  name: string,
-  year: number,
-  duration: string,
-  rating: number,
-  genre: string,
-  url: string,
-  description: string
-}
+type MovieInfoProps = {
+  onMovieInfoClose: () => void,
+  movie: Movie | null,
+};
 
 export default function MovieInfo(
-  { onMovieInfoClose, movie }:
-  { onMovieInfoClose: () => void, movie: MovieObject | null },
+  { onMovieInfoClose, movie }: MovieInfoProps,
 ) {
   return (
     <div className="movie-info-container">

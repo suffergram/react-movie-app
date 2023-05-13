@@ -1,18 +1,14 @@
 import Button from '../Button/Button';
 import MovieInfo from '../MovieInfo/MovieInfo';
-
+import { Movie } from '../Types/MovieTypes';
 import './style.css';
 
-interface MovieObject {
-  id: number,
-  name: string,
-  year: number,
-  duration: string,
-  rating: number,
-  genre: string,
-  url: string,
-  description: string
-}
+type HeaderProps = {
+  onMovieModalOpen: (name: string) => void,
+  isMovieInfoOpen: boolean,
+  onMovieInfoClose: () => void,
+  movie: Movie | null
+};
 
 export default function Header(
   {
@@ -20,13 +16,7 @@ export default function Header(
     isMovieInfoOpen,
     onMovieInfoClose,
     movie,
-  }:
-  {
-    onMovieModalOpen: (name: string) => void,
-    isMovieInfoOpen: boolean,
-    onMovieInfoClose: () => void,
-    movie: MovieObject | null
-  },
+  }: HeaderProps,
 ) {
   const handleClick = () => {
     onMovieModalOpen('add');

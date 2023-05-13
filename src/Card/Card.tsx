@@ -1,6 +1,4 @@
-import React from 'react';
 import Popover from '../Popover/Popover';
-
 import { Movie } from '../Types/MovieTypes';
 import './style.css';
 

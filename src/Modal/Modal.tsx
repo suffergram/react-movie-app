@@ -1,10 +1,15 @@
 import ReactModal from 'react-modal';
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import Button from '../Button/Button';
-
 import './style.css';
 
 ReactModal.setAppElement('body');
+
+type ModalProps = {
+  onModalClose: () => void,
+  isModalOpen: boolean,
+  title: string
+};
 
 export default function Modal(
   {
@@ -12,13 +17,7 @@ export default function Modal(
     onModalClose,
     isModalOpen,
     title,
-  }:
-  {
-    children: ReactNode,
-    onModalClose: () => void,
-    isModalOpen: boolean,
-    title: string
-  },
+  }: PropsWithChildren<ModalProps>,
 ) {
   return (
     <ReactModal

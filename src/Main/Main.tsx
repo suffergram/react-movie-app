@@ -1,11 +1,17 @@
 import Card from '../Card/Card';
-import TabSection from '../TabSection/TabSection';
+import GenreSection from '../GenreSection/GenreSection';
 import SortSection from '../SortSection/SortSection';
 import FoundMovieCounter from '../FoundMovieCounter/FoundMovieCounter';
 import * as info from './info';
 import { Movie } from '../Types/MovieTypes';
-
 import './style.css';
+
+type MainProps = {
+  onMovieModalOpen: (name: string) => void,
+  onDeleteModalOpen: () => void,
+  onMovieInfoOpen: (currentMovie: Movie) => void
+  movies: Movie[],
+};
 
 export default function Main(
   {
@@ -13,19 +19,13 @@ export default function Main(
     onDeleteModalOpen,
     onMovieInfoOpen,
     movies,
-  }:
-  {
-    onMovieModalOpen: (name: string) => void,
-    onDeleteModalOpen: () => void,
-    onMovieInfoOpen: (currentMovie: Movie) => void
-    movies: Movie[],
-  },
+  }: MainProps,
 ) {
   return (
     <main>
       <div className="content">
         <div className="row">
-          <TabSection genres={info.genres} />
+          <GenreSection genres={info.genres} />
 
           <SortSection sort={info.sortBy} />
         </div>
@@ -33,7 +33,7 @@ export default function Main(
         <hr />
 
         <div className="row">
-          <FoundMovieCounter number={movies.length} />
+          <FoundMovieCounter amount={movies.length} />
         </div>
 
         <div className="found">

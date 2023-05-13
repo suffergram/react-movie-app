@@ -5,9 +5,12 @@ interface Genre {
   name: string
 }
 
-export default function TabSection( // rename GenreSection
-  { genres }:
-  { genres: Genre[] },
+type GenreSectionProps = {
+  genres: Genre[]
+};
+
+export default function GenreSection(
+  { genres }: GenreSectionProps,
 ) {
   return (
     <div className="results filter">

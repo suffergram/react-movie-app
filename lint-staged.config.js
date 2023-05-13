@@ -1,5 +1,5 @@
 module.exports = {
-    "*.{ts,tsx}": [
+    "*.{js,jsx,ts,tsx}": [
       () => "npm run tscheck",
       "npm run lint-fix",
     ]

@@ -5,17 +5,7 @@ import Footer from '../Footer/Footer';
 import MovieModal from '../MovieModal/MovieModal';
 import DeleteModal from '../DeleteModal/DeleteModal';
 import * as info from '../Main/info';
-
-interface MovieObject {
-  id: number,
-  name: string,
-  year: number,
-  duration: string,
-  rating: number,
-  genre: string,
-  url: string,
-  description: string
-}
+import { Movie } from '../Types/MovieTypes';
 
 export default function App() {
   const [isMovieModalOpen, setIsMovieModalOpen] = useState(false);
@@ -23,7 +13,7 @@ export default function App() {
   const [modalType, setModalType] = useState<string | null>(null);
 
   const [isMovieInfoOpen, setIsMovieInfoOpen] = useState(false);
-  const [movie, setMovie] = useState<MovieObject | null>(null);
+  const [movie, setMovie] = useState<Movie | null>(null);
 
   const handleMovieModalOpen = (name: string) => {
     setModalType(name);
@@ -36,7 +26,7 @@ export default function App() {
 
   const handleDeleteModalClose = () => setIsDeleteModalOpen(false);
 
-  const handleMovieInfoOpen = (currentMovie: MovieObject) => {
+  const handleMovieInfoOpen = (currentMovie: Movie) => {
     setIsMovieInfoOpen(true);
     setMovie(currentMovie);
   };
