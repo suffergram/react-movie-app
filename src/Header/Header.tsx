@@ -1,6 +1,7 @@
 import Button from '../Button/Button';
 import MovieInfo from '../MovieInfo/MovieInfo';
 import { Movie } from '../Types/MovieTypes';
+import ModalTitles from '../Types/ModalTitles';
 import './style.css';
 
 type HeaderProps = {
@@ -19,7 +20,7 @@ export default function Header(
   }: HeaderProps,
 ) {
   const handleClick = () => {
-    onMovieModalOpen('add');
+    onMovieModalOpen(ModalTitles.Add);
   };
 
   return (

@@ -12,12 +12,16 @@ import {
 } from '@floating-ui/react-dom-interactions';
 import { useState } from 'react';
 import Button from '../Button/Button';
-
+import ModalTitles from '../Types/ModalTitles';
 import './style.css';
 
+type PopoverProps = {
+  onMovieModalOpen: (name: string) => void,
+  onDeleteModalOpen: () => void,
+}
+
 export default function Popover(
-  { onMovieModalOpen, onDeleteModalOpen }:
-  { onMovieModalOpen: (name: string) => void, onDeleteModalOpen: () => void },
+  { onMovieModalOpen, onDeleteModalOpen }: PopoverProps,
 ) {
   const [
     isOpen,
@@ -80,7 +84,7 @@ export default function Popover(
 
               <Button
                 className="edit"
-                onClick={() => onMovieModalOpen('edit')}
+                onClick={() => onMovieModalOpen(ModalTitles.Edit)}
               >
                 edit
               </Button>
