@@ -61,7 +61,32 @@ export const sortBy = [
 ];
 
 class Movie {
-  constructor(id, name, year, duration, rating, genre, url, description) {
+  id: number;
+
+  name: string;
+
+  year: number;
+
+  duration: string;
+
+  rating: number;
+
+  genre: string;
+
+  url: string;
+
+  description: string;
+
+  constructor(
+    id: number,
+    name: string,
+    year: number,
+    duration: string,
+    rating: number,
+    genre: string,
+    url: string,
+    description: string,
+  ) {
     this.id = id;
     this.name = name;
     this.year = year;
