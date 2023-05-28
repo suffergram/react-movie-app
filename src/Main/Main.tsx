@@ -10,7 +10,9 @@ type MainProps = {
   onMovieModalOpen: (name: string) => void,
   onDeleteModalOpen: () => void,
   onMovieInfoOpen: (currentMovie: Movie) => void
+  isLoading: boolean,
   movies: Movie[],
+  loadingError: unknown,
 };
 
 export default function Main(
@@ -18,7 +20,9 @@ export default function Main(
     onMovieModalOpen,
     onDeleteModalOpen,
     onMovieInfoOpen,
+    isLoading,
     movies,
+    loadingError,
   }: MainProps,
 ) {
   return (
@@ -37,7 +41,7 @@ export default function Main(
         </div>
 
         <div className="found">
-          {movies.map((item: Movie) => (
+          {(!isLoading && !loadingError) && movies.map((item: Movie) => (
             <Card
               key={item.id}
               movie={item}

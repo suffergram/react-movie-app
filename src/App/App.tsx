@@ -4,8 +4,8 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import MovieModal from '../MovieModal/MovieModal';
 import DeleteModal from '../DeleteModal/DeleteModal';
-import * as info from '../Main/info';
 import { Movie } from '../Types/MovieTypes';
+import useLoadMovies from '../Hooks/loadMovies';
 
 export default function App() {
   const [isMovieModalOpen, setIsMovieModalOpen] = useState(false);
@@ -33,6 +33,8 @@ export default function App() {
 
   const handleMovieInfoClose = () => setIsMovieInfoOpen(false);
 
+  const { isLoading, error, movies } = useLoadMovies();
+
   return (
     <>
       <Header
@@ -45,7 +47,9 @@ export default function App() {
         onMovieModalOpen={handleMovieModalOpen}
         onDeleteModalOpen={handleDeleteModalOpen}
         onMovieInfoOpen={handleMovieInfoOpen}
-        movies={info.movies}
+        isLoading={isLoading}
+        movies={movies}
+        loadingError={error}
       />
       <Footer />
       <MovieModal
