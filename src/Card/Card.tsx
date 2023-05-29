@@ -1,24 +1,22 @@
+import { useContext } from 'react';
 import Popover from '../Popover/Popover';
+import CardContext from '../Hooks/cardContext';
 import { Movie } from '../Types/MovieTypes';
 import './style.css';
 
 type CardProps = {
   movie: Movie,
-  onMovieModalOpen: (name: string) => void,
-  onDeleteModalOpen: () => void,
-  onMovieInfoOpen: (currentMovie: Movie) => void,
 };
 
-export default function Card(
-  {
-    onMovieModalOpen,
-    onDeleteModalOpen,
-    onMovieInfoOpen,
-    movie,
-  }: CardProps,
-) {
+export default function Card({ movie }: CardProps) {
+  const {
+    handleMovieModalOpen,
+    handleDeleteModalOpen,
+    handleMovieInfoOpen,
+  } = useContext(CardContext);
+
   const handleCardClick = () => {
-    onMovieInfoOpen(movie);
+    handleMovieInfoOpen(movie);
   };
 
   return (
@@ -39,8 +37,8 @@ export default function Card(
       </button>
 
       <Popover
-        onDeleteModalOpen={onDeleteModalOpen}
-        onMovieModalOpen={onMovieModalOpen}
+        onDeleteModalOpen={handleDeleteModalOpen}
+        onMovieModalOpen={handleMovieModalOpen}
       />
 
       <div className="description">

@@ -6,6 +6,7 @@ import MovieModal from '../MovieModal/MovieModal';
 import DeleteModal from '../DeleteModal/DeleteModal';
 import { Movie } from '../Types/MovieTypes';
 import useLoadMovies from '../Hooks/loadMovies';
+import CardContext from '../Hooks/cardContext';
 
 export default function App() {
   const [isMovieModalOpen, setIsMovieModalOpen] = useState(false);
@@ -35,6 +36,12 @@ export default function App() {
 
   const { isLoading, error, movies } = useLoadMovies();
 
+  const cardContextValue = {
+    handleMovieModalOpen,
+    handleDeleteModalOpen,
+    handleMovieInfoOpen,
+  };
+
   return (
     <>
       <Header
@@ -43,14 +50,13 @@ export default function App() {
         isMovieInfoOpen={isMovieInfoOpen}
         movie={movie}
       />
-      <Main
-        onMovieModalOpen={handleMovieModalOpen}
-        onDeleteModalOpen={handleDeleteModalOpen}
-        onMovieInfoOpen={handleMovieInfoOpen}
-        isLoading={isLoading}
-        movies={movies}
-        loadingError={error}
-      />
+      <CardContext.Provider value={cardContextValue}>
+        <Main
+          isLoading={isLoading}
+          movies={movies}
+          loadingError={error}
+        />
+      </CardContext.Provider>
       <Footer />
       <MovieModal
         onModalClose={handleMovieModalClose}

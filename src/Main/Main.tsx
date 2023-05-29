@@ -7,9 +7,6 @@ import { Movie } from '../Types/MovieTypes';
 import './style.css';
 
 type MainProps = {
-  onMovieModalOpen: (name: string) => void,
-  onDeleteModalOpen: () => void,
-  onMovieInfoOpen: (currentMovie: Movie) => void
   isLoading: boolean,
   movies: Movie[],
   loadingError: unknown,
@@ -17,9 +14,6 @@ type MainProps = {
 
 export default function Main(
   {
-    onMovieModalOpen,
-    onDeleteModalOpen,
-    onMovieInfoOpen,
     isLoading,
     movies,
     loadingError,
@@ -45,9 +39,6 @@ export default function Main(
             <Card
               key={item.id}
               movie={item}
-              onDeleteModalOpen={onDeleteModalOpen}
-              onMovieModalOpen={onMovieModalOpen}
-              onMovieInfoOpen={onMovieInfoOpen}
             />
           ))}
         </div>
