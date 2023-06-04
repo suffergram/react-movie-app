@@ -1,6 +1,6 @@
-import { useContext } from 'react';
+import { useContext, memo } from 'react';
 import Popover from '../Popover/Popover';
-import CardContext from '../Hooks/cardContext';
+import AppContext from '../AppContext/AppContext';
 import { Movie } from '../Types/MovieTypes';
 import './style.css';
 
@@ -8,12 +8,12 @@ type CardProps = {
   movie: Movie,
 };
 
-export default function Card({ movie }: CardProps) {
+const Card = memo(({ movie }: CardProps) => {
   const {
     handleMovieModalOpen,
     handleDeleteModalOpen,
     handleMovieInfoOpen,
-  } = useContext(CardContext);
+  } = useContext(AppContext);
 
   const handleCardClick = () => {
     handleMovieInfoOpen(movie);
@@ -56,4 +56,6 @@ export default function Card({ movie }: CardProps) {
       </div>
     </div>
   );
-}
+});
+
+export default Card;
