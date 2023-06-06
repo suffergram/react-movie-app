@@ -1,26 +1,20 @@
+import { useContext } from 'react';
 import Button from '../Button/Button';
 import MovieInfo from '../MovieInfo/MovieInfo';
-import { Movie } from '../Types/MovieTypes';
 import ModalTitles from '../Types/ModalTitles';
+import AppContext from '../AppContext/AppContext';
 import './style.css';
 
-type HeaderProps = {
-  onMovieModalOpen: (name: string) => void,
-  isMovieInfoOpen: boolean,
-  onMovieInfoClose: () => void,
-  movie: Movie | null
-};
-
-export default function Header(
-  {
-    onMovieModalOpen,
+export default function Header() {
+  const {
+    handleMovieModalOpen,
     isMovieInfoOpen,
-    onMovieInfoClose,
+    handleMovieInfoClose,
     movie,
-  }: HeaderProps,
-) {
+  } = useContext(AppContext);
+
   const handleClick = () => {
-    onMovieModalOpen(ModalTitles.Add);
+    handleMovieModalOpen(ModalTitles.Add);
   };
 
   return (
@@ -59,7 +53,7 @@ export default function Header(
         ? (
           <MovieInfo
             movie={movie}
-            onMovieInfoClose={onMovieInfoClose}
+            onMovieInfoClose={handleMovieInfoClose}
           />
         )
         : null}
