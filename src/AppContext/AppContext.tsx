@@ -2,17 +2,17 @@ import React from 'react';
 import { Movie } from '../Types/MovieTypes';
 
 type AppContextType = {
-  isMovieModalOpen: boolean,
-  handleMovieModalOpen(name: string): void,
-  handleMovieModalClose(): void,
-  isDeleteModalOpen: boolean,
-  handleDeleteModalOpen(): void,
-  handleDeleteModalClose(): void,
-  isMovieInfoOpen: boolean,
-  handleMovieInfoOpen(currentMovie: Movie): void,
-  handleMovieInfoClose(): void,
-  movie: Movie | null,
-  modalType: string | null,
+  isMovieModalOpen: boolean;
+  handleMovieModalOpen(name: string): void;
+  handleMovieModalClose(): void;
+  isDeleteModalOpen: boolean;
+  handleDeleteModalOpen(): void;
+  handleDeleteModalClose(): void;
+  isMovieInfoOpen: boolean;
+  handleMovieInfoOpen(currentMovie: Movie): void;
+  handleMovieInfoClose(): void;
+  movie: Movie | null;
+  modalType: string | null;
 };
 
 const AppContext = React.createContext<AppContextType>({

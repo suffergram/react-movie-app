@@ -5,10 +5,13 @@ import './style.css';
 type ErrorBoundaryProps = PropsWithChildren;
 
 type ErrorBoundaryState = {
-  hasError: boolean
-}
+  hasError: boolean;
+};
 
-export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export default class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
@@ -23,11 +26,7 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
     const { children } = this.props;
 
     if (hasError) {
-      return (
-        <h1 className="error-message">
-          Something went wrong ☹
-        </h1>
-      );
+      return <h1 className="error-message">Something went wrong ☹</h1>;
     }
 
     return children;

@@ -7,18 +7,12 @@ import { Movie } from '../Types/MovieTypes';
 import './style.css';
 
 type MainProps = {
-  isLoading: boolean,
-  movies: Movie[],
-  loadingError: unknown,
+  isLoading: boolean;
+  movies: Movie[];
+  loadingError: unknown;
 };
 
-export default function Main(
-  {
-    isLoading,
-    movies,
-    loadingError,
-  }: MainProps,
-) {
+export default function Main({ isLoading, movies, loadingError }: MainProps) {
   return (
     <main>
       <div className="content">
@@ -35,12 +29,9 @@ export default function Main(
         </div>
 
         <div className="found">
-          {(!isLoading && !loadingError) && movies.map((item: Movie) => (
-            <Card
-              key={item.id}
-              movie={item}
-            />
-          ))}
+          {!isLoading &&
+            !loadingError &&
+            movies.map((item: Movie) => <Card key={item.id} movie={item} />)}
         </div>
       </div>
     </main>

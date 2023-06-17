@@ -1,21 +1,14 @@
 import './style.css';
 
 type FoundMovieCounterProps = {
-  amount: number
+  amount: number;
 };
 
-export default function FoundMovieCounter(
-  { amount }: FoundMovieCounterProps,
-) {
+export default function FoundMovieCounter({ amount }: FoundMovieCounterProps) {
   return (
     <div className="results">
       <div className="movie-counter">
-        <strong>
-          {amount}
-        </strong>
-
-        {' '}
-        movies found
+        <strong>{amount}</strong> movies found
       </div>
     </div>
   );

@@ -5,24 +5,19 @@ import { Movie } from '../Types/MovieTypes';
 import './style.css';
 
 type CardProps = {
-  movie: Movie,
+  movie: Movie;
 };
 
 const Card = memo(({ movie }: CardProps) => {
-  const {
-    handleMovieModalOpen,
-    handleDeleteModalOpen,
-    handleMovieInfoOpen,
-  } = useContext(AppContext);
+  const { handleMovieModalOpen, handleDeleteModalOpen, handleMovieInfoOpen } =
+    useContext(AppContext);
 
   const handleCardClick = () => {
     handleMovieInfoOpen(movie);
   };
 
   return (
-    <div
-      className="card"
-    >
+    <div className="card">
       <button
         id={movie.id.toString()}
         onClick={handleCardClick}
@@ -30,10 +25,7 @@ const Card = memo(({ movie }: CardProps) => {
         className="card-image-container"
         type="button"
       >
-        <img
-          src={movie.url}
-          alt={movie.name}
-        />
+        <img src={movie.poster_path} alt={movie.title} />
       </button>
 
       <Popover
@@ -42,17 +34,9 @@ const Card = memo(({ movie }: CardProps) => {
       />
 
       <div className="description">
-        <div className="year">
-          {movie.year}
-        </div>
-
-        <p className="title">
-          {movie.name}
-        </p>
-
-        <p className="genre">
-          {movie.genre}
-        </p>
+        <div className="year">{movie.release_date.slice(0, 4)}</div>
+        <p className="title">{movie.title}</p>
+        <p className="genre">{movie.genres.join(', ')}</p>
       </div>
     </div>
   );

@@ -16,28 +16,20 @@ import ModalTitles from '../Types/ModalTitles';
 import './style.css';
 
 type PopoverProps = {
-  onMovieModalOpen: (name: string) => void,
-  onDeleteModalOpen: () => void,
-}
+  onMovieModalOpen: (name: string) => void;
+  onDeleteModalOpen: () => void;
+};
 
-export default function Popover(
-  { onMovieModalOpen, onDeleteModalOpen }: PopoverProps,
-) {
-  const [
-    isOpen,
-    setIsOpen,
-  ] = useState(false);
+export default function Popover({
+  onMovieModalOpen,
+  onDeleteModalOpen,
+}: PopoverProps) {
+  const [isOpen, setIsOpen] = useState(false);
 
-  const {
-    x, y, refs, strategy, context,
-  } = useFloating<HTMLButtonElement>({
+  const { x, y, refs, strategy, context } = useFloating<HTMLButtonElement>({
     open: isOpen,
     onOpenChange: setIsOpen,
-    middleware: [
-      offset(10),
-      flip(),
-      shift(),
-    ],
+    middleware: [offset(10), flip(), shift()],
     whileElementsMounted: autoUpdate,
   });
 
@@ -53,52 +45,37 @@ export default function Popover(
 
   return (
     <>
-      <Button
-        {...getReferenceProps()}
-        ref={refs.reference}
-        className="menu"
-      >
+      <Button {...getReferenceProps()} ref={refs.reference} className="menu">
         ⋮
       </Button>
 
-      {isOpen
-        ? (
-          <FloatingFocusManager
-            context={context}
-            modal={false}
+      {isOpen ? (
+        <FloatingFocusManager context={context} modal={false}>
+          <div
+            {...getFloatingProps()}
+            className="menuPopover"
+            ref={refs.floating as React.RefObject<HTMLDivElement>}
+            style={{
+              position: strategy,
+              top: y ?? 16,
+              right: x ?? 16,
+            }}
           >
-            <div
-              {...getFloatingProps()}
-              className="menuPopover"
-              ref={refs.floating as React.RefObject<HTMLDivElement>}
-              style={{
-                position: strategy,
-                top: y ?? 16,
-                right: x ?? 16,
-              }}
+            <Button className="close" onClick={() => setIsOpen(false)} />
+
+            <Button
+              className="edit"
+              onClick={() => onMovieModalOpen(ModalTitles.Edit)}
             >
-              <Button
-                className="close"
-                onClick={() => setIsOpen(false)}
-              />
+              edit
+            </Button>
 
-              <Button
-                className="edit"
-                onClick={() => onMovieModalOpen(ModalTitles.Edit)}
-              >
-                edit
-              </Button>
-
-              <Button
-                className="delete"
-                onClick={onDeleteModalOpen}
-              >
-                delete
-              </Button>
-            </div>
-          </FloatingFocusManager>
-        )
-        : null}
+            <Button className="delete" onClick={onDeleteModalOpen}>
+              delete
+            </Button>
+          </div>
+        </FloatingFocusManager>
+      ) : null}
     </>
   );
 }

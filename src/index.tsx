@@ -9,5 +9,5 @@ const root = createRoot(container);
 root.render(
   <ErrorBoundary>
     <App />
-  </ErrorBoundary>,
+  </ErrorBoundary>
 );

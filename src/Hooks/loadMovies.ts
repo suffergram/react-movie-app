@@ -12,16 +12,11 @@ export default function useLoadMovies() {
   const [error, setError] = useState<unknown>();
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      try {
-        setMovies(info.movies.slice());
-      } catch (catchedError) {
-        setError(catchedError);
-      }
-      setIsLoading(false);
-    }, 500);
-
-    return () => clearTimeout(timeoutId);
+    fetch('http://localhost:4000/movies')
+      .then((response) => response.json())
+      .then((data) => setMovies(data.data))
+      .catch((catchedError) => setError(catchedError))
+      .finally(() => setIsLoading(false));
   }, []);
 
   return { isLoading, error, movies };

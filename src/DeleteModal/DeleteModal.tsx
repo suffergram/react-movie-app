@@ -5,12 +5,10 @@ import AppContext from '../AppContext/AppContext';
 import './style.css';
 
 type DeleteModalProps = {
-  isModalOpen: boolean,
+  isModalOpen: boolean;
 };
 
-export default function DeleteModal(
-  { isModalOpen }: DeleteModalProps,
-) {
+export default function DeleteModal({ isModalOpen }: DeleteModalProps) {
   const { handleDeleteModalClose } = useContext(AppContext);
 
   return (

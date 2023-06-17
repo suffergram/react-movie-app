@@ -4,9 +4,7 @@ export default function Footer() {
   return (
     <footer>
       <p>
-        <strong>
-          netflix
-        </strong>
+        <strong>netflix</strong>
         roulette
       </p>
     </footer>

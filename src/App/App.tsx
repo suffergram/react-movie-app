@@ -10,11 +10,7 @@ export default function App() {
   return (
     <ModalProvider>
       <Header />
-      <Main
-        isLoading={isLoading}
-        movies={movies}
-        loadingError={error}
-      />
+      <Main isLoading={isLoading} movies={movies} loadingError={error} />
       <Footer />
     </ModalProvider>
   );
