@@ -1,23 +1,28 @@
-import { useState, useEffect } from 'react';
-import * as info from '../Main/info';
-import { Movie } from '../Types/MovieTypes';
-
-function getInitialMovies() {
-  return [];
-}
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { StateType } from '../state/reducer';
 
 export default function useLoadMovies() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [movies, setMovies] = useState<Movie[]>(() => getInitialMovies());
-  const [error, setError] = useState<unknown>();
+  const dispatch = useDispatch();
 
+  const movies = useSelector((state: StateType) => state.movies);
+
+  const isLoading = useSelector((state: StateType) => state.isLoading);
+
+  const error = useSelector((state: StateType) => state.error);
+
+  // thunk
   useEffect(() => {
-    fetch('http://localhost:4000/movies')
+    dispatch({ type: 'handleLoading' });
+    fetch('http://localhost:4000/movies?offset=150&limit=30')
       .then((response) => response.json())
-      .then((data) => setMovies(data.data))
-      .catch((catchedError) => setError(catchedError))
-      .finally(() => setIsLoading(false));
-  }, []);
+      .then((data) => {
+        dispatch({ type: 'handleMovies', payload: data.data });
+      })
+      .catch((catchedError) => {
+        dispatch({ type: 'handleError', payload: catchedError });
+      });
+  }, [dispatch]);
 
   return { isLoading, error, movies };
 }

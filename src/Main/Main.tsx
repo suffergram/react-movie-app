@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { StateType } from '../state/reducer';
 import Card from '../Card/Card';
 import GenreSection from '../GenreSection/GenreSection';
 import SortSection from '../SortSection/SortSection';
@@ -13,25 +15,34 @@ type MainProps = {
 };
 
 export default function Main({ isLoading, movies, loadingError }: MainProps) {
+  const getFilteredMovies = (movies: Movie[], filter: string): Movie[] => {
+    if (filter === 'all') return movies;
+    return movies.filter((movie) =>
+      movie.genres.map((genre) => genre.toLowerCase()).includes(filter)
+    );
+  };
+
+  const filter = useSelector((state: StateType) => state.filter);
+
+  const filteredMovies = getFilteredMovies(movies, filter);
+
   return (
     <main>
       <div className="content">
         <div className="row">
           <GenreSection genres={info.genres} />
-
           <SortSection sort={info.sortBy} />
         </div>
-
         <hr />
-
         <div className="row">
-          <FoundMovieCounter amount={movies.length} />
+          <FoundMovieCounter amount={filteredMovies.length} />
         </div>
-
         <div className="found">
           {!isLoading &&
             !loadingError &&
-            movies.map((item: Movie) => <Card key={item.id} movie={item} />)}
+            filteredMovies.map((item: Movie) => (
+              <Card key={item.id} movie={item} />
+            ))}
         </div>
       </div>
     </main>
