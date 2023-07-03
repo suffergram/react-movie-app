@@ -1,30 +1,15 @@
-import { useSelector } from 'react-redux';
-import { StateType } from '../state/reducer';
 import Card from '../Card/Card';
 import GenreSection from '../GenreSection/GenreSection';
 import SortSection from '../SortSection/SortSection';
 import FoundMovieCounter from '../FoundMovieCounter/FoundMovieCounter';
 import * as info from './info';
+import useLoadMovies from '../Hooks/useLoadMovies';
 import { Movie } from '../Types/MovieTypes';
 import './style.css';
+import Pagination from '../Pagination/Pagination';
 
-type MainProps = {
-  isLoading: boolean;
-  movies: Movie[];
-  loadingError: unknown;
-};
-
-export default function Main({ isLoading, movies, loadingError }: MainProps) {
-  const getFilteredMovies = (movies: Movie[], filter: string): Movie[] => {
-    if (filter === 'all') return movies;
-    return movies.filter((movie) =>
-      movie.genres.map((genre) => genre.toLowerCase()).includes(filter)
-    );
-  };
-
-  const filter = useSelector((state: StateType) => state.filter);
-
-  const filteredMovies = getFilteredMovies(movies, filter);
+export default function Main() {
+  const { isLoading, error, movies, totalAmount } = useLoadMovies();
 
   return (
     <main>
@@ -35,15 +20,14 @@ export default function Main({ isLoading, movies, loadingError }: MainProps) {
         </div>
         <hr />
         <div className="row">
-          <FoundMovieCounter amount={filteredMovies.length} />
+          <FoundMovieCounter amount={totalAmount} />
         </div>
         <div className="found">
           {!isLoading &&
-            !loadingError &&
-            filteredMovies.map((item: Movie) => (
-              <Card key={item.id} movie={item} />
-            ))}
+            !error &&
+            movies.map((item: Movie) => <Card key={item.id} movie={item} />)}
         </div>
+        <Pagination />
       </div>
     </main>
   );

@@ -83,7 +83,6 @@ hr {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 55px;
-  padding-bottom: 76px;
 }
 
 .filter div {

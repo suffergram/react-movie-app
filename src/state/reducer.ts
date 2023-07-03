@@ -1,18 +1,14 @@
 import { AnyAction, Reducer } from 'redux';
-import { Movie } from '../Types/MovieTypes';
-
-export type StateType = {
-  movies: Movie[];
-  isLoading: boolean;
-  error: string | undefined;
-  filter: string;
-};
+import StateType from '../Types/StateType';
 
 const initialState: StateType = {
   movies: [],
   isLoading: false,
   error: undefined,
   filter: 'all',
+  sort: 'release_date',
+  totalAmount: 0,
+  offset: 0,
 };
 
 const reducer: Reducer<StateType, AnyAction> = (
@@ -23,7 +19,8 @@ const reducer: Reducer<StateType, AnyAction> = (
     case 'handleMovies': {
       return {
         ...state,
-        movies: [...state.movies, ...action.payload],
+        movies: action.payload.movies,
+        totalAmount: action.payload.totalAmount,
         isLoading: false,
       };
     }
@@ -44,6 +41,19 @@ const reducer: Reducer<StateType, AnyAction> = (
       return {
         ...state,
         filter: action.payload,
+        offset: 0,
+      };
+    }
+    case 'handleSort': {
+      return {
+        ...state,
+        sort: action.payload,
+      };
+    }
+    case 'handleOffset': {
+      return {
+        ...state,
+        offset: action.payload * 9,
       };
     }
     default:

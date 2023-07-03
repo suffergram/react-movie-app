@@ -1,6 +1,9 @@
+import { useDispatch } from 'react-redux';
+
 interface SortOption {
   id: number;
   name: string;
+  displayLabel: string;
 }
 
 type SortSectionProps = {
@@ -8,13 +11,21 @@ type SortSectionProps = {
 };
 
 export default function SortSection({ sort }: SortSectionProps) {
+  const dispatch = useDispatch();
+
   return (
     <div className="results sort">
       <p>SORT BY</p>
 
-      <select>
+      <select
+        onChange={(e) =>
+          dispatch({ type: 'handleSort', payload: e.target.value })
+        }
+      >
         {sort.map((item) => (
-          <option key={item.id}>{item.name}</option>
+          <option key={item.id} value={item.name}>
+            {item.displayLabel}
+          </option>
         ))}
 
         {/* <div className="arrow">▼</div> */}
