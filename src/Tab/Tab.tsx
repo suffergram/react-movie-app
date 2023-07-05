@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { handleFilterAction } from '../state/reducerActions';
 
 export default function Tab({
   children,
@@ -17,7 +18,7 @@ export default function Tab({
         type="radio"
         value={children}
         defaultChecked={defaultChecked}
-        onClick={() => dispatch({ type: 'handleFilter', payload: children })}
+        onClick={() => dispatch(handleFilterAction(children))}
       />
       {children}
     </div>

@@ -1,13 +1,14 @@
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
-import StateType from '../Types/StateType';
+import RootState from '../Types/RootState';
+import { handleOffsetAction } from '../state/reducerActions';
 import './style.css';
 
 export default function Pagination() {
   const dispatch = useDispatch();
 
   const stateMoviesTotalAmount = useSelector(
-    (state: StateType) => state.totalAmount
+    (state: RootState) => state.movieState.totalAmount
   );
 
   const pageCount = Math.ceil(stateMoviesTotalAmount / 9);
@@ -19,7 +20,7 @@ export default function Pagination() {
         pageCount={pageCount}
         breakLabel="..."
         onPageChange={({ selected }) => {
-          dispatch({ type: 'handleOffset', payload: selected }); // TODO: fix this 'selected' variable
+          dispatch(handleOffsetAction(selected)); // TODO: fix this 'selected' variable
         }}
         pageRangeDisplayed={4}
         previousLabel="<<"

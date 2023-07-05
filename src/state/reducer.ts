@@ -1,59 +1,89 @@
 import { AnyAction, Reducer } from 'redux';
-import StateType from '../Types/StateType';
+import RootState from '../Types/RootState';
+import reducerActions from './reducerActions';
 
-const initialState: StateType = {
-  movies: [],
-  isLoading: false,
-  error: undefined,
-  filter: 'all',
-  sort: 'release_date',
-  totalAmount: 0,
-  offset: 0,
+const initialState: RootState = {
+  movieState: {
+    movies: [],
+    isLoading: false,
+    error: undefined,
+    filter: 'all',
+    sort: 'release_date',
+    totalAmount: 0,
+    offset: 0,
+  },
 };
 
-const reducer: Reducer<StateType, AnyAction> = (
-  state: StateType = initialState,
+const {
+  HANDLE_MOVIES,
+  HANDLE_ERROR,
+  HANDLE_LOADING,
+  HANDLE_FILTER,
+  HANDLE_SORT,
+  HANDLE_OFFSET,
+} = reducerActions;
+
+const reducer: Reducer<RootState, AnyAction> = (
+  state: RootState = initialState,
   action: AnyAction
-): StateType => {
+): RootState => {
   switch (action.type) {
-    case 'handleMovies': {
+    case HANDLE_MOVIES: {
       return {
         ...state,
-        movies: action.payload.movies,
-        totalAmount: action.payload.totalAmount,
-        isLoading: false,
+        movieState: {
+          ...state.movieState,
+          movies: action.payload.movies,
+          totalAmount: action.payload.totalAmount,
+          isLoading: false,
+        },
       };
     }
-    case 'handleError': {
+    case HANDLE_ERROR: {
       return {
         ...state,
-        error: action.payload,
-        isLoading: false,
+        movieState: {
+          ...state.movieState,
+          error: action.payload,
+          isLoading: false,
+        },
       };
     }
-    case 'handleLoading': {
+    case HANDLE_LOADING: {
       return {
         ...state,
-        isLoading: true,
+        movieState: {
+          ...state.movieState,
+          isLoading: true,
+        },
       };
     }
-    case 'handleFilter': {
+    case HANDLE_FILTER: {
       return {
         ...state,
-        filter: action.payload,
-        offset: 0,
+        movieState: {
+          ...state.movieState,
+          filter: action.payload,
+          offset: 0,
+        },
       };
     }
-    case 'handleSort': {
+    case HANDLE_SORT: {
       return {
         ...state,
-        sort: action.payload,
+        movieState: {
+          ...state.movieState,
+          sort: action.payload,
+        },
       };
     }
-    case 'handleOffset': {
+    case HANDLE_OFFSET: {
       return {
         ...state,
-        offset: action.payload * 9,
+        movieState: {
+          ...state.movieState,
+          offset: action.payload * 9,
+        },
       };
     }
     default:

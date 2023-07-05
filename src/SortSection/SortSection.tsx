@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { handleSortAction } from '../state/reducerActions';
 
 interface SortOption {
   id: number;
@@ -17,11 +18,7 @@ export default function SortSection({ sort }: SortSectionProps) {
     <div className="results sort">
       <p>SORT BY</p>
 
-      <select
-        onChange={(e) =>
-          dispatch({ type: 'handleSort', payload: e.target.value })
-        }
-      >
+      <select onChange={(e) => dispatch(handleSortAction(e.target.value))}>
         {sort.map((item) => (
           <option key={item.id} value={item.name}>
             {item.displayLabel}
