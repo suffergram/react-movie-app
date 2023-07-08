@@ -1,32 +1,38 @@
 import { Movie } from '../Types/MovieTypes';
+import { MovieListAction } from './constants';
 
-enum reducerActions {
-  HANDLE_MOVIES = 'HANDLE_MOVIES',
-  HANDLE_ERROR = 'HANDLE_ERROR',
-  HANDLE_LOADING = 'HANDLE_LOADING',
-  HANDLE_FILTER = 'HANDLE_FILTER',
-  HANDLE_SORT = 'HANDLE_SORT',
-  HANDLE_OFFSET = 'HANDLE_OFFSET',
-}
-
-type moviesJSON = {
+type MoviesDTO = {
   data: Array<Movie>;
   totalAmount: number;
 };
 
-export const handleMoviesAction = (data: moviesJSON) => ({
-    type: reducerActions.HANDLE_MOVIES,
-    payload: { movies: data.data, totalAmount: data.totalAmount },
-  });
+export const handleMoviesAction = (data: MoviesDTO) => ({
+  type: MovieListAction.HandleMovies,
+  payload: { movies: data.data, totalAmount: data.totalAmount },
+});
 
-export const handleErrorAction = (error: string) => ({ type: reducerActions.HANDLE_ERROR, payload: error });
+export const handleErrorAction = (error: string) => ({
+  type: MovieListAction.HandleError,
+  payload: error,
+});
 
-export const handleLoadingAction = () => ({ type: reducerActions.HANDLE_LOADING });
+export const handleLoadingAction = () => ({
+  type: MovieListAction.HandleLoading,
+});
 
-export const handleFilterAction = (filter: string) => ({ type: reducerActions.HANDLE_FILTER, payload: filter });
+export const handleFilterAction = (filter: string) => ({
+  type: MovieListAction.HandleFilter,
+  payload: filter,
+});
 
-export const handleSortAction = (value: string) => ({ type: reducerActions.HANDLE_SORT, payload: value });
+export const handleSortAction = (value: string) => ({
+  type: MovieListAction.HandleSort,
+  payload: value,
+});
 
-export const handleOffsetAction = (selected: number) => ({ type: reducerActions.HANDLE_OFFSET, payload: selected });
+export const handleOffsetAction = (selected: number) => ({
+  type: MovieListAction.HandleOffset,
+  payload: selected,
+});
 
-export default reducerActions;
+export default MovieListAction;

@@ -14,11 +14,15 @@ type SortSectionProps = {
 export default function SortSection({ sort }: SortSectionProps) {
   const dispatch = useDispatch();
 
+  const handleChange = (value: string) => {
+    dispatch(handleSortAction(value));
+  };
+
   return (
     <div className="results sort">
       <p>SORT BY</p>
 
-      <select onChange={(e) => dispatch(handleSortAction(e.target.value))}>
+      <select onChange={(e) => handleChange(e.target.value)}>
         {sort.map((item) => (
           <option key={item.id} value={item.name}>
             {item.displayLabel}

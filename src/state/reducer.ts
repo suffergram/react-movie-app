@@ -1,6 +1,7 @@
 import { AnyAction, Reducer } from 'redux';
 import RootState from '../Types/RootState';
-import reducerActions from './reducerActions';
+import MovieListAction from './reducerActions';
+import { LOAD_MOVIES_AMOUNT } from './constants';
 
 const initialState: RootState = {
   movieState: {
@@ -15,20 +16,20 @@ const initialState: RootState = {
 };
 
 const {
-  HANDLE_MOVIES,
-  HANDLE_ERROR,
-  HANDLE_LOADING,
-  HANDLE_FILTER,
-  HANDLE_SORT,
-  HANDLE_OFFSET,
-} = reducerActions;
+  HandleMovies,
+  HandleError,
+  HandleLoading,
+  HandleFilter,
+  HandleSort,
+  HandleOffset,
+} = MovieListAction;
 
 const reducer: Reducer<RootState, AnyAction> = (
   state: RootState = initialState,
   action: AnyAction
 ): RootState => {
   switch (action.type) {
-    case HANDLE_MOVIES: {
+    case HandleMovies: {
       return {
         ...state,
         movieState: {
@@ -39,7 +40,7 @@ const reducer: Reducer<RootState, AnyAction> = (
         },
       };
     }
-    case HANDLE_ERROR: {
+    case HandleError: {
       return {
         ...state,
         movieState: {
@@ -49,7 +50,7 @@ const reducer: Reducer<RootState, AnyAction> = (
         },
       };
     }
-    case HANDLE_LOADING: {
+    case HandleLoading: {
       return {
         ...state,
         movieState: {
@@ -58,7 +59,7 @@ const reducer: Reducer<RootState, AnyAction> = (
         },
       };
     }
-    case HANDLE_FILTER: {
+    case HandleFilter: {
       return {
         ...state,
         movieState: {
@@ -68,7 +69,7 @@ const reducer: Reducer<RootState, AnyAction> = (
         },
       };
     }
-    case HANDLE_SORT: {
+    case HandleSort: {
       return {
         ...state,
         movieState: {
@@ -77,12 +78,12 @@ const reducer: Reducer<RootState, AnyAction> = (
         },
       };
     }
-    case HANDLE_OFFSET: {
+    case HandleOffset: {
       return {
         ...state,
         movieState: {
           ...state.movieState,
-          offset: action.payload * 9,
+          offset: action.payload * LOAD_MOVIES_AMOUNT,
         },
       };
     }

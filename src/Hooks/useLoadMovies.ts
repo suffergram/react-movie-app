@@ -1,21 +1,19 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 import RootState from '../Types/RootState';
-import { handleLoadingAction } from '../state/reducerActions';
-import { useAppDispatch } from '../state/store';
-import fetchMovies from '../asyncActions/fetchMovies';
+import fetchMovies from '../state/fetchMovies';
 
 export default function useLoadMovies() {
-  const dispatch = useDispatch();
-  const appDispatch = useAppDispatch();
+  const dispatch: ThunkDispatch<RootState, unknown, AnyAction> = useDispatch();
 
   const { movies, isLoading, error, sort, filter, totalAmount, offset } =
     useSelector((state: RootState) => state.movieState);
 
   useEffect(() => {
-    dispatch(handleLoadingAction());
-    appDispatch(fetchMovies(filter, sort, offset));
-  }, [dispatch, appDispatch, sort, filter, offset]);
+    dispatch(fetchMovies(filter, sort, offset));
+  }, [dispatch, sort, filter, offset]);
 
   return { isLoading, error, movies, totalAmount };
 }

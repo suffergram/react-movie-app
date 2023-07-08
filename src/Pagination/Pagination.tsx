@@ -13,15 +13,16 @@ export default function Pagination() {
 
   const pageCount = Math.ceil(stateMoviesTotalAmount / 9);
 
+  const handlePageChange = (selected: number) =>
+    dispatch(handleOffsetAction(selected));
+
   return (
     <div className="pagination">
       <ReactPaginate
         className="pagination-container"
         pageCount={pageCount}
         breakLabel="..."
-        onPageChange={({ selected }) => {
-          dispatch(handleOffsetAction(selected)); // TODO: fix this 'selected' variable
-        }}
+        onPageChange={({ selected }) => handlePageChange(selected)}
         pageRangeDisplayed={4}
         previousLabel="<<"
         nextLabel=">>"

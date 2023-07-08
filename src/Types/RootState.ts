@@ -2,7 +2,7 @@ import { Movie } from './MovieTypes';
 
 type RootState = {
   movieState: {
-    movies: Movie[]; // TODO: change to object
+    movies: Movie[];
     isLoading: boolean;
     error: string | undefined;
     filter: string;
