@@ -1,6 +1,6 @@
 import { AnyAction, Reducer } from 'redux';
-import RootState from '../Types/RootState';
-import MovieListAction from './reducerActions';
+import RootState from '../types/root-state';
+import MovieListAction from './action-creators';
 import { LOAD_MOVIES_AMOUNT } from './constants';
 
 const initialState: RootState = {

@@ -1,0 +1,36 @@
+import { useDispatch } from 'react-redux';
+import { handleSortAction } from '../../state/action-creators';
+
+interface SortOption {
+  id: number;
+  name: string;
+  displayLabel: string;
+}
+
+type SortSectionProps = {
+  sort: SortOption[];
+};
+
+export default function SortSection({ sort }: SortSectionProps) {
+  const dispatch = useDispatch();
+
+  const handleChange = (value: string) => {
+    dispatch(handleSortAction(value));
+  };
+
+  return (
+    <div className="results sort">
+      <p>SORT BY</p>
+
+      <select onChange={(e) => handleChange(e.target.value)}>
+        {sort.map((item) => (
+          <option key={item.id} value={item.name}>
+            {item.displayLabel}
+          </option>
+        ))}
+
+        {/* <div className="arrow">▼</div> */}
+      </select>
+    </div>
+  );
+}

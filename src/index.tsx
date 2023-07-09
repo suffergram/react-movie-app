@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import App from './App/App';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import App from './components/app/app';
+import ErrorBoundary from './components/error-boundary/error-boundary';
 import store from './state/store';
 
 import './style.css';
