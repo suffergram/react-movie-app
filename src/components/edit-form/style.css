@@ -1,3 +1,10 @@
-form option {
+.modal-genre-select {
   text-transform: capitalize;
+}
+
+.modal-submit-error {
+  position: absolute;
+  margin-top: 95px;
+  font-size: 14px;
+  text-transform: none;
 }
