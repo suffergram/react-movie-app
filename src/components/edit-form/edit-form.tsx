@@ -6,11 +6,11 @@ import './style.css';
 interface IFormInput {
   title: string;
   release_date: string;
-  url: string;
+  poster_path?: string;
   vote_average: number;
   genres: Array<string>;
-  runtime: number;
-  overview: string;
+  runtime?: number;
+  overview?: string;
 }
 
 export default function EditForm() {
@@ -19,7 +19,21 @@ export default function EditForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+
+  const onSubmit: SubmitHandler<IFormInput> = (data: IFormInput) => {
+    fetch('http://localhost:4000/movies', {
+      method: 'POST',
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data, (key, value) => {
+        if (key === 'vote_average' || key === 'runtime') return Number(value);
+        if (key === 'genres') return [value];
+        return value;
+      }),
+    });
+  };
 
   const requiredMessage = 'This is required';
 
@@ -28,6 +42,7 @@ export default function EditForm() {
       <label>
         title
         <input
+          className={errors.title?.message ? 'modal-input-error' : ''}
           placeholder="Select Title"
           inputMode="text"
           {...register('title', { required: requiredMessage })}
@@ -37,6 +52,7 @@ export default function EditForm() {
       <label>
         release date
         <input
+          className={errors.release_date?.message ? 'modal-input-error' : ''}
           type="date"
           placeholder="Select Date"
           {...register('release_date', { required: requiredMessage })}
@@ -44,35 +60,11 @@ export default function EditForm() {
         <p className="modal-submit-error">{errors.release_date?.message}</p>
       </label>
       <label>
-        movie url
-        <input
-          placeholder="https://"
-          inputMode="url"
-          {...register('url', { required: requiredMessage })}
-        />
-        <p className="modal-submit-error">{errors.url?.message}</p>
-      </label>
-      <label>
-        rating
-        <input
-          placeholder="7.8"
-          type="number"
-          step="0.1"
-          min="0"
-          max="10"
-          {...register('vote_average', {
-            required: requiredMessage,
-            pattern: /[+-]?([0-9]*[.])?[0-9]+/, // TODO: fix this regex
-            min: 0,
-            max: 10,
-          })}
-        />
-        <p className="modal-submit-error">{errors.vote_average?.message}</p>
-      </label>
-      <label>
         genre
         <select
-          className="modal-genre-select"
+          className={`modal-genre-select ${
+            errors.genres?.message ? 'modal-input-error' : ''
+          }`}
           {...register('genres', { required: requiredMessage })}
         >
           <option value="">Select Genre</option>
@@ -87,13 +79,40 @@ export default function EditForm() {
       <label>
         runtime
         <input
+          className={errors.runtime?.message ? 'modal-input-error' : ''}
           placeholder="minutes"
-          {...register('runtime', {
-            required: requiredMessage,
-            pattern: /([0-9]|[1-9][0-9]|[1-9][0-9][0-9])/, // TODO: fix this regex
-          })}
+          inputMode="numeric"
+          type="number"
+          step="1"
+          min="0"
+          max="999"
+          {...register('runtime', { required: requiredMessage })}
         />
         <p className="modal-submit-error">{errors.runtime?.message}</p>
+      </label>
+      <label>
+        movie url
+        <input
+          placeholder="https://"
+          inputMode="url"
+          {...register('poster_path')}
+        />
+      </label>
+      <label>
+        rating
+        <input
+          placeholder="7.8"
+          inputMode="numeric"
+          type="number"
+          lang="en"
+          step="0.1"
+          min="0"
+          max="10"
+          {...register('vote_average', {
+            min: 0,
+            max: 10,
+          })}
+        />
       </label>
       <label>
         overview
