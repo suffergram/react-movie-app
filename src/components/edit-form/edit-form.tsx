@@ -6,14 +6,18 @@ import './style.css';
 interface IFormInput {
   title: string;
   release_date: string;
-  poster_path?: string;
+  poster_path: string;
   vote_average: number;
   genres: Array<string>;
-  runtime?: number;
-  overview?: string;
+  runtime: number;
+  overview: string;
 }
 
-export default function EditForm() {
+type EditFormProps = {
+  onModalClose: () => void;
+};
+
+export default function EditForm({ onModalClose }: EditFormProps) {
   const {
     register,
     handleSubmit,
@@ -30,9 +34,12 @@ export default function EditForm() {
       body: JSON.stringify(data, (key, value) => {
         if (key === 'vote_average' || key === 'runtime') return Number(value);
         if (key === 'genres') return [value];
+        if (value === '') return undefined;
         return value;
       }),
-    });
+    }).then((response) => {
+      if (response.ok) onModalClose();
+    }); // TODO: open congrats modal here after submit
   };
 
   const requiredMessage = 'This is required';
@@ -93,10 +100,18 @@ export default function EditForm() {
       <label>
         movie url
         <input
+          className={errors.poster_path?.message ? 'modal-input-error' : ''}
           placeholder="https://"
           inputMode="url"
-          {...register('poster_path')}
+          {...register('poster_path', {
+            required: false,
+            pattern: {
+              value: /((https)|(HTTPS)):\/\/\w+\.\w+/,
+              message: 'Invalid path',
+            },
+          })}
         />
+        <p className="modal-submit-error">{errors.poster_path?.message}</p>
       </label>
       <label>
         rating
@@ -109,6 +124,7 @@ export default function EditForm() {
           min="0"
           max="10"
           {...register('vote_average', {
+            required: false,
             min: 0,
             max: 10,
           })}
@@ -116,10 +132,15 @@ export default function EditForm() {
       </label>
       <label>
         overview
-        <textarea placeholder="Movie description" {...register('overview')} />
+        <textarea
+          placeholder="Movie description"
+          {...(register('overview'), { required: false })}
+        />
       </label>
       <div>
-        <Button className="cancel modal-edit-button">reset</Button>
+        <Button className="cancel modal-edit-button" type="reset">
+          reset
+        </Button>
         <Button className="confirm modal-edit-button" type="submit">
           submit
         </Button>

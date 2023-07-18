@@ -17,7 +17,7 @@ export default function MovieModal({ isModalOpen, title }: MovieModalProps) {
       onModalClose={handleMovieModalClose}
       title={title}
     >
-      <EditForm />
+      <EditForm onModalClose={handleMovieModalClose} />
     </Modal>
   );
 }
