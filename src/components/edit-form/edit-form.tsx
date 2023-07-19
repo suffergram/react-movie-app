@@ -1,6 +1,8 @@
+import { useContext } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Button from '../button/button';
 import { genres } from '../main/info';
+import AppContext from '../app-context/app-context';
 import './style.css';
 
 interface IFormInput {
@@ -24,6 +26,8 @@ export default function EditForm({ onModalClose }: EditFormProps) {
     formState: { errors },
   } = useForm<IFormInput>();
 
+  const { handleCongratModalOpen } = useContext(AppContext);
+
   const onSubmit: SubmitHandler<IFormInput> = (data: IFormInput) => {
     fetch('http://localhost:4000/movies', {
       method: 'POST',
@@ -37,9 +41,11 @@ export default function EditForm({ onModalClose }: EditFormProps) {
         if (value === '') return undefined;
         return value;
       }),
-    }).then((response) => {
-      if (response.ok) onModalClose();
-    }); // TODO: open congrats modal here after submit
+    })
+      .then((response) => {
+        if (response.ok) onModalClose();
+      })
+      .then(handleCongratModalOpen); // TODO: open congrats modal here after submit
   };
 
   const requiredMessage = 'This is required';

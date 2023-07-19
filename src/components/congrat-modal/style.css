@@ -1,0 +1,14 @@
+.congrat-modal-p {
+  text-align: center;
+  width: 302px;
+  font-size: 20px;
+}
+
+.modal-title {
+  text-align: center;
+}
+
+.congrat-modal-content {
+  display: flex;
+  justify-content: center;
+}

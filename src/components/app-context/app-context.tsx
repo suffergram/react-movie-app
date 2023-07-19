@@ -8,6 +8,9 @@ type AppContextType = {
   isDeleteModalOpen: boolean;
   handleDeleteModalOpen(): void;
   handleDeleteModalClose(): void;
+  isCongratModalOpen: boolean;
+  handleCongratModalOpen(): void;
+  handleCongratModalClose(): void;
   isMovieInfoOpen: boolean;
   handleMovieInfoOpen(currentMovie: Movie): void;
   handleMovieInfoClose(): void;
@@ -29,6 +32,13 @@ const AppContext = React.createContext<AppContextType>({
     // init value
   },
   handleDeleteModalClose: () => {
+    // init value
+  },
+  isCongratModalOpen: false,
+  handleCongratModalOpen: () => {
+    // init value
+  },
+  handleCongratModalClose: () => {
     // init value
   },
   isMovieInfoOpen: false,
