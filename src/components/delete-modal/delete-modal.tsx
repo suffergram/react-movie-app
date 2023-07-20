@@ -9,7 +9,14 @@ type DeleteModalProps = {
 };
 
 export default function DeleteModal({ isModalOpen }: DeleteModalProps) {
-  const { handleDeleteModalClose } = useContext(AppContext);
+  const { handleDeleteModalClose, movie } = useContext(AppContext);
+
+  const handleButtonClick = () => {
+    handleDeleteModalClose();
+    fetch(`http://localhost:4000/movies/${movie?.id}`, {
+      method: 'DELETE',
+    });
+  };
 
   return (
     <Modal
@@ -18,7 +25,9 @@ export default function DeleteModal({ isModalOpen }: DeleteModalProps) {
       title="delete movie"
     >
       <p>Are you sure you want to delete this movie?</p>
-      <Button className="confirm delete-modal">confirm</Button>
+      <Button className="confirm delete-modal" onClick={handleButtonClick}>
+        confirm
+      </Button>
     </Modal>
   );
 }

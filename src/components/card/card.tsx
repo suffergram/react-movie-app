@@ -31,6 +31,7 @@ const Card = memo(({ movie }: CardProps) => {
       <Popover
         onDeleteModalOpen={handleDeleteModalOpen}
         onMovieModalOpen={handleMovieModalOpen}
+        movie={movie}
       />
 
       <div className="description">

@@ -18,6 +18,11 @@ export default function ModalProvider({ children }: PropsWithChildren) {
     setIsMovieModalOpen(true);
   }, []);
 
+  const handleDeleteModalOpen = useCallback((currentMovie: Movie) => {
+    setIsDeleteModalOpen(true);
+    setMovie(currentMovie);
+  }, []);
+
   const handleMovieInfoOpen = useCallback((currentMovie: Movie) => {
     setIsMovieInfoOpen(true);
     setMovie(currentMovie);
@@ -29,7 +34,7 @@ export default function ModalProvider({ children }: PropsWithChildren) {
       handleMovieModalOpen,
       handleMovieModalClose: () => setIsMovieModalOpen(false),
       isDeleteModalOpen,
-      handleDeleteModalOpen: () => setIsDeleteModalOpen(true),
+      handleDeleteModalOpen,
       handleDeleteModalClose: () => setIsDeleteModalOpen(false),
       isCongratModalOpen,
       handleCongratModalOpen: () => setIsCongratModalOpen(true),
@@ -44,6 +49,7 @@ export default function ModalProvider({ children }: PropsWithChildren) {
       isMovieModalOpen,
       handleMovieModalOpen,
       isDeleteModalOpen,
+      handleDeleteModalOpen,
       isCongratModalOpen,
       isMovieInfoOpen,
       handleMovieInfoOpen,

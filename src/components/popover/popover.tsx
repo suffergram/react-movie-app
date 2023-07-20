@@ -13,16 +13,19 @@ import {
 import { useState } from 'react';
 import Button from '../button/button';
 import ModalTitles from '../../types/modal-title';
+import { Movie } from '../../types/movie';
 import './style.css';
 
 type PopoverProps = {
   onMovieModalOpen: (name: string) => void;
-  onDeleteModalOpen: () => void;
+  onDeleteModalOpen: (currentMovie: Movie) => void;
+  movie: Movie;
 };
 
 export default function Popover({
   onMovieModalOpen,
   onDeleteModalOpen,
+  movie,
 }: PopoverProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -70,7 +73,7 @@ export default function Popover({
               edit
             </Button>
 
-            <Button className="delete" onClick={onDeleteModalOpen}>
+            <Button className="delete" onClick={() => onDeleteModalOpen(movie)}>
               delete
             </Button>
           </div>
