@@ -2,6 +2,7 @@ import ReactModal from 'react-modal';
 import { PropsWithChildren } from 'react';
 import Button from '../button/button';
 import './style.css';
+import ModalTitle from '../../types/modal-title';
 
 ReactModal.setAppElement('body');
 
@@ -26,6 +27,11 @@ export default function Modal({
     >
       <Button onClick={onModalClose} className="close modal-close" />
       <div>
+        {title === ModalTitle.Congratulations && (
+          <div className="modal-icon">
+            <div className="modal-icon-check" />
+          </div>
+        )}
         <h2 className="modal-title">{title}</h2>
         {children}
       </div>

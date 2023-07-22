@@ -4,10 +4,6 @@
   font-size: 20px;
 }
 
-.modal-title {
-  text-align: center;
-}
-
 .congrat-modal-content {
   display: flex;
   justify-content: center;

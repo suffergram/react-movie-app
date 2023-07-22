@@ -28,6 +28,7 @@ const AppContext = React.createContext<AppContextType>({
     // init value
   },
   isDeleteModalOpen: false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleDeleteModalOpen: (movie: Movie) => {
     // init value
   },
