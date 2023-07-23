@@ -36,7 +36,10 @@ export default class MovieService {
     // something will be here
   }
 
-  static deleteMovie() {
-    // something will be here
+  static deleteMovie(id: number) {
+    const url = `${this.host}/${id}`;
+    return fetch(url, {
+      method: 'DELETE',
+    });
   }
 }

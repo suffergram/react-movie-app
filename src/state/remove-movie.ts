@@ -8,23 +8,20 @@ import {
   handleMoviesAction,
   handleStopLoadingAction,
 } from './action-creators';
-import { FormInput } from '../types/form-input';
 
-const postMovie =
+const removeMovie =
   (
-    data: FormInput,
-    onModalClose: () => void,
-    handleCongratModalOpen: () => void,
+    id: number,
+    handleDeleteModalClose: () => void,
     filter: string,
     sort: string,
     offset: number
   ): ThunkAction<void, RootState, unknown, AnyAction> =>
   (dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
     dispatch(handleLoadingAction());
-    MovieService.createMovie(data)
+    MovieService.deleteMovie(id)
       .then(() => {
-        onModalClose();
-        handleCongratModalOpen();
+        handleDeleteModalClose();
         MovieService.getMovies(filter, sort, offset).then((data) => {
           dispatch(handleMoviesAction(data));
           dispatch(handleStopLoadingAction());
@@ -35,4 +32,4 @@ const postMovie =
       });
   };
 
-export default postMovie;
+export default removeMovie;

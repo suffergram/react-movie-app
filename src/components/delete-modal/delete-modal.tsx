@@ -1,7 +1,12 @@
 import { useContext } from 'react';
+import { AnyAction } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
 import Modal from '../modal/modal';
 import Button from '../button/button';
 import AppContext from '../app-context/app-context';
+import removeMovie from '../../state/remove-movie';
+import RootState from '../../types/root-state';
 import './style.css';
 
 type DeleteModalProps = {
@@ -11,11 +16,17 @@ type DeleteModalProps = {
 export default function DeleteModal({ isModalOpen }: DeleteModalProps) {
   const { handleDeleteModalClose, movie } = useContext(AppContext);
 
+  const dispatch: ThunkDispatch<RootState, unknown, AnyAction> = useDispatch();
+
+  const { sort, filter, offset } = useSelector(
+    (state: RootState) => state.movieState
+  );
+
   const handleButtonClick = () => {
-    handleDeleteModalClose();
-    fetch(`http://localhost:4000/movies/${movie?.id}`, {
-      method: 'DELETE',
-    });
+    if (movie)
+      dispatch(
+        removeMovie(movie.id, handleDeleteModalClose, filter, sort, offset)
+      );
   };
 
   return (
