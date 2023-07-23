@@ -19,6 +19,7 @@ const {
   HandleMovies,
   HandleError,
   HandleLoading,
+  HandleStopLoading,
   HandleFilter,
   HandleSort,
   HandleOffset,
@@ -36,7 +37,6 @@ const reducer: Reducer<RootState, AnyAction> = (
           ...state.movieState,
           movies: action.payload.movies,
           totalAmount: action.payload.totalAmount,
-          isLoading: false,
         },
       };
     }
@@ -56,6 +56,15 @@ const reducer: Reducer<RootState, AnyAction> = (
         movieState: {
           ...state.movieState,
           isLoading: true,
+        },
+      };
+    }
+    case HandleStopLoading: {
+      return {
+        ...state,
+        movieState: {
+          ...state.movieState,
+          isLoading: false,
         },
       };
     }

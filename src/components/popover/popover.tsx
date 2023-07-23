@@ -17,7 +17,7 @@ import { Movie } from '../../types/movie';
 import './style.css';
 
 type PopoverProps = {
-  onMovieModalOpen: (name: string) => void;
+  onMovieModalOpen: (name: string, movie: Movie) => void;
   onDeleteModalOpen: (currentMovie: Movie) => void;
   movie: Movie;
 };
@@ -68,7 +68,7 @@ export default function Popover({
 
             <Button
               className="edit"
-              onClick={() => onMovieModalOpen(ModalTitles.Edit)}
+              onClick={() => onMovieModalOpen(ModalTitles.Edit, movie)}
             >
               edit
             </Button>

@@ -1,51 +1,55 @@
 import { useContext } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 import Button from '../button/button';
 import { genres } from '../main/info';
 import AppContext from '../app-context/app-context';
+import { FormInput } from '../../types/form-input';
 import './style.css';
-
-interface IFormInput {
-  title: string;
-  release_date: string;
-  poster_path: string;
-  vote_average: number;
-  genres: Array<string>;
-  runtime: number;
-  overview: string;
-}
+import postMovie from '../../state/post-movie';
+import RootState from '../../types/root-state';
 
 type EditFormProps = {
   onModalClose: () => void;
 };
 
 export default function EditForm({ onModalClose }: EditFormProps) {
+  const { handleCongratModalOpen, movie } = useContext(AppContext);
+
+  const dispatch: ThunkDispatch<RootState, unknown, AnyAction> = useDispatch();
+
+  const { sort, filter, offset } = useSelector(
+    (state: RootState) => state.movieState
+  );
+
+  const params = {
+    title: movie?.title,
+    release_date: movie?.release_date,
+    genres: movie?.genres,
+    runtime: movie?.runtime,
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormInput>();
+  } = useForm<FormInput>({
+    defaultValues: params,
+  });
 
-  const { handleCongratModalOpen } = useContext(AppContext);
-
-  const onSubmit: SubmitHandler<IFormInput> = (data: IFormInput) => {
-    fetch('http://localhost:4000/movies', {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data, (key, value) => {
-        if (key === 'vote_average' || key === 'runtime') return Number(value);
-        if (key === 'genres') return [value];
-        if (value === '') return undefined;
-        return value;
-      }),
-    })
-      .then((response) => {
-        if (response.ok) onModalClose();
-      })
-      .then(handleCongratModalOpen); // TODO: open congrats modal here after submit
+  const onSubmit: SubmitHandler<FormInput> = (data: FormInput) => {
+    dispatch(
+      postMovie(
+        data,
+        onModalClose,
+        handleCongratModalOpen,
+        filter,
+        sort,
+        offset
+      )
+    );
   };
 
   const requiredMessage = 'This is required';

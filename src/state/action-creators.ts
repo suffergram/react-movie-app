@@ -1,7 +1,7 @@
 import { Movie } from '../types/movie';
 import { MovieListAction } from './constants';
 
-type MoviesDTO = {
+export type MoviesDTO = {
   data: Array<Movie>;
   totalAmount: number;
 };
@@ -18,6 +18,10 @@ export const handleErrorAction = (error: string) => ({
 
 export const handleLoadingAction = () => ({
   type: MovieListAction.HandleLoading,
+});
+
+export const handleStopLoadingAction = () => ({
+  type: MovieListAction.HandleStopLoading,
 });
 
 export const handleFilterAction = (filter: string) => ({

@@ -3,7 +3,7 @@ import { Movie } from '../../types/movie';
 
 type AppContextType = {
   isMovieModalOpen: boolean;
-  handleMovieModalOpen(name: string): void;
+  handleMovieModalOpen(name: string, movie?: Movie): void;
   handleMovieModalClose(): void;
   isDeleteModalOpen: boolean;
   handleDeleteModalOpen(currentMovie: Movie): void;
@@ -21,7 +21,7 @@ type AppContextType = {
 const AppContext = React.createContext<AppContextType>({
   isMovieModalOpen: false,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleMovieModalOpen: (name: string) => {
+  handleMovieModalOpen: (name: string, movie?: Movie) => {
     // init value
   },
   handleMovieModalClose: () => {

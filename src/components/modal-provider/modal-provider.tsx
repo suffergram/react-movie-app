@@ -13,8 +13,9 @@ export default function ModalProvider({ children }: PropsWithChildren) {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [isMovieInfoOpen, setIsMovieInfoOpen] = useState(false);
 
-  const handleMovieModalOpen = useCallback((name: string) => {
+  const handleMovieModalOpen = useCallback((name: string, movie?: Movie) => {
     setModalType(name);
+    setMovie(movie || null);
     setIsMovieModalOpen(true);
   }, []);
 
