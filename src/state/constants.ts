@@ -8,4 +8,5 @@ export enum MovieListAction {
   HandleFilter = 'HANDLE_FILTER',
   HandleSort = 'HANDLE_SORT',
   HandleOffset = 'HANDLE_OFFSET',
+  HandleUpdate = 'HANDLE_UPDATE',
 }

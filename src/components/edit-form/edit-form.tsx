@@ -10,6 +10,7 @@ import { FormInput } from '../../types/form-input';
 import './style.css';
 import postMovie from '../../state/post-movie';
 import RootState from '../../types/root-state';
+import putMovie from '../../state/put-movie';
 
 type EditFormProps = {
   onModalClose: () => void;
@@ -24,12 +25,18 @@ export default function EditForm({ onModalClose }: EditFormProps) {
     (state: RootState) => state.movieState
   );
 
-  const params = {
-    title: movie?.title,
-    release_date: movie?.release_date,
-    genres: movie?.genres,
-    runtime: movie?.runtime,
-  };
+  const params: FormInput | object = movie
+    ? {
+        id: movie.id,
+        title: movie.title,
+        release_date: movie.release_date,
+        genres: movie.genres,
+        runtime: movie.runtime,
+        poster_path: movie.poster_path,
+        vote_average: movie.vote_average,
+        overview: movie.overview,
+      }
+    : {};
 
   const {
     register,
@@ -40,16 +47,20 @@ export default function EditForm({ onModalClose }: EditFormProps) {
   });
 
   const onSubmit: SubmitHandler<FormInput> = (data: FormInput) => {
-    dispatch(
-      postMovie(
-        data,
-        onModalClose,
-        handleCongratModalOpen,
-        filter,
-        sort,
-        offset
-      )
-    );
+    if (!movie) {
+      dispatch(
+        postMovie(
+          data,
+          onModalClose,
+          handleCongratModalOpen,
+          filter,
+          sort,
+          offset
+        )
+      );
+    } else {
+      dispatch(putMovie(data, onModalClose, sort));
+    }
   };
 
   const requiredMessage = 'This is required';

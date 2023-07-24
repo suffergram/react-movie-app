@@ -32,8 +32,21 @@ export default class MovieService {
     });
   }
 
-  static updateMovie() {
-    // something will be here
+  static updateMovie(data: FormInput) {
+    return fetch(this.host, {
+      method: 'PUT',
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data, (key, value) => {
+        if (['vote_average', 'runtime', 'id'].includes(key))
+          return Number(value);
+        if (key === 'genres' && !Array.isArray(value)) return [value];
+        if (value === '') return undefined;
+        return value;
+      }),
+    });
   }
 
   static deleteMovie(id: number) {
