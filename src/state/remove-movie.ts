@@ -6,30 +6,26 @@ import {
   handleErrorAction,
   handleLoadingAction,
   handleMoviesAction,
-  handleStopLoadingAction,
 } from './action-creators';
 
 const removeMovie =
-  (
-    id: number,
-    handleDeleteModalClose: () => void,
-    filter: string,
-    sort: string,
-    offset: number
-  ): ThunkAction<void, RootState, unknown, AnyAction> =>
-  (dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
-    dispatch(handleLoadingAction());
-    MovieService.deleteMovie(id)
-      .then(() => {
-        handleDeleteModalClose();
-        MovieService.getMovies(filter, sort, offset).then((data) => {
-          dispatch(handleMoviesAction(data));
-          dispatch(handleStopLoadingAction());
-        });
-      })
-      .catch((catchedError) => {
-        dispatch(handleErrorAction(catchedError));
-      });
+  (id: number): ThunkAction<void, RootState, unknown, AnyAction> =>
+  async (
+    dispatch: ThunkDispatch<RootState, unknown, AnyAction>,
+    getState: () => RootState
+  ) => {
+    try {
+      const {
+        movieState: { filter, sort, offset },
+      } = getState();
+
+      dispatch(handleLoadingAction());
+      await MovieService.deleteMovie(id);
+      const movies = await MovieService.getMovies(filter, sort, offset);
+      dispatch(handleMoviesAction(movies));
+    } catch (error: unknown) {
+      dispatch(handleErrorAction(error as string));
+    }
   };
 
 export default removeMovie;

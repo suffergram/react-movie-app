@@ -62,7 +62,11 @@ export default function ModalProvider({ children }: PropsWithChildren) {
   return (
     <AppContext.Provider value={appContextValue}>
       {children}
-      <MovieModal isModalOpen={isMovieModalOpen} title={`${modalType} movie`} />
+      <MovieModal
+        isModalOpen={isMovieModalOpen}
+        title={`${modalType} movie`}
+        type={modalType}
+      />
       <DeleteModal isModalOpen={isDeleteModalOpen} />
       <CongratModal isModalOpen={isCongratModalOpen} />
     </AppContext.Provider>

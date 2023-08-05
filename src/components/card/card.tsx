@@ -37,7 +37,7 @@ const Card = memo(({ movie }: CardProps) => {
       <div className="description">
         <div className="year">{movie.release_date.slice(0, 4)}</div>
         <p className="title">{movie.title}</p>
-        <p className="genre">{[...movie.genres].join(', ')}</p>
+        <p className="genre">{movie.genres.join(', ')}</p>
       </div>
     </div>
   );

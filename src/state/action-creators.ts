@@ -21,10 +21,6 @@ export const handleLoadingAction = () => ({
   type: MovieListAction.HandleLoading,
 });
 
-export const handleStopLoadingAction = () => ({
-  type: MovieListAction.HandleStopLoading,
-});
-
 export const handleFilterAction = (filter: string) => ({
   type: MovieListAction.HandleFilter,
   payload: filter,

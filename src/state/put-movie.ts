@@ -6,29 +6,28 @@ import {
   handleErrorAction,
   handleLoadingAction,
   handleSortAction,
-  handleStopLoadingAction,
   handleUpdateAction,
 } from './action-creators';
 import { FormInput } from '../types/form-input';
 
 const putMovie =
-  (
-    data: FormInput,
-    onModalClose: () => void,
-    sort: string
-  ): ThunkAction<void, RootState, unknown, AnyAction> =>
-  (dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
-    dispatch(handleLoadingAction());
-    MovieService.updateMovie(data)
-      .then(() => {
-        dispatch(handleUpdateAction(data));
-        onModalClose();
-      })
-      .then(() => dispatch(handleSortAction(sort)))
-      .then(() => dispatch(handleStopLoadingAction()))
-      .catch((catchedError) => {
-        dispatch(handleErrorAction(catchedError));
-      });
+  (data: FormInput): ThunkAction<void, RootState, unknown, AnyAction> =>
+  async (
+    dispatch: ThunkDispatch<RootState, unknown, AnyAction>,
+    getState: () => RootState
+  ) => {
+    try {
+      const {
+        movieState: { sort },
+      } = getState();
+
+      dispatch(handleLoadingAction());
+      const movie = await MovieService.updateMovie(data);
+      dispatch(handleUpdateAction(movie));
+      dispatch(handleSortAction(sort));
+    } catch (error: unknown) {
+      dispatch(handleErrorAction(error as string));
+    }
   };
 
 export default putMovie;

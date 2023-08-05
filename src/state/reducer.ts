@@ -19,7 +19,6 @@ const {
   HandleMovies,
   HandleError,
   HandleLoading,
-  HandleStopLoading,
   HandleFilter,
   HandleSort,
   HandleOffset,
@@ -38,6 +37,7 @@ const reducer: Reducer<RootState, AnyAction> = (
           ...state.movieState,
           movies: action.payload.movies,
           totalAmount: action.payload.totalAmount,
+          isLoading: false,
         },
       };
     }
@@ -57,15 +57,6 @@ const reducer: Reducer<RootState, AnyAction> = (
         movieState: {
           ...state.movieState,
           isLoading: true,
-        },
-      };
-    }
-    case HandleStopLoading: {
-      return {
-        ...state,
-        movieState: {
-          ...state.movieState,
-          isLoading: false,
         },
       };
     }
@@ -98,24 +89,37 @@ const reducer: Reducer<RootState, AnyAction> = (
       };
     }
     case HandleUpdate: {
+      const {
+        payload: {
+          id,
+          title,
+          releaseDate,
+          genres,
+          runtime,
+          posterPath,
+          voteAverage,
+          overview,
+        },
+      } = action;
       return {
         ...state,
         movieState: {
           ...state.movieState,
           movies: state.movieState.movies.map((movie) =>
-            movie.id === action.payload.id
+            movie.id === id
               ? {
                   ...movie,
-                  title: action.payload.title,
-                  release_date: action.payload.release_date,
-                  genres: action.payload.genres,
-                  runtime: action.payload.runtime,
-                  poster_path: action.payload.poster_path,
-                  vote_average: action.payload.vote_average,
-                  overview: action.payload.overview,
+                  title,
+                  releaseDate,
+                  genres,
+                  runtime,
+                  posterPath,
+                  voteAverage,
+                  overview,
                 }
               : movie
           ),
+          isLoading: false,
         },
       };
     }

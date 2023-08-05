@@ -29,6 +29,9 @@ export default class MovieService {
         if (value === '') return undefined;
         return value;
       }),
+    }).then((response) => {
+      if (!response.ok) return Promise.reject(new Error('response is not ok'));
+      return response;
     });
   }
 
@@ -46,6 +49,9 @@ export default class MovieService {
         if (value === '') return undefined;
         return value;
       }),
+    }).then((response) => {
+      if (!response.ok) return Promise.reject(new Error('response is not ok'));
+      return response.json();
     });
   }
 

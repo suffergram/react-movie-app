@@ -16,6 +16,11 @@ export default function CongratModal({ isModalOpen }: CongratModalProps) {
       isModalOpen={isModalOpen}
       onModalClose={handleCongratModalClose}
       title={ModalTitle.Congratulations}
+      icon={
+        <div className="modal-icon">
+          <div className="modal-icon-check" />
+        </div>
+      }
     >
       <div className="congrat-modal-content">
         <p className="congrat-modal-p">
