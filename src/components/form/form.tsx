@@ -37,7 +37,7 @@ export default function Form({ onSubmit, params }: FormProps) {
       <label>
         title
         <input
-          className={errors.title?.message ? 'modal-input-error' : null}
+          className={errors.title?.message ? 'modal-input-error' : undefined}
           placeholder="Select Title"
           inputMode="text"
           {...register(Title, { required: requiredMessage })}
@@ -47,7 +47,9 @@ export default function Form({ onSubmit, params }: FormProps) {
       <label>
         release date
         <input
-          className={errors.release_date?.message ? 'modal-input-error' : null}
+          className={
+            errors.release_date?.message ? 'modal-input-error' : undefined
+          }
           type="date"
           placeholder="Select Date"
           {...register(ReleaseDate, {
@@ -86,7 +88,7 @@ export default function Form({ onSubmit, params }: FormProps) {
       <label>
         runtime
         <input
-          className={errors.runtime?.message ? 'modal-input-error' : null}
+          className={errors.runtime?.message ? 'modal-input-error' : undefined}
           placeholder="minutes"
           inputMode="numeric"
           type="number"
@@ -100,7 +102,9 @@ export default function Form({ onSubmit, params }: FormProps) {
       <label>
         movie url
         <input
-          className={errors.poster_path?.message ? 'modal-input-error' : null}
+          className={
+            errors.poster_path?.message ? 'modal-input-error' : undefined
+          }
           placeholder="https://"
           inputMode="url"
           {...register(PosterPath, {
