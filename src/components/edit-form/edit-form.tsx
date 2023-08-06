@@ -3,37 +3,28 @@ import { SubmitHandler } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import AppContext from '../app-context/app-context';
+import ModalContext from '../../context/modal-context';
 import { FormInput } from '../../types/form-input';
 import RootState from '../../types/root-state';
 import putMovie from '../../state/put-movie';
-import Form from '../form/form';
+import MovieForm from '../movie-form/movie-form';
+import { ModalState } from '../../types/modal-state';
 
 export default function EditForm() {
-  const { handleMovieModalClose, movie } = useContext(AppContext);
+  const { handleModalClose, modal } = useContext(ModalContext);
 
   const dispatch: ThunkDispatch<RootState, unknown, AnyAction> = useDispatch();
-  console.log(movie);
-  const params: FormInput | undefined = movie
-    ? {
-        id: movie.id,
-        title: movie.title,
-        release_date: movie.release_date,
-        genres: movie.genres,
-        runtime: movie.runtime,
-        poster_path: movie.poster_path,
-        vote_average: movie.vote_average,
-        overview: movie.overview,
-      }
-    : undefined;
+
+  const params: FormInput | undefined =
+    modal?.name === ModalState.Edit ? modal.data : undefined;
 
   const handleSubmit: SubmitHandler<FormInput> = async (data: FormInput) => {
     await new Promise<void>((resolve) => {
       dispatch(putMovie(data));
       resolve();
     });
-    handleMovieModalClose();
+    handleModalClose();
   };
 
-  return <Form onSubmit={handleSubmit} params={params} />;
+  return <MovieForm onSubmit={handleSubmit} params={params} />;
 }

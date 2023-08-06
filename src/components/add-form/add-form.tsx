@@ -3,15 +3,15 @@ import { SubmitHandler } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import AppContext from '../app-context/app-context';
+import ModalContext from '../../context/modal-context';
 import { FormInput } from '../../types/form-input';
 import postMovie from '../../state/post-movie';
 import RootState from '../../types/root-state';
-import Form from '../form/form';
+import MovieForm from '../movie-form/movie-form';
+import { ModalState } from '../../types/modal-state';
 
 export default function AddForm() {
-  const { handleCongratModalOpen, handleMovieModalClose } =
-    useContext(AppContext);
+  const { handleModalOpen, handleModalClose } = useContext(ModalContext);
 
   const dispatch: ThunkDispatch<RootState, unknown, AnyAction> = useDispatch();
 
@@ -20,9 +20,11 @@ export default function AddForm() {
       dispatch(postMovie(data));
       resolve();
     });
-    handleCongratModalOpen();
-    handleMovieModalClose();
+    handleModalClose();
+    handleModalOpen({
+      name: ModalState.Congrat,
+    });
   };
 
-  return <Form onSubmit={handleSubmit} />;
+  return <MovieForm onSubmit={handleSubmit} />;
 }

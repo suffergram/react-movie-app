@@ -1,21 +1,20 @@
 import { useContext } from 'react';
 import Modal from '../modal/modal';
-import AppContext from '../app-context/app-context';
+import ModalContext from '../../context/modal-context';
 import './style.css';
-import ModalTitle from '../../types/modal-title';
 
 type CongratModalProps = {
   isModalOpen: boolean;
 };
 
 export default function CongratModal({ isModalOpen }: CongratModalProps) {
-  const { handleCongratModalClose } = useContext(AppContext);
+  const { handleModalClose } = useContext(ModalContext);
 
   return (
     <Modal
       isModalOpen={isModalOpen}
-      onModalClose={handleCongratModalClose}
-      title={ModalTitle.Congratulations}
+      onModalClose={handleModalClose}
+      title="congratulations"
       icon={
         <div className="modal-icon">
           <div className="modal-icon-check" />

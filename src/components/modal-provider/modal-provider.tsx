@@ -1,74 +1,47 @@
-import { useState, useCallback, useMemo, PropsWithChildren } from 'react';
-import { Movie } from '../../types/movie';
-import MovieModal from '../movie-modal/movie-modal';
+import { useState, useMemo, PropsWithChildren } from 'react';
+import EditMovieModal from '../edit-movie-modal/edit-movie-modal';
+import AddMovieModal from '../add-movie-modal/add-movie-modal';
 import DeleteModal from '../delete-modal/delete-modal';
 import CongratModal from '../congrat-modal/congrat-modal';
-import AppContext from '../app-context/app-context';
+import ModalContext from '../../context/modal-context';
+import { ModalState } from '../../types/modal-state';
+import { Movie } from '../../types/movie';
+
+export type ModalType =
+  | {
+      name: ModalState.Add;
+    }
+  | {
+      name: ModalState.Edit;
+      data: Movie;
+    }
+  | {
+      name: ModalState.Delete;
+      data: Movie;
+    }
+  | {
+      name: ModalState.Congrat;
+    };
 
 export default function ModalProvider({ children }: PropsWithChildren) {
-  const [isMovieModalOpen, setIsMovieModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [isCongratModalOpen, setIsCongratModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<string | null>(null);
-  const [movie, setMovie] = useState<Movie | null>(null);
-  const [isMovieInfoOpen, setIsMovieInfoOpen] = useState(false);
+  const [modal, setModal] = useState<ModalType | null>(null);
 
-  const handleMovieModalOpen = useCallback((name: string, movie?: Movie) => {
-    setModalType(name);
-    setMovie(movie || null);
-    setIsMovieModalOpen(true);
-  }, []);
-
-  const handleDeleteModalOpen = useCallback((currentMovie: Movie) => {
-    setIsDeleteModalOpen(true);
-    setMovie(currentMovie);
-  }, []);
-
-  const handleMovieInfoOpen = useCallback((currentMovie: Movie) => {
-    setIsMovieInfoOpen(true);
-    setMovie(currentMovie);
-  }, []);
-
-  const appContextValue = useMemo(
+  const modalContextValue = useMemo(
     () => ({
-      isMovieModalOpen,
-      handleMovieModalOpen,
-      handleMovieModalClose: () => setIsMovieModalOpen(false),
-      isDeleteModalOpen,
-      handleDeleteModalOpen,
-      handleDeleteModalClose: () => setIsDeleteModalOpen(false),
-      isCongratModalOpen,
-      handleCongratModalOpen: () => setIsCongratModalOpen(true),
-      handleCongratModalClose: () => setIsCongratModalOpen(false),
-      isMovieInfoOpen,
-      handleMovieInfoOpen,
-      handleMovieInfoClose: () => setIsMovieInfoOpen(false),
-      modalType,
-      movie,
+      handleModalOpen: (modalState: ModalType) => setModal(modalState),
+      handleModalClose: () => setModal(null),
+      modal,
     }),
-    [
-      isMovieModalOpen,
-      handleMovieModalOpen,
-      isDeleteModalOpen,
-      handleDeleteModalOpen,
-      isCongratModalOpen,
-      isMovieInfoOpen,
-      handleMovieInfoOpen,
-      modalType,
-      movie,
-    ]
+    [modal]
   );
 
   return (
-    <AppContext.Provider value={appContextValue}>
+    <ModalContext.Provider value={modalContextValue}>
       {children}
-      <MovieModal
-        isModalOpen={isMovieModalOpen}
-        title={`${modalType} movie`}
-        type={modalType}
-      />
-      <DeleteModal isModalOpen={isDeleteModalOpen} />
-      <CongratModal isModalOpen={isCongratModalOpen} />
-    </AppContext.Provider>
+      <EditMovieModal isModalOpen={modal?.name === ModalState.Edit} />
+      <AddMovieModal isModalOpen={modal?.name === ModalState.Add} />
+      <DeleteModal isModalOpen={modal?.name === ModalState.Delete} />
+      <CongratModal isModalOpen={modal?.name === ModalState.Congrat} />
+    </ModalContext.Provider>
   );
 }

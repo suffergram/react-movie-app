@@ -11,7 +11,7 @@ type FormProps = {
   params?: FormInput | undefined;
 };
 
-export default function Form({ onSubmit, params }: FormProps) {
+export default function MovieForm({ onSubmit, params }: FormProps) {
   const {
     register,
     handleSubmit,
@@ -37,18 +37,18 @@ export default function Form({ onSubmit, params }: FormProps) {
       <label>
         title
         <input
-          className={errors.title?.message ? 'modal-input-error' : undefined}
+          className={errors[Title]?.message ? 'modal-input-error' : undefined}
           placeholder="Select Title"
           inputMode="text"
           {...register(Title, { required: requiredMessage })}
         />
-        <p className="modal-submit-error">{errors.title?.message}</p>
+        <p className="modal-submit-error">{errors[Title]?.message}</p>
       </label>
       <label>
         release date
         <input
           className={
-            errors.release_date?.message ? 'modal-input-error' : undefined
+            errors[ReleaseDate]?.message ? 'modal-input-error' : undefined
           }
           type="date"
           placeholder="Select Date"
@@ -56,14 +56,14 @@ export default function Form({ onSubmit, params }: FormProps) {
             required: requiredMessage,
           })}
         />
-        <p className="modal-submit-error">{errors.release_date?.message}</p>
+        <p className="modal-submit-error">{errors[ReleaseDate]?.message}</p>
       </label>
       <label>
         genre
         <select
           className={clsx(
             'modal-genre-select',
-            errors.genres?.message && 'modal-input-error'
+            errors[Genres]?.message && 'modal-input-error'
           )}
           {...register(Genres, { required: requiredMessage })}
         >
@@ -74,7 +74,7 @@ export default function Form({ onSubmit, params }: FormProps) {
             </option>
           ))}
         </select>
-        <p className="modal-submit-error">{errors.genres?.message}</p>
+        <p className="modal-submit-error">{errors[Genres]?.message}</p>
       </label>
       {/* <label>
         genres
@@ -88,7 +88,7 @@ export default function Form({ onSubmit, params }: FormProps) {
       <label>
         runtime
         <input
-          className={errors.runtime?.message ? 'modal-input-error' : undefined}
+          className={errors[Runtime]?.message ? 'modal-input-error' : undefined}
           placeholder="minutes"
           inputMode="numeric"
           type="number"
@@ -97,13 +97,13 @@ export default function Form({ onSubmit, params }: FormProps) {
           max="999"
           {...register(Runtime, { required: requiredMessage })}
         />
-        <p className="modal-submit-error">{errors.runtime?.message}</p>
+        <p className="modal-submit-error">{errors[Runtime]?.message}</p>
       </label>
       <label>
         movie url
         <input
           className={
-            errors.poster_path?.message ? 'modal-input-error' : undefined
+            errors[PosterPath]?.message ? 'modal-input-error' : undefined
           }
           placeholder="https://"
           inputMode="url"
@@ -115,7 +115,7 @@ export default function Form({ onSubmit, params }: FormProps) {
             },
           })}
         />
-        <p className="modal-submit-error">{errors.poster_path?.message}</p>
+        <p className="modal-submit-error">{errors[PosterPath]?.message}</p>
       </label>
       <label>
         rating
