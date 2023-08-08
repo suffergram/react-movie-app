@@ -1,9 +1,13 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useContext } from 'react';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import clsx from 'clsx';
 import Button from '../button/button';
 import { genres } from '../main/info';
 import { FormInput } from '../../types/form-input';
 import { FormField } from '../../types/edit-form-field';
+import GenreSelect from '../genre-select/genre-select';
+import ModalContext from '../../context/modal-context';
+import { ModalState } from '../../types/modal-state';
 import './style.css';
 
 type FormProps = {
@@ -16,9 +20,12 @@ export default function MovieForm({ onSubmit, params }: FormProps) {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm<FormInput>({
     defaultValues: params,
   });
+
+  const { modal } = useContext(ModalContext);
 
   const {
     Title,
@@ -58,7 +65,7 @@ export default function MovieForm({ onSubmit, params }: FormProps) {
         />
         <p className="modal-submit-error">{errors[ReleaseDate]?.message}</p>
       </label>
-      <label>
+      {/* <label>
         genre
         <select
           className={clsx(
@@ -75,16 +82,23 @@ export default function MovieForm({ onSubmit, params }: FormProps) {
           ))}
         </select>
         <p className="modal-submit-error">{errors[Genres]?.message}</p>
-      </label>
-      {/* <label>
-        genres
-        <Selector
-          options={movie ? movie.genres : []}
-          values={[]}
-          onChange={() => {}}
-          // register={{ ...register(Genres, { required: requiredMessage }) }}
-        />
       </label> */}
+      <label>
+        genres
+        <Controller
+          control={control}
+          name={Genres}
+          rules={{ required: true }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <GenreSelect
+              onChange={onChange}
+              onBlur={onBlur}
+              value={value || []}
+              options={modal?.name === ModalState.Edit ? modal.data.genres : []}
+            />
+          )}
+        />
+      </label>
       <label>
         runtime
         <input

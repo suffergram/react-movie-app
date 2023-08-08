@@ -4,7 +4,7 @@ import './style.css';
 type OptionProps = {
   children: string;
   checked: boolean;
-  onChange: (event: ChangeEvent) => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function Option({ children, checked, onChange }: OptionProps) {

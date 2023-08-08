@@ -19,13 +19,20 @@ import './style.css';
 
 type SelectorProps = {
   options: string[];
-  values: string[];
+  value: string[];
   onChange: (newValues: string[]) => void;
+  onBlur: () => void;
 };
 
-export default function Selector({ options, values, onChange }: SelectorProps) {
+export default function GenreSelect({
+  options,
+  value,
+  onChange,
+  onBlur,
+}: // onChange,
+SelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
-
+  console.log(value);
   const { y, strategy, context } = useFloating<HTMLButtonElement>({
     open: isOpen,
     onOpenChange: setIsOpen,
@@ -52,14 +59,15 @@ export default function Selector({ options, values, onChange }: SelectorProps) {
   //   setGenreState(genreState.filter((item) => item !== genre));
   // };
 
-  const handleOptionChange = (genre: string) => (event: ChangeEvent) => {
-    // genreState.includes(genre) ? removeGenre(genre) : addGenre(genre);
-    //
-    // const newValues = event.target.checked
-    //   ? [...values, genre]
-    //   : values.filter((value) => value !== genre);
-    // onChange(newValues);
-  };
+  const handleOptionChange =
+    (genre: string) => (event: ChangeEvent<HTMLInputElement>) => {
+      // genreState.includes(genre) ? removeGenre(genre) : addGenre(genre);
+      //
+      const newValues = event.target.checked
+        ? [...value, genre]
+        : value.filter((val) => val !== genre);
+      onChange(newValues);
+    };
 
   return (
     <div className="selector-container">
@@ -72,7 +80,6 @@ export default function Selector({ options, values, onChange }: SelectorProps) {
         // value={genreState.join(', ')}
         placeholder="Select Genre"
         onClick={() => setIsOpen((value) => !value)} // doesn't work correctly
-        // {...register}
       />
       {isOpen ? (
         <FloatingFocusManager context={context} modal={false}>
@@ -88,7 +95,7 @@ export default function Selector({ options, values, onChange }: SelectorProps) {
               {genres.map((item) => (
                 <Option
                   key={item.id}
-                  checked={values.includes(item.name)}
+                  checked={value.includes(item.name)}
                   onChange={handleOptionChange(item.name)}
                 >
                   {item.name}
