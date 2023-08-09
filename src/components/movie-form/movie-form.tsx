@@ -89,15 +89,9 @@ export default function MovieForm({ onSubmit, params }: FormProps) {
           control={control}
           name={Genres}
           rules={{ required: true }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <GenreSelect
-              onChange={onChange}
-              onBlur={onBlur}
-              value={value || []}
-              options={modal?.name === ModalState.Edit ? modal.data.genres : []}
-            />
-          )}
+          render={({ field }) => <GenreSelect {...field} />}
         />
+        <p className="modal-submit-error">{errors[Genres]?.message}</p>
       </label>
       <label>
         runtime

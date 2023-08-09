@@ -25,7 +25,6 @@ export default class MovieService {
       },
       body: JSON.stringify(data, (key, value) => {
         if (key === 'vote_average' || key === 'runtime') return Number(value);
-        if (key === 'genres') return [value];
         if (value === '') return undefined;
         return value;
       }),
@@ -45,7 +44,6 @@ export default class MovieService {
       body: JSON.stringify(data, (key, value) => {
         if (['vote_average', 'runtime', 'id'].includes(key))
           return Number(value);
-        if (key === 'genres' && !Array.isArray(value)) return [value];
         if (value === '') return undefined;
         return value;
       }),

@@ -11,28 +11,23 @@ import {
   useRole,
 } from '@floating-ui/react-dom-interactions';
 import { useState, ChangeEvent } from 'react';
-import { ChangeHandler } from 'react-hook-form';
 import Option from '../option/option';
 import { genres } from '../main/info';
-import Button from '../button/button';
 import './style.css';
 
 type SelectorProps = {
-  options: string[];
   value: string[];
   onChange: (newValues: string[]) => void;
-  onBlur: () => void;
 };
 
+const emptyValue: string[] = [];
+
 export default function GenreSelect({
-  options,
-  value,
+  value = emptyValue,
   onChange,
-  onBlur,
-}: // onChange,
-SelectorProps) {
+}: SelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
-  console.log(value);
+
   const { y, strategy, context } = useFloating<HTMLButtonElement>({
     open: isOpen,
     onOpenChange: setIsOpen,
@@ -50,19 +45,8 @@ SelectorProps) {
     role,
   ]);
 
-  // const [genreState, setGenreState] = useState([...options]);
-
-  // const addGenre = (genre: string) => {
-  //   setGenreState([...genreState, genre]);
-  // };
-  // const removeGenre = (genre: string) => {
-  //   setGenreState(genreState.filter((item) => item !== genre));
-  // };
-
   const handleOptionChange =
     (genre: string) => (event: ChangeEvent<HTMLInputElement>) => {
-      // genreState.includes(genre) ? removeGenre(genre) : addGenre(genre);
-      //
       const newValues = event.target.checked
         ? [...value, genre]
         : value.filter((val) => val !== genre);
@@ -70,28 +54,24 @@ SelectorProps) {
     };
 
   return (
-    <div className="selector-container">
-      {/* <Button {...getReferenceProps()} className="selector">
-          {genreState.join(', ')}
-        </Button> */}
+    <div className="genre-select-container">
       <input
         {...getReferenceProps()}
-        className="selector"
-        // value={genreState.join(', ')}
+        className="genre-select"
+        value={value.join(', ')}
         placeholder="Select Genre"
-        onClick={() => setIsOpen((value) => !value)} // doesn't work correctly
       />
       {isOpen ? (
         <FloatingFocusManager context={context} modal={false}>
           <div
             {...getFloatingProps()}
-            className="selector-list"
+            className="genre-select-list"
             style={{
               position: strategy,
               top: y ?? 57,
             }}
           >
-            <div className="selector-list">
+            <div className="genre-select-list">
               {genres.map((item) => (
                 <Option
                   key={item.id}
@@ -101,7 +81,7 @@ SelectorProps) {
                   {item.name}
                 </Option>
               ))}
-            </div>{' '}
+            </div>
           </div>
         </FloatingFocusManager>
       ) : null}
