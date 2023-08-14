@@ -1,21 +1,20 @@
 import { useContext } from 'react';
 import Modal from '../modal/modal';
 import EditForm from '../edit-form/edit-form';
-import AppContext from '../app-context/app-context';
+import ModalContext from '../../context/modal-context';
 
 type MovieModalProps = {
   isModalOpen: boolean;
-  title: string;
 };
 
-export default function MovieModal({ isModalOpen, title }: MovieModalProps) {
-  const { handleMovieModalClose } = useContext(AppContext);
+export default function EditMovieModal({ isModalOpen }: MovieModalProps) {
+  const { handleModalClose } = useContext(ModalContext);
 
   return (
     <Modal
       isModalOpen={isModalOpen}
-      onModalClose={handleMovieModalClose}
-      title={title}
+      onModalClose={handleModalClose}
+      title="edit movie"
     >
       <EditForm />
     </Modal>

@@ -10,20 +10,15 @@ import {
   useInteractions,
   useRole,
 } from '@floating-ui/react-dom-interactions';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import Button from '../button/button';
-import ModalTitles from '../../types/modal-title';
 import './style.css';
 
 type PopoverProps = {
-  onMovieModalOpen: (name: string) => void;
-  onDeleteModalOpen: () => void;
+  children: ReactNode;
 };
 
-export default function Popover({
-  onMovieModalOpen,
-  onDeleteModalOpen,
-}: PopoverProps) {
+export default function Popover({ children }: PopoverProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { x, y, refs, strategy, context } = useFloating<HTMLButtonElement>({
@@ -63,16 +58,7 @@ export default function Popover({
           >
             <Button className="close" onClick={() => setIsOpen(false)} />
 
-            <Button
-              className="edit"
-              onClick={() => onMovieModalOpen(ModalTitles.Edit)}
-            >
-              edit
-            </Button>
-
-            <Button className="delete" onClick={onDeleteModalOpen}>
-              delete
-            </Button>
+            {children}
           </div>
         </FloatingFocusManager>
       ) : null}

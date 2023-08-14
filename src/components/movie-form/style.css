@@ -1,0 +1,14 @@
+.modal-genre-select {
+  text-transform: capitalize;
+}
+
+.modal-submit-error {
+  position: absolute;
+  margin-top: 95px;
+  font-size: 14px;
+  text-transform: none;
+}
+
+.modal-input-error {
+  outline: 1px solid var(--color-1);
+}

@@ -7,9 +7,10 @@ import {
   handleLoadingAction,
   handleMoviesAction,
 } from './action-creators';
+import { FormInput } from '../types/form-input';
 
-const fetchMovies =
-  (): ThunkAction<void, RootState, unknown, AnyAction> =>
+const postMovie =
+  (data: FormInput): ThunkAction<void, RootState, unknown, AnyAction> =>
   async (
     dispatch: ThunkDispatch<RootState, unknown, AnyAction>,
     getState: () => RootState
@@ -20,6 +21,7 @@ const fetchMovies =
       } = getState();
 
       dispatch(handleLoadingAction());
+      await MovieService.createMovie(data);
       const movies = await MovieService.getMovies(filter, sort, offset);
       dispatch(handleMoviesAction(movies));
     } catch (error: unknown) {
@@ -27,4 +29,4 @@ const fetchMovies =
     }
   };
 
-export default fetchMovies;
+export default postMovie;

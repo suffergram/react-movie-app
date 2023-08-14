@@ -8,10 +8,10 @@ type MovieInfoProps = {
 };
 
 export default function MovieInfo({ onMovieInfoClose, movie }: MovieInfoProps) {
-  const duration = movie
-    ? `${Math.floor(movie.runtime / 60)}h 
-      ${movie.runtime - Math.floor(movie.runtime / 60) * 60}min`
-    : null;
+  const duration =
+    movie &&
+    `${Math.floor(movie.runtime / 60)}h 
+      ${movie.runtime - Math.floor(movie.runtime / 60) * 60}min`;
 
   return (
     <div className="movie-info-container">

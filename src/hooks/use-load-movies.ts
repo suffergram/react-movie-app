@@ -12,7 +12,7 @@ export default function useLoadMovies() {
     useSelector((state: RootState) => state.movieState);
 
   useEffect(() => {
-    dispatch(fetchMovies(filter, sort, offset));
+    dispatch(fetchMovies());
   }, [dispatch, sort, filter, offset]);
 
   return { isLoading, error, movies, totalAmount };

@@ -1,5 +1,5 @@
 import ReactModal from 'react-modal';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 import Button from '../button/button';
 import './style.css';
 
@@ -9,6 +9,7 @@ type ModalProps = {
   onModalClose: () => void;
   isModalOpen: boolean;
   title: string;
+  icon?: ReactNode;
 };
 
 export default function Modal({
@@ -16,6 +17,7 @@ export default function Modal({
   onModalClose,
   isModalOpen,
   title,
+  icon,
 }: PropsWithChildren<ModalProps>) {
   return (
     <ReactModal
@@ -26,6 +28,7 @@ export default function Modal({
     >
       <Button onClick={onModalClose} className="close modal-close" />
       <div>
+        {icon}
         <h2 className="modal-title">{title}</h2>
         {children}
       </div>

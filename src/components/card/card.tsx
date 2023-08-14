@@ -1,19 +1,39 @@
 import { useContext, memo } from 'react';
 import Popover from '../popover/popover';
-import AppContext from '../app-context/app-context';
+import ModalContext from '../../context/modal-context';
 import { Movie } from '../../types/movie';
 import './style.css';
+import { ModalState } from '../../types/modal-state';
+import Button from '../button/button';
+import InfoContext from '../../context/info-context';
 
 type CardProps = {
   movie: Movie;
 };
 
 const Card = memo(({ movie }: CardProps) => {
-  const { handleMovieModalOpen, handleDeleteModalOpen, handleMovieInfoOpen } =
-    useContext(AppContext);
+  const { handleModalOpen } = useContext(ModalContext);
+  const { handleInfoOpen } = useContext(InfoContext);
 
   const handleCardClick = () => {
-    handleMovieInfoOpen(movie);
+    handleInfoOpen({
+      name: ModalState.Info,
+      data: movie,
+    });
+  };
+
+  const handleDeleteModalOpen = () => {
+    handleModalOpen({
+      name: ModalState.Delete,
+      data: movie,
+    });
+  };
+
+  const handleEditModalOpen = () => {
+    handleModalOpen({
+      name: ModalState.Edit,
+      data: movie,
+    });
   };
 
   return (
@@ -28,10 +48,14 @@ const Card = memo(({ movie }: CardProps) => {
         <img src={movie.poster_path} alt={movie.title} />
       </button>
 
-      <Popover
-        onDeleteModalOpen={handleDeleteModalOpen}
-        onMovieModalOpen={handleMovieModalOpen}
-      />
+      <Popover>
+        <Button className="edit" onClick={handleEditModalOpen}>
+          edit
+        </Button>
+        <Button className="delete" onClick={handleDeleteModalOpen}>
+          delete
+        </Button>
+      </Popover>
 
       <div className="description">
         <div className="year">{movie.release_date.slice(0, 4)}</div>

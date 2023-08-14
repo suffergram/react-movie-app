@@ -6,7 +6,6 @@
   min-height: var(--header-height);
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   background-color: var(--color-3);
   outline: 1px solid red;
@@ -47,6 +46,7 @@
 .movie-genre {
   font-size: 14px;
   opacity: 0.5;
+  text-transform: capitalize;
 }
 
 .movie-year-duration {

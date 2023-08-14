@@ -1,7 +1,8 @@
+import { FormInput } from '../types/form-input';
 import { Movie } from '../types/movie';
 import { MovieListAction } from './constants';
 
-type MoviesDTO = {
+export type MoviesDTO = {
   data: Array<Movie>;
   totalAmount: number;
 };
@@ -33,6 +34,11 @@ export const handleSortAction = (value: string) => ({
 export const handleOffsetAction = (selected: number) => ({
   type: MovieListAction.HandleOffset,
   payload: selected,
+});
+
+export const handleUpdateAction = (data: FormInput) => ({
+  type: MovieListAction.HandleUpdate,
+  payload: data,
 });
 
 export default MovieListAction;

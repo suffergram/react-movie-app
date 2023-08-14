@@ -39,6 +39,7 @@ img {
   color: var(--color-5);
   opacity: 0.5;
   margin-top: 8px;
+  text-transform: capitalize;
 }
 
 .menu {

@@ -1,16 +1,19 @@
 import { useContext } from 'react';
 import Button from '../button/button';
 import MovieInfo from '../movie-info/movie-info';
-import ModalTitles from '../../types/modal-title';
-import AppContext from '../app-context/app-context';
+import ModalContext from '../../context/modal-context';
+import InfoContext from '../../context/info-context';
+import { ModalState } from '../../types/modal-state';
 import './style.css';
 
 export default function Header() {
-  const { handleMovieModalOpen, isMovieInfoOpen, handleMovieInfoClose, movie } =
-    useContext(AppContext);
+  const { handleModalOpen } = useContext(ModalContext);
+  const { handleInfoClose, info } = useContext(InfoContext);
 
   const handleClick = () => {
-    handleMovieModalOpen(ModalTitles.Add);
+    handleModalOpen({
+      name: ModalState.Add,
+    });
   };
 
   return (
@@ -36,8 +39,8 @@ export default function Header() {
         </div>
       </div>
 
-      {isMovieInfoOpen ? (
-        <MovieInfo movie={movie} onMovieInfoClose={handleMovieInfoClose} />
+      {info?.name === ModalState.Info ? (
+        <MovieInfo movie={info.data} onMovieInfoClose={handleInfoClose} />
       ) : null}
     </header>
   );

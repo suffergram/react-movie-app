@@ -22,6 +22,7 @@ const {
   HandleFilter,
   HandleSort,
   HandleOffset,
+  HandleUpdate,
 } = MovieListAction;
 
 const reducer: Reducer<RootState, AnyAction> = (
@@ -84,6 +85,41 @@ const reducer: Reducer<RootState, AnyAction> = (
         movieState: {
           ...state.movieState,
           offset: action.payload * LOAD_MOVIES_AMOUNT,
+        },
+      };
+    }
+    case HandleUpdate: {
+      const {
+        payload: {
+          id,
+          title,
+          releaseDate,
+          genres,
+          runtime,
+          posterPath,
+          voteAverage,
+          overview,
+        },
+      } = action;
+      return {
+        ...state,
+        movieState: {
+          ...state.movieState,
+          movies: state.movieState.movies.map((movie) =>
+            movie.id === id
+              ? {
+                  ...movie,
+                  title,
+                  releaseDate,
+                  genres,
+                  runtime,
+                  posterPath,
+                  voteAverage,
+                  overview,
+                }
+              : movie
+          ),
+          isLoading: false,
         },
       };
     }

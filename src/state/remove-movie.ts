@@ -8,8 +8,8 @@ import {
   handleMoviesAction,
 } from './action-creators';
 
-const fetchMovies =
-  (): ThunkAction<void, RootState, unknown, AnyAction> =>
+const removeMovie =
+  (id: number): ThunkAction<void, RootState, unknown, AnyAction> =>
   async (
     dispatch: ThunkDispatch<RootState, unknown, AnyAction>,
     getState: () => RootState
@@ -20,6 +20,7 @@ const fetchMovies =
       } = getState();
 
       dispatch(handleLoadingAction());
+      await MovieService.deleteMovie(id);
       const movies = await MovieService.getMovies(filter, sort, offset);
       dispatch(handleMoviesAction(movies));
     } catch (error: unknown) {
@@ -27,4 +28,4 @@ const fetchMovies =
     }
   };
 
-export default fetchMovies;
+export default removeMovie;

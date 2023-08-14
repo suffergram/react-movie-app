@@ -23,7 +23,7 @@ export default function SortSection({ sort }: SortSectionProps) {
     <div className="results sort">
       <p>SORT BY</p>
 
-      <select onChange={(event) => handleChange(event)}>
+      <select onChange={handleChange}>
         {sort.map((item) => (
           <option key={item.id} value={item.name}>
             {item.displayLabel}
