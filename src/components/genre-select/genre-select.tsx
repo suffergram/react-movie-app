@@ -11,6 +11,7 @@ import {
   useRole,
 } from '@floating-ui/react-dom-interactions';
 import { useState, ChangeEvent } from 'react';
+import clsx from 'clsx';
 import Option from '../option/option';
 import { genres } from '../main/info';
 import './style.css';
@@ -18,6 +19,7 @@ import './style.css';
 type SelectorProps = {
   value: string[];
   onChange: (newValues: string[]) => void;
+  className?: string;
 };
 
 const emptyValue: string[] = [];
@@ -25,10 +27,11 @@ const emptyValue: string[] = [];
 export default function GenreSelect({
   value = emptyValue,
   onChange,
+  className,
 }: SelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { y, strategy, context } = useFloating<HTMLButtonElement>({
+  const { y, strategy, context } = useFloating<HTMLInputElement>({
     open: isOpen,
     onOpenChange: setIsOpen,
     middleware: [offset(10), flip(), shift()],
@@ -54,15 +57,15 @@ export default function GenreSelect({
     };
 
   return (
-    <div className="genre-select-container">
+    <div className={clsx('genre-select-container', className)}>
       <input
         {...getReferenceProps()}
+        readOnly
         className="genre-select"
         value={value.join(', ')}
         placeholder="Select Genre"
       />
-      {isOpen ? (
-        <FloatingFocusManager context={context} modal={false}>
+      {isOpen ? <FloatingFocusManager context={context} modal={false}>
           <div
             {...getFloatingProps()}
             className="genre-select-list"
@@ -72,19 +75,27 @@ export default function GenreSelect({
             }}
           >
             <div className="genre-select-list">
-              {genres.map((item) => (
-                <Option
-                  key={item.id}
-                  checked={value.includes(item.name)}
-                  onChange={handleOptionChange(item.name)}
-                >
-                  {item.name}
-                </Option>
-              ))}
+              {genres.map((item) => {
+                const currentGenre = item.name
+                  .split(' ')
+                  .map(
+                    (word) =>
+                      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                  )
+                  .join(' ');
+                return (
+                  <Option
+                    key={item.id}
+                    checked={value.includes(currentGenre)}
+                    onChange={handleOptionChange(currentGenre)}
+                  >
+                    {item.name}
+                  </Option>
+                );
+              })}
             </div>
           </div>
-        </FloatingFocusManager>
-      ) : null}
+        </FloatingFocusManager> : null}
     </div>
   );
 }

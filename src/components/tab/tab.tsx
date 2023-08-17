@@ -1,5 +1,4 @@
-import { useDispatch } from 'react-redux';
-import { handleFilterAction } from '../../state/action-creators';
+import useGetParams from '../../hooks/use-get-params';
 
 interface TabProps {
   children: string;
@@ -7,10 +6,13 @@ interface TabProps {
 }
 
 export default function Tab({ children, defaultChecked = false }: TabProps) {
-  const dispatch = useDispatch();
+  const { setSearchParams } = useGetParams();
 
   const handleClick = (value: string) => () =>
-    dispatch(handleFilterAction(value));
+    setSearchParams((params) => {
+      params.set('filter', value);
+      return params;
+    });
 
   return (
     <div>

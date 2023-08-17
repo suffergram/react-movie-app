@@ -27,30 +27,3 @@ button {
   padding: 0;
   font-size: 21px;
 }
-
-.menu {
-  background-color: var(--color-3);
-  color: var(--color-white);
-  border-radius: 50%;
-  width: 36px !important;
-  height: 36px !important;
-  padding: 0;
-}
-
-.edit,
-.delete {
-  width: 100%;
-  height: 34px;
-  color: var(--color-white);
-  background: transparent;
-  text-transform: capitalize;
-  text-align: left;
-  border-radius: 0;
-  padding-left: 16px;
-  font-size: 16px;
-}
-
-.edit:hover,
-.delete:hover {
-  background-color: var(--color-1);
-}

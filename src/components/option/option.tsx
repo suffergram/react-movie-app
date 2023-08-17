@@ -13,11 +13,14 @@ export default function Option({ children, checked, onChange }: OptionProps) {
       <label className="option-label">
         <input
           id={children}
-          className="option-checkbox"
+          className="option-check-input"
           type="checkbox"
           onChange={onChange}
           checked={checked}
         />
+        <span className="option-check-box">
+          <div className="option-icon" />
+        </span>
         {children}
       </label>
     </div>

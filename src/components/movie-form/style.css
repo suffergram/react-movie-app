@@ -4,6 +4,7 @@
 
 .modal-submit-error {
   position: absolute;
+  width: 100%;
   margin-top: 95px;
   font-size: 14px;
   text-transform: none;

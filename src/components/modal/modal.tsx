@@ -1,6 +1,5 @@
 import ReactModal from 'react-modal';
 import { PropsWithChildren, ReactNode } from 'react';
-import Button from '../button/button';
 import './style.css';
 
 ReactModal.setAppElement('body');
@@ -26,7 +25,13 @@ export default function Modal({
       isOpen={isModalOpen}
       onRequestClose={onModalClose}
     >
-      <Button onClick={onModalClose} className="close modal-close" />
+      <button
+        type="button"
+        onClick={onModalClose}
+        className="close modal-close"
+      >
+        ╳
+      </button>
       <div>
         {icon}
         <h2 className="modal-title">{title}</h2>

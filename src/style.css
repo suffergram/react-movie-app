@@ -10,6 +10,7 @@ body {
   background-color: var(--color-body-bg);
   color: var(--color-5);
   margin: 0;
+  height: 100vh;
 
   --color-1: #f65261;
   --color-2: #424242;
@@ -21,6 +22,10 @@ body {
   --color-body-bg: #444444;
 
   --header-height: 396px;
+}
+
+#root {
+  height: 100%;
 }
 
 h1,

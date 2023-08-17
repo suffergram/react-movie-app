@@ -10,18 +10,11 @@ import {
 
 const removeMovie =
   (id: number): ThunkAction<void, RootState, unknown, AnyAction> =>
-  async (
-    dispatch: ThunkDispatch<RootState, unknown, AnyAction>,
-    getState: () => RootState
-  ) => {
+  async (dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
     try {
-      const {
-        movieState: { filter, sort, offset },
-      } = getState();
-
       dispatch(handleLoadingAction());
       await MovieService.deleteMovie(id);
-      const movies = await MovieService.getMovies(filter, sort, offset);
+      const movies = await MovieService.getMovies();
       dispatch(handleMoviesAction(movies));
     } catch (error: unknown) {
       dispatch(handleErrorAction(error as string));

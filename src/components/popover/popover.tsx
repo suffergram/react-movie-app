@@ -56,7 +56,13 @@ export default function Popover({ children }: PopoverProps) {
               right: x ?? 16,
             }}
           >
-            <Button className="close" onClick={() => setIsOpen(false)} />
+            <button
+              type="button"
+              className="close"
+              onClick={() => setIsOpen(false)}
+            >
+              ╳
+            </button>
 
             {children}
           </div>

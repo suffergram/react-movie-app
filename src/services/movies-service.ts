@@ -5,12 +5,8 @@ import { FormInput } from '../types/form-input';
 export default class MovieService {
   static host = 'http://localhost:4000/movies';
 
-  static getMovies(
-    filter: string,
-    sort: string,
-    offset: number
-  ): Promise<MoviesDTO> {
-    const urlParams = getUrlParams(filter, sort, offset);
+  static getMovies(): Promise<MoviesDTO> {
+    const urlParams = getUrlParams();
     const url = `${this.host}?${urlParams}`;
 
     return fetch(url).then((response) => response.json());

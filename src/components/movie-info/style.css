@@ -8,7 +8,6 @@
   align-items: center;
   flex-direction: column;
   background-color: var(--color-3);
-  outline: 1px solid red;
 }
 
 .movie-info-container > div {

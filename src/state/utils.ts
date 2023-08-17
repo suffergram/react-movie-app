@@ -1,11 +1,16 @@
 import { LOAD_MOVIES_AMOUNT } from './constants';
 
-export function getUrlParams(filter?: string, sort?: string, offset?: number) {
-  const searchParams = new URLSearchParams();
+export function getUrlParams() {
+  const searchParams = new URLSearchParams(window.location.search);
 
-  if (filter && filter !== 'all') searchParams.append('filter', filter);
-  if (sort) searchParams.append('sortBy', sort);
-  if (offset) searchParams.append('offset', offset.toString());
+  if (!searchParams.has('sortBy')) searchParams.set('sortBy', 'release_date');
+  if (searchParams.get('filter') === 'all') searchParams.set('filter', '');
+  if (searchParams.has('search')) searchParams.append('searchBy', 'title');
+  if (searchParams.has('offset'))
+    searchParams.set(
+      'offset',
+      (Number(searchParams.get('offset')) * LOAD_MOVIES_AMOUNT).toString()
+    );
   searchParams.append('limit', LOAD_MOVIES_AMOUNT.toString());
   searchParams.append('sortOrder', 'desc');
 

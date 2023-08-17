@@ -1,3 +1,4 @@
+import useGetParams from '../../hooks/use-get-params';
 import Tab from '../tab/tab';
 
 interface Genre {
@@ -10,12 +11,16 @@ type GenreSectionProps = {
 };
 
 export default function GenreSection({ genres }: GenreSectionProps) {
+  const { filter } = useGetParams();
+
   return (
     <div className="results filter">
-      <Tab defaultChecked>all</Tab>
+      <Tab defaultChecked={filter === null || filter === 'all'}>all</Tab>
 
       {genres.slice(0, 4).map((item) => (
-        <Tab key={item.id}>{item.name}</Tab>
+        <Tab key={item.id} defaultChecked={filter === item.name}>
+          {item.name}
+        </Tab>
       ))}
     </div>
   );

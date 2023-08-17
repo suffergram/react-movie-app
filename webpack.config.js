@@ -9,6 +9,7 @@ module.exports = (argv) => {
     output: {
       filename: 'main.js',
       path: path.resolve(__dirname, 'build'),
+      publicPath: '/',
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -21,6 +22,7 @@ module.exports = (argv) => {
         directory: path.join(__dirname, 'build'),
       },
       port: 3000,
+      historyApiFallback: true,
     },
     module: {
       rules: [

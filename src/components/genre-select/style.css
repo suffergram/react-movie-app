@@ -25,4 +25,5 @@
   flex-direction: column;
   border-radius: 4px;
   background-color: var(--color-3);
+  z-index: 10;
 }

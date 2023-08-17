@@ -1,28 +1,32 @@
-import Button from '../button/button';
+import { useNavigate } from 'react-router-dom';
 import { Movie } from '../../types/movie';
+import Logo from '../logo/logo';
 import './style.css';
 
 type MovieInfoProps = {
-  onMovieInfoClose: () => void;
   movie: Movie | null;
 };
 
-export default function MovieInfo({ onMovieInfoClose, movie }: MovieInfoProps) {
+export default function MovieInfo({ movie }: MovieInfoProps) {
+  const navigate = useNavigate();
+
   const duration =
     movie &&
     `${Math.floor(movie.runtime / 60)}h 
       ${movie.runtime - Math.floor(movie.runtime / 60) * 60}min`;
 
+  const handleClick = () => navigate(-1);
+
   return (
     <div className="movie-info-container">
       <div>
-        <p className="logo">netflixroulette</p>
-        <Button onClick={onMovieInfoClose} className="close-search">
+        <Logo />
+        <button type="button" onClick={handleClick} className="close-search">
           <div className="search-icon">
             <div className="line" />
             <div className="circle" />
           </div>
-        </Button>
+        </button>
         <div className="movie-info">
           <img src={movie?.poster_path} alt={movie?.title} />
           <div>

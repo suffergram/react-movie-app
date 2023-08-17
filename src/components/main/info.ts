@@ -43,6 +43,10 @@ export const genres = [
     id: 10,
     name: 'thriller',
   },
+  {
+    id: 11,
+    name: 'science fiction',
+  },
 ];
 
 export const sortBy = [
