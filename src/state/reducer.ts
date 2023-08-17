@@ -7,10 +7,7 @@ const initialState: RootState = {
     movies: [],
     isLoading: false,
     error: undefined,
-    filter: 'all',
-    sort: 'release_date',
     totalAmount: 0,
-    offset: 0,
   },
 };
 

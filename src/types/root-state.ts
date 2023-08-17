@@ -5,10 +5,7 @@ type RootState = {
     movies: Movie[];
     isLoading: boolean;
     error: string | undefined;
-    filter: string;
-    sort: string;
     totalAmount: number;
-    offset: number;
   };
 };
 
