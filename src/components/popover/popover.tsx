@@ -9,7 +9,7 @@ import {
   useFloating,
   useInteractions,
   useRole,
-} from '@floating-ui/react-dom-interactions';
+} from '@floating-ui/react';
 import { ReactNode, useState } from 'react';
 import Button from '../button/button';
 import './style.css';
@@ -21,7 +21,7 @@ type PopoverProps = {
 export default function Popover({ children }: PopoverProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { x, y, refs, strategy, context } = useFloating<HTMLButtonElement>({
+  const { refs, strategy, context } = useFloating<HTMLButtonElement>({
     open: isOpen,
     onOpenChange: setIsOpen,
     middleware: [offset(10), flip(), shift()],
@@ -38,9 +38,11 @@ export default function Popover({ children }: PopoverProps) {
     role,
   ]);
 
+  const handleClick = () => setIsOpen(false);
+
   return (
     <>
-      <Button {...getReferenceProps()} ref={refs.reference} className="menu">
+      <Button {...getReferenceProps()} ref={refs.setReference} className="menu">
         ⋮
       </Button>
 
@@ -52,15 +54,11 @@ export default function Popover({ children }: PopoverProps) {
             ref={refs.floating as React.RefObject<HTMLDivElement>}
             style={{
               position: strategy,
-              top: y ?? 16,
-              right: x ?? 16,
+              top: 16,
+              right: 16,
             }}
           >
-            <button
-              type="button"
-              className="close"
-              onClick={() => setIsOpen(false)}
-            >
+            <button type="button" className="close" onClick={handleClick}>
               ╳
             </button>
 

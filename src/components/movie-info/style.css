@@ -7,7 +7,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: var(--color-3);
 }
 
 .movie-info-container > div {

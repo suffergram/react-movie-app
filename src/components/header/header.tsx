@@ -3,8 +3,8 @@ import Button from '../button/button';
 import ModalContext from '../../context/modal-context';
 import { ModalState } from '../../types/modal-state';
 import SearchForm from '../search-form/search-form';
-import './style.css';
 import Logo from '../logo/logo';
+import './style.css';
 
 export default function Header() {
   const { handleModalOpen } = useContext(ModalContext);

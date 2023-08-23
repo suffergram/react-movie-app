@@ -7,10 +7,10 @@
 
 body {
   font-family: 'Montserrat';
-  background-color: var(--color-body-bg);
+  background-color: var(--color-3);
   color: var(--color-5);
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
 
   --color-1: #f65261;
   --color-2: #424242;
@@ -19,13 +19,15 @@ body {
   --color-5: #ffffff;
   --color-white: white;
   --color-form-input: #323232;
-  --color-body-bg: #444444;
+  --color-header-border: #444444;
 
   --header-height: 396px;
 }
 
 #root {
-  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h1,

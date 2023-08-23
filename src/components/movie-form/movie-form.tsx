@@ -36,9 +36,11 @@ export default function MovieForm({
 
   const requiredMessage = 'This is required';
 
+  const handleReset = () => reset();
+
   return (
     <form className="modal-edit-form" onSubmit={handleSubmit(onSubmit)}>
-      <label>
+      <label className="movie-form-label">
         title
         <input
           className={
@@ -50,7 +52,7 @@ export default function MovieForm({
         />
         <p className="modal-submit-error">{errors[FormField.Title]?.message}</p>
       </label>
-      <label>
+      <label className="movie-form-label">
         release date
         <input
           className={
@@ -68,7 +70,7 @@ export default function MovieForm({
           {errors[FormField.ReleaseDate]?.message}
         </p>
       </label>
-      <label>
+      <label className="genre-select-container movie-form-label">
         genres
         <Controller
           control={control}
@@ -88,7 +90,7 @@ export default function MovieForm({
           {errors[FormField.Genres]?.message}
         </p>
       </label>
-      <label>
+      <label className="movie-form-label">
         runtime
         <input
           className={
@@ -106,7 +108,7 @@ export default function MovieForm({
           {errors[FormField.Runtime]?.message}
         </p>
       </label>
-      <label>
+      <label className="movie-form-label">
         movie url
         <input
           className={
@@ -128,7 +130,7 @@ export default function MovieForm({
           {errors[FormField.PosterPath]?.message}
         </p>
       </label>
-      <label>
+      <label className="movie-form-label">
         rating
         <input
           placeholder="7.8"
@@ -145,7 +147,7 @@ export default function MovieForm({
           })}
         />
       </label>
-      <label>
+      <label className="movie-form-label">
         overview
         <textarea
           placeholder="Movie description"
@@ -153,7 +155,7 @@ export default function MovieForm({
         />
       </label>
       <div>
-        <Button className="cancel modal-edit-button" onClick={() => reset()}>
+        <Button className="cancel modal-edit-button" onClick={handleReset}>
           reset
         </Button>
         <Button className="confirm modal-edit-button" type="submit">

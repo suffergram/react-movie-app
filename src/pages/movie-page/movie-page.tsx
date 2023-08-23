@@ -1,15 +1,37 @@
-import { useParams } from 'react-router-dom';
-import { useState } from 'react';
-import { Movie } from '../../types/movie';
+import { Suspense } from 'react';
+import { Await, Params, defer, useLoaderData } from 'react-router-dom';
 import MovieInfo from '../../components/movie-info/movie-info';
+import MovieService from '../../services/movies-service';
+import { Movie } from '../../types/movie';
+import Loading from '../../components/loading/loading';
+import './style.css';
+
+type MovieLoaderParams = {
+  params: Params;
+};
+
+type LoaderData = {
+  movie: Movie;
+};
 
 export default function MoviePage() {
-  const { movieId } = useParams();
-  const [movie, setMovie] = useState<Movie | null>(null);
+  const { movie } = useLoaderData() as LoaderData;
 
-  fetch(`http://localhost:4000/movies/${movieId}`)
-    .then((response) => response.json())
-    .then((data) => setMovie(data));
-
-  return <MovieInfo movie={movie} />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <Await resolve={movie}>
+        <MovieInfo />
+      </Await>
+    </Suspense>
+  );
 }
+
+export const movieLoader = async ({ params }: MovieLoaderParams) => {
+  const movie = MovieService.getMovie(params.movieId);
+
+  // if (!movie) {  // how to check a promise?
+  //   throw json({ message: 'Not Found', reason: 'Wrong URL' }, { status: 404 });
+  // }
+
+  return defer({ movie });
+};

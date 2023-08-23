@@ -1,4 +1,4 @@
-import { getUrlParams } from '../state/utils';
+import { getUrlParams } from '../utils/utils';
 import { MoviesDTO } from '../state/action-creators';
 import { FormInput } from '../types/form-input';
 
@@ -54,5 +54,18 @@ export default class MovieService {
     return fetch(url, {
       method: 'DELETE',
     });
+  }
+
+  static async getMovie(movieId: string | unknown) {
+    const res = await fetch(`${this.host}/${movieId}`);
+
+    if (!res.ok) {
+      throw new Response('', {
+        status: res.status,
+        statusText: 'the movie is not found',
+      });
+    }
+
+    return res.json();
   }
 }

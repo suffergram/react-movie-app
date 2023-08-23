@@ -6,24 +6,25 @@ import {
 } from 'react-router-dom';
 import Layout from '../layout/layout';
 import HomePage from '../../pages/home-page/home-page';
-import MoviePage from '../../pages/movie-page/movie-page';
+import MoviePage, { movieLoader } from '../../pages/movie-page/movie-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import InfoProvider from '../info-provider/info-provider';
+import ErrorPage from '../../pages/error-page/error-page';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<HomePage />} />
-      <Route path=":movies/:movieId" element={<MoviePage />} />
+      <Route
+        path="movies/:movieId"
+        element={<MoviePage />}
+        loader={movieLoader}
+        errorElement={<ErrorPage />}
+      />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
   )
 );
 
 export default function App() {
-  return (
-    <InfoProvider>
-      <RouterProvider router={router} />
-    </InfoProvider>
-  );
+  return <RouterProvider router={router} />;
 }

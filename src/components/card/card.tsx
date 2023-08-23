@@ -28,11 +28,9 @@ const Card = memo(({ movie }: CardProps) => {
     });
   };
 
-  const movieId = `movie/${movie.id}`;
-
   return (
     <div className="card">
-      <Link to={movieId}>
+      <Link to={`movies/${movie.id}`}>
         <div className="card-image-container">
           <img
             className="card-image"

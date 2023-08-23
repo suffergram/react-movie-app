@@ -1,19 +1,15 @@
-import { useNavigate } from 'react-router-dom';
+import { useAsyncValue, useNavigate } from 'react-router-dom';
 import { Movie } from '../../types/movie';
 import Logo from '../logo/logo';
+import { calculateDuration } from '../../utils/utils';
 import './style.css';
 
-type MovieInfoProps = {
-  movie: Movie | null;
-};
-
-export default function MovieInfo({ movie }: MovieInfoProps) {
+export default function MovieInfo() {
   const navigate = useNavigate();
 
-  const duration =
-    movie &&
-    `${Math.floor(movie.runtime / 60)}h 
-      ${movie.runtime - Math.floor(movie.runtime / 60) * 60}min`;
+  const movie = useAsyncValue() as Movie;
+
+  const duration = calculateDuration(movie?.runtime);
 
   const handleClick = () => navigate(-1);
 

@@ -1,29 +1,27 @@
 import { FormEvent } from 'react';
 import Button from '../button/button';
 import useGetParams from '../../hooks/use-get-params';
+import SearchParam from '../../types/search-param';
 
 export default function SearchForm() {
   const { search, setSearchParams } = useGetParams();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.target as typeof e.target & {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const params = new URLSearchParams(window.location.search);
+    const form = event.target as typeof event.target & {
       search: { value: string };
     };
 
-    const query = form.search?.value;
-
-    setSearchParams((params) => {
-      params.set('search', query);
-      return params;
-    });
+    params.set(SearchParam.Search, form.search?.value);
+    setSearchParams(params);
   };
 
   return (
     <form className="search-line" onSubmit={handleSubmit}>
       <input
-        type="search"
-        name="search"
+        type={SearchParam.Search}
+        name={SearchParam.Search}
         placeholder="What do you want to watch?"
         defaultValue={search ?? ''}
       />
