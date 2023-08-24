@@ -7,12 +7,14 @@ interface TabProps {
 }
 
 export default function Tab({ children, defaultChecked = false }: TabProps) {
-  const { setSearchParams } = useGetParams();
+  const { setSearchParams, ...params } = useGetParams();
 
   const handleClick = (value: string) => () => {
-    const params = new URLSearchParams(window.location.search);
-    params.set(SearchParam.Filter, value);
-    setSearchParams(params);
+    const newParams = new URLSearchParams({
+      ...params,
+      [SearchParam.Filter]: value,
+    });
+    setSearchParams(newParams);
   };
 
   return (

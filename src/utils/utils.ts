@@ -13,10 +13,7 @@ export function getUrlParams() {
   if (searchParams.has(Offset))
     searchParams.set(
       Offset,
-      (
-        (Number(searchParams.get(Offset)) - OFFSET) *
-        LOAD_MOVIES_AMOUNT
-      ).toString()
+      (Number(searchParams.get(Offset)) * LOAD_MOVIES_AMOUNT).toString()
     );
   searchParams.append(Limit, LOAD_MOVIES_AMOUNT.toString());
   searchParams.append(SortOrder, 'desc');
@@ -24,9 +21,9 @@ export function getUrlParams() {
   return searchParams.toString();
 }
 
-export function calculateDuration(runtime: number | undefined) {
-  const hours = runtime ? Math.floor(runtime / 60) : 0;
-  const minutes = runtime ? runtime - Math.floor(runtime / 60) * 60 : 0;
+export function calculateDuration(runtime: number) {
+  const hours = Math.floor(runtime / 60);
+  const minutes = runtime - hours * 60;
 
   return `${hours}h ${minutes}min`;
 }
