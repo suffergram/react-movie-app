@@ -1,5 +1,5 @@
 import { LOAD_MOVIES_AMOUNT } from '../state/constants';
-import SearchParam, { OFFSET } from '../types/search-param';
+import SearchParam from '../types/search-param';
 
 export function getUrlParams() {
   const searchParams = new URLSearchParams(window.location.search);

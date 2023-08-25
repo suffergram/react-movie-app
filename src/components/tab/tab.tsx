@@ -11,7 +11,9 @@ export default function Tab({ children, defaultChecked = false }: TabProps) {
 
   const handleClick = (value: string) => () => {
     const newParams = new URLSearchParams({
-      ...params,
+      ...Object.fromEntries(
+        Object.entries(params).filter(([, value]) => value !== null)
+      ),
       [SearchParam.Filter]: value,
     });
     setSearchParams(newParams);

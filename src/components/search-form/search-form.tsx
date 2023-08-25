@@ -13,7 +13,9 @@ export default function SearchForm() {
     };
 
     const newParams = new URLSearchParams({
-      ...params,
+      ...Object.fromEntries(
+        Object.entries(params).filter(([, value]) => value !== null)
+      ),
       [SearchParam.Search]: form.search.value,
     });
     setSearchParams(newParams);

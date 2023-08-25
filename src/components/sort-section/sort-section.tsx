@@ -16,12 +16,10 @@ export default function SortSection({ sort }: SortSectionProps) {
   const { setSearchParams, ...params } = useGetParams();
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    // const params = new URLSearchParams(window.location.search);
-    // params.set(SearchParam.SortBy, event.target.value);
-    // setSearchParams(params);
-
     const newParams = new URLSearchParams({
-      ...params,
+      ...Object.fromEntries(
+        Object.entries(params).filter(([, value]) => value !== null)
+      ),
       [SearchParam.SortBy]: event.target.value,
     });
     setSearchParams(newParams);

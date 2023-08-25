@@ -29,9 +29,5 @@ export default function MoviePage() {
 export const movieLoader = async ({ params }: MovieLoaderParams) => {
   const movie = MovieService.getMovie(params.movieId);
 
-  // if (!movie) {  // how to check a promise?
-  //   throw json({ message: 'Not Found', reason: 'Wrong URL' }, { status: 404 });
-  // }
-
   return defer({ movie });
 };

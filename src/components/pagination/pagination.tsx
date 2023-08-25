@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import RootState from '../../types/root-state';
 import { LOAD_MOVIES_AMOUNT } from '../../state/constants';
 import useGetParams from '../../hooks/use-get-params';
-import SearchParam, { OFFSET } from '../../types/search-param';
+import SearchParam from '../../types/search-param';
 import './style.css';
 
 type HandlePageChangeProps = {
@@ -21,7 +21,9 @@ export default function Pagination() {
 
   const handlePageChange = ({ selected }: HandlePageChangeProps) => {
     const newParams = new URLSearchParams({
-      ...params,
+      ...Object.fromEntries(
+        Object.entries(params).filter(([, value]) => value !== null)
+      ),
       [SearchParam.Offset]: selected.toString(),
     });
     setSearchParams(newParams);
@@ -31,7 +33,7 @@ export default function Pagination() {
     <div className="pagination">
       <ReactPaginate
         className="pagination-container"
-        initialPage={Number(params.offset)}
+        initialPage={Number(params.offset ?? 0)}
         pageCount={pageCount}
         breakLabel="..."
         onPageChange={handlePageChange}
