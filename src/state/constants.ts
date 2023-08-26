@@ -4,8 +4,5 @@ export enum MovieListAction {
   HandleMovies = 'HANDLE_MOVIES',
   HandleError = 'HANDLE_ERROR',
   HandleLoading = 'HANDLE_LOADING',
-  HandleFilter = 'HANDLE_FILTER',
-  HandleSort = 'HANDLE_SORT',
-  HandleOffset = 'HANDLE_OFFSET',
   HandleUpdate = 'HANDLE_UPDATE',
 }

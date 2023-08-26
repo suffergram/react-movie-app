@@ -1,26 +1,34 @@
-import { useDispatch } from 'react-redux';
-import { handleFilterAction } from '../../state/action-creators';
+import useGetParams from '../../hooks/use-get-params';
+import SearchParam from '../../types/search-param';
 
 interface TabProps {
   children: string;
-  defaultChecked?: boolean;
+  checked?: boolean;
 }
 
-export default function Tab({ children, defaultChecked = false }: TabProps) {
-  const dispatch = useDispatch();
+export default function Tab({ children, checked = false }: TabProps) {
+  const [params, setSearchParams] = useGetParams();
 
-  const handleClick = (value: string) => () =>
-    dispatch(handleFilterAction(value));
+  const handleClick = (value: string) => () => {
+    const newParams = new URLSearchParams({
+      ...params,
+      [SearchParam.Filter]: value,
+    });
+
+    if (params[SearchParam.Offset]) newParams.set(SearchParam.Offset, '0');
+
+    setSearchParams(newParams);
+  };
 
   return (
     <div>
       <input
         className="radio"
-        name="genre"
+        name={SearchParam.Filter}
         type="radio"
         value={children}
-        defaultChecked={defaultChecked}
-        onClick={handleClick(children)}
+        checked={checked}
+        onChange={handleClick(children)}
       />
       {children}
     </div>

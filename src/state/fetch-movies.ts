@@ -7,20 +7,16 @@ import {
   handleLoadingAction,
   handleMoviesAction,
 } from './action-creators';
+import { SearchParamsType } from '../hooks/use-get-params';
 
 const fetchMovies =
-  (): ThunkAction<void, RootState, unknown, AnyAction> =>
-  async (
-    dispatch: ThunkDispatch<RootState, unknown, AnyAction>,
-    getState: () => RootState
-  ) => {
+  (
+    params: SearchParamsType
+  ): ThunkAction<void, RootState, unknown, AnyAction> =>
+  async (dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
     try {
-      const {
-        movieState: { filter, sort, offset },
-      } = getState();
-
       dispatch(handleLoadingAction());
-      const movies = await MovieService.getMovies(filter, sort, offset);
+      const movies = await MovieService.getMovies(params);
       dispatch(handleMoviesAction(movies));
     } catch (error: unknown) {
       dispatch(handleErrorAction(error as string));

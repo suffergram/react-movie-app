@@ -9,6 +9,7 @@ import removeMovie from '../../state/remove-movie';
 import RootState from '../../types/root-state';
 import './style.css';
 import { ModalState } from '../../types/modal-state';
+import useGetParams from '../../hooks/use-get-params';
 
 type DeleteModalProps = {
   isModalOpen: boolean;
@@ -19,10 +20,12 @@ export default function DeleteModal({ isModalOpen }: DeleteModalProps) {
 
   const dispatch: ThunkDispatch<RootState, unknown, AnyAction> = useDispatch();
 
+  const [params] = useGetParams();
+
   const handleButtonClick = async () => {
     if (modal?.name === ModalState.Delete) {
       await new Promise<void>((resolve) => {
-        dispatch(removeMovie(modal.data.id));
+        dispatch(removeMovie(modal.data.id, params));
         resolve();
       });
       handleModalClose();

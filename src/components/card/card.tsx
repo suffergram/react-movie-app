@@ -1,11 +1,11 @@
 import { useContext, memo } from 'react';
+import { Link } from 'react-router-dom';
 import Popover from '../popover/popover';
 import ModalContext from '../../context/modal-context';
 import { Movie } from '../../types/movie';
-import './style.css';
 import { ModalState } from '../../types/modal-state';
 import Button from '../button/button';
-import InfoContext from '../../context/info-context';
+import './style.css';
 
 type CardProps = {
   movie: Movie;
@@ -13,14 +13,6 @@ type CardProps = {
 
 const Card = memo(({ movie }: CardProps) => {
   const { handleModalOpen } = useContext(ModalContext);
-  const { handleInfoOpen } = useContext(InfoContext);
-
-  const handleCardClick = () => {
-    handleInfoOpen({
-      name: ModalState.Info,
-      data: movie,
-    });
-  };
 
   const handleDeleteModalOpen = () => {
     handleModalOpen({
@@ -38,16 +30,20 @@ const Card = memo(({ movie }: CardProps) => {
 
   return (
     <div className="card">
-      <button
-        id={movie.id.toString()}
-        onClick={handleCardClick}
-        onKeyDown={handleCardClick}
-        className="card-image-container"
-        type="button"
-      >
-        <img src={movie.poster_path} alt={movie.title} />
-      </button>
-
+      <Link to={`movies/${movie.id}`}>
+        <div className="card-image-container">
+          <img
+            className="card-image"
+            src={movie.poster_path}
+            alt={movie.title}
+          />
+        </div>
+        <div className="description">
+          <div className="year">{movie.release_date.slice(0, 4)}</div>
+          <p className="title">{movie.title}</p>
+          <p className="genre">{movie.genres.join(', ')}</p>
+        </div>
+      </Link>
       <Popover>
         <Button className="edit" onClick={handleEditModalOpen}>
           edit
@@ -56,12 +52,6 @@ const Card = memo(({ movie }: CardProps) => {
           delete
         </Button>
       </Popover>
-
-      <div className="description">
-        <div className="year">{movie.release_date.slice(0, 4)}</div>
-        <p className="title">{movie.title}</p>
-        <p className="genre">{movie.genres.join(', ')}</p>
-      </div>
     </div>
   );
 });

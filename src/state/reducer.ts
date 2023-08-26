@@ -1,29 +1,18 @@
 import { AnyAction, Reducer } from 'redux';
 import RootState from '../types/root-state';
 import MovieListAction from './action-creators';
-import { LOAD_MOVIES_AMOUNT } from './constants';
 
 const initialState: RootState = {
   movieState: {
     movies: [],
     isLoading: false,
     error: undefined,
-    filter: 'all',
-    sort: 'release_date',
     totalAmount: 0,
-    offset: 0,
   },
 };
 
-const {
-  HandleMovies,
-  HandleError,
-  HandleLoading,
-  HandleFilter,
-  HandleSort,
-  HandleOffset,
-  HandleUpdate,
-} = MovieListAction;
+const { HandleMovies, HandleError, HandleLoading, HandleUpdate } =
+  MovieListAction;
 
 const reducer: Reducer<RootState, AnyAction> = (
   state: RootState = initialState,
@@ -57,34 +46,6 @@ const reducer: Reducer<RootState, AnyAction> = (
         movieState: {
           ...state.movieState,
           isLoading: true,
-        },
-      };
-    }
-    case HandleFilter: {
-      return {
-        ...state,
-        movieState: {
-          ...state.movieState,
-          filter: action.payload,
-          offset: 0,
-        },
-      };
-    }
-    case HandleSort: {
-      return {
-        ...state,
-        movieState: {
-          ...state.movieState,
-          sort: action.payload,
-        },
-      };
-    }
-    case HandleOffset: {
-      return {
-        ...state,
-        movieState: {
-          ...state.movieState,
-          offset: action.payload * LOAD_MOVIES_AMOUNT,
         },
       };
     }

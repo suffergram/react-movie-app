@@ -4,16 +4,20 @@ import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import RootState from '../types/root-state';
 import fetchMovies from '../state/fetch-movies';
+import useGetParams from './use-get-params';
 
 export default function useLoadMovies() {
   const dispatch: ThunkDispatch<RootState, unknown, AnyAction> = useDispatch();
 
-  const { movies, isLoading, error, sort, filter, totalAmount, offset } =
-    useSelector((state: RootState) => state.movieState);
+  const { movies, isLoading, error, totalAmount } = useSelector(
+    (state: RootState) => state.movieState
+  );
+
+  const [params] = useGetParams();
 
   useEffect(() => {
-    dispatch(fetchMovies());
-  }, [dispatch, sort, filter, offset]);
+    dispatch(fetchMovies(params));
+  }, [dispatch, params.search, params.sortBy, params.filter, params.offset]);
 
   return { isLoading, error, movies, totalAmount };
 }

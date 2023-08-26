@@ -21,21 +21,6 @@ export const handleLoadingAction = () => ({
   type: MovieListAction.HandleLoading,
 });
 
-export const handleFilterAction = (filter: string) => ({
-  type: MovieListAction.HandleFilter,
-  payload: filter,
-});
-
-export const handleSortAction = (value: string) => ({
-  type: MovieListAction.HandleSort,
-  payload: value,
-});
-
-export const handleOffsetAction = (selected: number) => ({
-  type: MovieListAction.HandleOffset,
-  payload: selected,
-});
-
 export const handleUpdateAction = (data: FormInput) => ({
   type: MovieListAction.HandleUpdate,
   payload: data,

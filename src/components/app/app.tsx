@@ -1,17 +1,28 @@
-import Header from '../header/header';
-import Main from '../main/main';
-import Footer from '../footer/footer';
-import ModalProvider from '../modal-provider/modal-provider';
-import InfoProvider from '../info-provider/info-provider';
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
+import Layout from '../layout/layout';
+import HomePage from '../../pages/home-page/home-page';
+import MoviePage, { movieLoader } from '../../pages/movie-page/movie-page';
+import ErrorPage from '../../pages/error-page/error-page';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<HomePage />} />
+      <Route
+        path="movies/:movieId"
+        element={<MoviePage />}
+        loader={movieLoader}
+      />
+      <Route path="*" element={<ErrorPage />} />
+    </Route>
+  )
+);
 
 export default function App() {
-  return (
-    <InfoProvider>
-      <ModalProvider>
-        <Header />
-        <Main />
-        <Footer />
-      </ModalProvider>
-    </InfoProvider>
-  );
+  return <RouterProvider router={router} />;
 }

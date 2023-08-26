@@ -10,7 +10,6 @@ import './style.css';
 
 export default function Main() {
   const { isLoading, error, movies, totalAmount } = useLoadMovies();
-
   return (
     <main>
       <div className="content">

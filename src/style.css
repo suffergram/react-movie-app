@@ -7,9 +7,10 @@
 
 body {
   font-family: 'Montserrat';
-  background-color: var(--color-body-bg);
+  background-color: var(--color-3);
   color: var(--color-5);
   margin: 0;
+  min-height: 100vh;
 
   --color-1: #f65261;
   --color-2: #424242;
@@ -18,16 +19,22 @@ body {
   --color-5: #ffffff;
   --color-white: white;
   --color-form-input: #323232;
-  --color-body-bg: #444444;
+  --color-header-border: #444444;
 
   --header-height: 396px;
 }
 
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 h1,
-h2 {
+h2,
+h3 {
   font-weight: lighter;
   letter-spacing: 1px;
-  font-size: 40px;
   margin: 0;
   text-transform: uppercase;
 }

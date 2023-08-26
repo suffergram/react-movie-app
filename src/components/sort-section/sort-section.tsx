@@ -1,6 +1,6 @@
-import { useDispatch } from 'react-redux';
 import { ChangeEvent } from 'react';
-import { handleSortAction } from '../../state/action-creators';
+import useGetParams from '../../hooks/use-get-params';
+import SearchParam from '../../types/search-param';
 
 interface SortOption {
   id: number;
@@ -13,17 +13,24 @@ type SortSectionProps = {
 };
 
 export default function SortSection({ sort }: SortSectionProps) {
-  const dispatch = useDispatch();
+  const [params, setSearchParams] = useGetParams();
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(handleSortAction(event.target.value));
+    const newParams = new URLSearchParams({
+      ...params,
+      [SearchParam.SortBy]: event.target.value,
+    });
+    setSearchParams(newParams);
   };
 
   return (
     <div className="results sort">
       <p>SORT BY</p>
 
-      <select onChange={handleChange}>
+      <select
+        onChange={handleChange}
+        value={params[SearchParam.SortBy] ?? 'release_date'}
+      >
         {sort.map((item) => (
           <option key={item.id} value={item.name}>
             {item.displayLabel}

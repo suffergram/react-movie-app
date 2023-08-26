@@ -8,21 +8,18 @@ import {
   handleMoviesAction,
 } from './action-creators';
 import { FormInput } from '../types/form-input';
+import { SearchParamsType } from '../hooks/use-get-params';
 
 const postMovie =
-  (data: FormInput): ThunkAction<void, RootState, unknown, AnyAction> =>
-  async (
-    dispatch: ThunkDispatch<RootState, unknown, AnyAction>,
-    getState: () => RootState
-  ) => {
+  (
+    data: FormInput,
+    params: SearchParamsType
+  ): ThunkAction<void, RootState, unknown, AnyAction> =>
+  async (dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
     try {
-      const {
-        movieState: { filter, sort, offset },
-      } = getState();
-
       dispatch(handleLoadingAction());
       await MovieService.createMovie(data);
-      const movies = await MovieService.getMovies(filter, sort, offset);
+      const movies = await MovieService.getMovies(params);
       dispatch(handleMoviesAction(movies));
     } catch (error: unknown) {
       dispatch(handleErrorAction(error as string));

@@ -9,8 +9,9 @@ import {
   useFloating,
   useInteractions,
   useRole,
-} from '@floating-ui/react-dom-interactions';
+} from '@floating-ui/react';
 import { useState, ChangeEvent } from 'react';
+import clsx from 'clsx';
 import Option from '../option/option';
 import { genres } from '../main/info';
 import './style.css';
@@ -18,6 +19,7 @@ import './style.css';
 type SelectorProps = {
   value: string[];
   onChange: (newValues: string[]) => void;
+  className?: string;
 };
 
 const emptyValue: string[] = [];
@@ -25,10 +27,11 @@ const emptyValue: string[] = [];
 export default function GenreSelect({
   value = emptyValue,
   onChange,
+  className,
 }: SelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { y, strategy, context } = useFloating<HTMLButtonElement>({
+  const { refs, y, strategy, context } = useFloating<HTMLInputElement>({
     open: isOpen,
     onOpenChange: setIsOpen,
     middleware: [offset(10), flip(), shift()],
@@ -49,21 +52,24 @@ export default function GenreSelect({
     (genre: string) => (event: ChangeEvent<HTMLInputElement>) => {
       const newValues = event.target.checked
         ? [...value, genre]
-        : value.filter((val) => val !== genre);
+        : value.filter((val) => val.toUpperCase() !== genre.toUpperCase());
       onChange(newValues);
     };
 
   return (
-    <div className="genre-select-container">
+    <>
       <input
+        readOnly
+        ref={refs.setReference}
         {...getReferenceProps()}
-        className="genre-select"
+        className={clsx('genre-select', className)}
         value={value.join(', ')}
         placeholder="Select Genre"
       />
       {isOpen ? (
         <FloatingFocusManager context={context} modal={false}>
           <div
+            ref={refs.setFloating}
             {...getFloatingProps()}
             className="genre-select-list"
             style={{
@@ -75,7 +81,9 @@ export default function GenreSelect({
               {genres.map((item) => (
                 <Option
                   key={item.id}
-                  checked={value.includes(item.name)}
+                  checked={value.some(
+                    (genre) => genre.toUpperCase() === item.name.toUpperCase()
+                  )}
                   onChange={handleOptionChange(item.name)}
                 >
                   {item.name}
@@ -85,6 +93,6 @@ export default function GenreSelect({
           </div>
         </FloatingFocusManager>
       ) : null}
-    </div>
+    </>
   );
 }

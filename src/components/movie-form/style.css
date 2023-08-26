@@ -4,6 +4,7 @@
 
 .modal-submit-error {
   position: absolute;
+  width: 100%;
   margin-top: 95px;
   font-size: 14px;
   text-transform: none;
@@ -11,4 +12,54 @@
 
 .modal-input-error {
   outline: 1px solid var(--color-1);
+}
+
+.modal-edit-form {
+  width: 856px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+.modal-edit-form > *:nth-child(7) {
+  grid-column: auto / span 2;
+}
+
+.modal-edit-form > *:nth-child(8) {
+  grid-column: auto / span 2;
+  display: flex;
+  gap: 13px;
+  justify-self: end;
+  margin-top: 30px;
+}
+
+.movie-form-label {
+  color: var(--color-1);
+  font-size: 16px;
+  margin: 0 0 13px;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.modal-edit-form textarea {
+  box-sizing: border-box;
+  resize: none;
+  width: 100%;
+  height: 197px;
+}
+
+.modal-edit-form input,
+.modal-edit-form textarea {
+  background-color: var(--color-form-input);
+  border: none;
+  padding: 16px;
+  font-size: 20px;
+  color: var(--color-white);
+}
+
+.modal-edit-button {
+  height: 57px;
+  width: 180px;
 }
