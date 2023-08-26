@@ -5,6 +5,7 @@ import MovieService from '../../services/movies-service';
 import { Movie } from '../../types/movie';
 import Loading from '../../components/loading/loading';
 import './style.css';
+import ErrorPage from '../error-page/error-page';
 
 type MovieLoaderParams = {
   params: Params;
@@ -19,7 +20,7 @@ export default function MoviePage() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <Await resolve={movie}>
+      <Await errorElement={<ErrorPage />} resolve={movie}>
         <MovieInfo />
       </Await>
     </Suspense>

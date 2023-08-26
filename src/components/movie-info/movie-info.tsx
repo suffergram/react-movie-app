@@ -27,7 +27,7 @@ export default function MovieInfo() {
           <img src={movie?.poster_path} alt={movie?.title} />
           <div>
             <div className="movie-name-rating">
-              <h2>{movie?.title}</h2>
+              <h2 className="movie-info-title">{movie?.title}</h2>
               <p>{movie?.vote_average}</p>
             </div>
             <p className="movie-genre">{movie?.genres.join(', ')}</p>

@@ -29,6 +29,10 @@
   align-items: center;
 }
 
+.movie-info-title {
+  font-size: 40px;
+}
+
 .movie-name-rating > p {
   border: 1px solid var(--color-5);
   width: 60px;

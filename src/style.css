@@ -31,10 +31,10 @@ body {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   font-weight: lighter;
   letter-spacing: 1px;
-  font-size: 40px;
   margin: 0;
   text-transform: uppercase;
 }

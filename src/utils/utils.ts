@@ -1,27 +1,39 @@
+import { SearchParamsType } from '../hooks/use-get-params';
 import { LOAD_MOVIES_AMOUNT } from '../state/constants';
 import SearchParam from '../types/search-param';
 
-export function getUrlParams() {
-  const searchParams = new URLSearchParams(window.location.search);
+export function getUrlParams(params: SearchParamsType) {
+  const searchParams = new URLSearchParams(params);
 
-  const { Search, SearchBy, Filter, SortBy, SortOrder, Offset, Limit } =
-    SearchParam;
+  if (!searchParams.has(SearchParam.SortBy)) {
+    searchParams.set(SearchParam.SortBy, 'release_date');
+  }
 
-  if (!searchParams.has(SortBy)) searchParams.set(SortBy, 'release_date');
-  if (searchParams.get(Filter) === 'all') searchParams.set(Filter, '');
-  if (searchParams.has(Search)) searchParams.append(SearchBy, 'title');
-  if (searchParams.has(Offset))
+  if (searchParams.get(SearchParam.Filter) === 'all') {
+    searchParams.set(SearchParam.Filter, '');
+  }
+
+  if (searchParams.has(SearchParam.Search)) {
+    searchParams.append(SearchParam.SearchBy, 'title');
+  }
+
+  if (searchParams.has(SearchParam.Offset)) {
     searchParams.set(
-      Offset,
-      (Number(searchParams.get(Offset)) * LOAD_MOVIES_AMOUNT).toString()
+      SearchParam.Offset,
+      (
+        Number(searchParams.get(SearchParam.Offset)) * LOAD_MOVIES_AMOUNT
+      ).toString()
     );
-  searchParams.append(Limit, LOAD_MOVIES_AMOUNT.toString());
-  searchParams.append(SortOrder, 'desc');
+  }
+
+  searchParams.append(SearchParam.Limit, LOAD_MOVIES_AMOUNT.toString());
+  searchParams.append(SearchParam.SortOrder, 'desc');
 
   return searchParams.toString();
 }
 
 export function calculateDuration(runtime: number) {
+  if (runtime < 0) return 'unexpected data';
   const hours = Math.floor(runtime / 60);
   const minutes = runtime - hours * 60;
 

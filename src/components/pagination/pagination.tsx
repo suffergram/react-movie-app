@@ -11,7 +11,7 @@ type HandlePageChangeProps = {
 };
 
 export default function Pagination() {
-  const { setSearchParams, ...params } = useGetParams();
+  const [params, setSearchParams] = useGetParams();
 
   const stateMoviesTotalAmount = useSelector(
     (state: RootState) => state.movieState.totalAmount
@@ -21,9 +21,7 @@ export default function Pagination() {
 
   const handlePageChange = ({ selected }: HandlePageChangeProps) => {
     const newParams = new URLSearchParams({
-      ...Object.fromEntries(
-        Object.entries(params).filter(([, value]) => value !== null)
-      ),
+      ...params,
       [SearchParam.Offset]: selected.toString(),
     });
     setSearchParams(newParams);
@@ -33,7 +31,7 @@ export default function Pagination() {
     <div className="pagination">
       <ReactPaginate
         className="pagination-container"
-        initialPage={Number(params.offset ?? 0)}
+        forcePage={Number(params[SearchParam.Offset] ?? 0)}
         pageCount={pageCount}
         breakLabel="..."
         onPageChange={handlePageChange}

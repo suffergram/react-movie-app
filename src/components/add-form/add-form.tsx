@@ -9,15 +9,18 @@ import postMovie from '../../state/post-movie';
 import RootState from '../../types/root-state';
 import MovieForm from '../movie-form/movie-form';
 import { ModalState } from '../../types/modal-state';
+import useGetParams from '../../hooks/use-get-params';
 
 export default function AddForm() {
   const { handleModalOpen, handleModalClose } = useContext(ModalContext);
 
   const dispatch: ThunkDispatch<RootState, unknown, AnyAction> = useDispatch();
 
+  const [params] = useGetParams();
+
   const handleSubmit: SubmitHandler<FormInput> = async (data: FormInput) => {
     await new Promise<void>((resolve) => {
-      dispatch(postMovie(data));
+      dispatch(postMovie(data, params));
       resolve();
     });
     handleModalClose();

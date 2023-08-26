@@ -3,19 +3,20 @@ import SearchParam from '../../types/search-param';
 
 interface TabProps {
   children: string;
-  defaultChecked?: boolean;
+  checked?: boolean;
 }
 
-export default function Tab({ children, defaultChecked = false }: TabProps) {
-  const { setSearchParams, ...params } = useGetParams();
+export default function Tab({ children, checked = false }: TabProps) {
+  const [params, setSearchParams] = useGetParams();
 
   const handleClick = (value: string) => () => {
     const newParams = new URLSearchParams({
-      ...Object.fromEntries(
-        Object.entries(params).filter(([, value]) => value !== null)
-      ),
+      ...params,
       [SearchParam.Filter]: value,
     });
+
+    if (params[SearchParam.Offset]) newParams.set(SearchParam.Offset, '0');
+
     setSearchParams(newParams);
   };
 
@@ -26,8 +27,8 @@ export default function Tab({ children, defaultChecked = false }: TabProps) {
         name={SearchParam.Filter}
         type="radio"
         value={children}
-        defaultChecked={defaultChecked}
-        onClick={handleClick(children)}
+        checked={checked}
+        onChange={handleClick(children)}
       />
       {children}
     </div>

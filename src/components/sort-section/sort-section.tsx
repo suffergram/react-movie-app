@@ -13,13 +13,11 @@ type SortSectionProps = {
 };
 
 export default function SortSection({ sort }: SortSectionProps) {
-  const { setSearchParams, ...params } = useGetParams();
+  const [params, setSearchParams] = useGetParams();
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const newParams = new URLSearchParams({
-      ...Object.fromEntries(
-        Object.entries(params).filter(([, value]) => value !== null)
-      ),
+      ...params,
       [SearchParam.SortBy]: event.target.value,
     });
     setSearchParams(newParams);
@@ -31,7 +29,7 @@ export default function SortSection({ sort }: SortSectionProps) {
 
       <select
         onChange={handleChange}
-        defaultValue={params.sortBy ?? 'release_date'}
+        value={params[SearchParam.SortBy] ?? 'release_date'}
       >
         {sort.map((item) => (
           <option key={item.id} value={item.name}>

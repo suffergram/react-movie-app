@@ -13,11 +13,11 @@ export default function useLoadMovies() {
     (state: RootState) => state.movieState
   );
 
-  const { search, sortBy, filter, offset } = useGetParams();
+  const [params] = useGetParams();
 
   useEffect(() => {
-    dispatch(fetchMovies());
-  }, [dispatch, search, sortBy, filter, offset]);
+    dispatch(fetchMovies(params));
+  }, [dispatch, params.search, params.sortBy, params.filter, params.offset]);
 
   return { isLoading, error, movies, totalAmount };
 }

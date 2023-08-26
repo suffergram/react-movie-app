@@ -1,15 +1,18 @@
 import { getUrlParams } from '../utils/utils';
 import { MoviesDTO } from '../state/action-creators';
 import { FormInput } from '../types/form-input';
+import { SearchParamsType } from '../hooks/use-get-params';
 
 export default class MovieService {
   static host = 'http://localhost:4000/movies';
 
-  static getMovies(): Promise<MoviesDTO> {
-    const urlParams = getUrlParams();
+  static async getMovies(params: SearchParamsType): Promise<MoviesDTO> {
+    const urlParams = getUrlParams(params);
     const url = `${this.host}?${urlParams}`;
 
-    return fetch(url).then((response) => response.json());
+    const response = await fetch(url);
+
+    return response.json();
   }
 
   static createMovie(data: FormInput) {
@@ -57,15 +60,16 @@ export default class MovieService {
   }
 
   static async getMovie(movieId: string | unknown) {
-    const res = await fetch(`${this.host}/${movieId}`);
+    const response = await fetch(`${this.host}/${movieId}`);
 
-    if (!res.ok) {
-      throw new Response('', {
-        status: res.status,
-        statusText: 'the movie is not found',
-      });
+    if (!response.ok) {
+      return Promise.reject(
+        new Error('Bad Response', {
+          cause: response,
+        })
+      );
     }
 
-    return res.json();
+    return response.json();
   }
 }

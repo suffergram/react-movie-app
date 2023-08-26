@@ -5,6 +5,7 @@ button {
   cursor: pointer;
   height: 57px;
   width: 180px;
+  font-size: 20px;
 }
 
 .confirm {

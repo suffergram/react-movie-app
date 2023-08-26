@@ -7,14 +7,18 @@ import {
   handleLoadingAction,
   handleMoviesAction,
 } from './action-creators';
+import { SearchParamsType } from '../hooks/use-get-params';
 
 const removeMovie =
-  (id: number): ThunkAction<void, RootState, unknown, AnyAction> =>
+  (
+    id: number,
+    params: SearchParamsType
+  ): ThunkAction<void, RootState, unknown, AnyAction> =>
   async (dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
     try {
       dispatch(handleLoadingAction());
       await MovieService.deleteMovie(id);
-      const movies = await MovieService.getMovies();
+      const movies = await MovieService.getMovies(params);
       dispatch(handleMoviesAction(movies));
     } catch (error: unknown) {
       dispatch(handleErrorAction(error as string));

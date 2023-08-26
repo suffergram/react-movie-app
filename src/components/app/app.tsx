@@ -7,7 +7,6 @@ import {
 import Layout from '../layout/layout';
 import HomePage from '../../pages/home-page/home-page';
 import MoviePage, { movieLoader } from '../../pages/movie-page/movie-page';
-import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import ErrorPage from '../../pages/error-page/error-page';
 
 const router = createBrowserRouter(
@@ -18,9 +17,8 @@ const router = createBrowserRouter(
         path="movies/:movieId"
         element={<MoviePage />}
         loader={movieLoader}
-        errorElement={<ErrorPage />}
       />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<ErrorPage />} />
     </Route>
   )
 );
