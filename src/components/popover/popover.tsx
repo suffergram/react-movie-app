@@ -11,14 +11,14 @@ import {
   useRole,
 } from '@floating-ui/react';
 import { ReactNode, useState } from 'react';
-import Button from '../button/button';
+import { Button } from '../button/button';
 import './style.css';
 
 type PopoverProps = {
   children: ReactNode;
 };
 
-export default function Popover({ children }: PopoverProps) {
+export function Popover({ children }: PopoverProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { refs, strategy, context } = useFloating<HTMLButtonElement>({

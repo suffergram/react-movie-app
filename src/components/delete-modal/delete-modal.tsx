@@ -2,20 +2,20 @@ import { useContext } from 'react';
 import { AnyAction } from 'redux';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
-import Modal from '../modal/modal';
-import Button from '../button/button';
-import ModalContext from '../../context/modal-context';
-import removeMovie from '../../state/remove-movie';
-import RootState from '../../types/root-state';
-import './style.css';
+import { Modal } from '../modal/modal';
+import { Button } from '../button/button';
+import { ModalContext } from '../../context/modal-context';
+import { removeMovie } from '../../state/remove-movie';
+import { RootState } from '../../types/root-state';
 import { ModalState } from '../../types/modal-state';
-import useGetParams from '../../hooks/use-get-params';
+import { useGetParams } from '../../hooks/use-get-params';
+import './style.css';
 
 type DeleteModalProps = {
   isModalOpen: boolean;
 };
 
-export default function DeleteModal({ isModalOpen }: DeleteModalProps) {
+export function DeleteModal({ isModalOpen }: DeleteModalProps) {
   const { handleModalClose, modal } = useContext(ModalContext);
 
   const dispatch: ThunkDispatch<RootState, unknown, AnyAction> = useDispatch();

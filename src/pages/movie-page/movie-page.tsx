@@ -1,11 +1,11 @@
 import { Suspense } from 'react';
 import { Await, Params, defer, useLoaderData } from 'react-router-dom';
-import MovieInfo from '../../components/movie-info/movie-info';
-import MovieService from '../../services/movies-service';
+import { MovieInfo } from '../../components/movie-info/movie-info';
+import { MovieService } from '../../services/movies-service';
 import { Movie } from '../../types/movie';
-import Loading from '../../components/loading/loading';
+import { Loading } from '../../components/loading/loading';
+import { ErrorPage } from '../error-page/error-page';
 import './style.css';
-import ErrorPage from '../error-page/error-page';
 
 type MovieLoaderParams = {
   params: Params;
@@ -15,7 +15,7 @@ type LoaderData = {
   movie: Movie;
 };
 
-export default function MoviePage() {
+export function MoviePage() {
   const { movie } = useLoaderData() as LoaderData;
 
   return (

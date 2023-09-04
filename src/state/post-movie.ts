@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
-import RootState from '../types/root-state';
-import MovieService from '../services/movies-service';
+import { RootState } from '../types/root-state';
+import { MovieService } from '../services/movies-service';
 import {
   handleErrorAction,
   handleLoadingAction,
@@ -10,7 +10,7 @@ import {
 import { FormInput } from '../types/form-input';
 import { SearchParamsType } from '../hooks/use-get-params';
 
-const postMovie =
+export const postMovie =
   (
     data: FormInput,
     params: SearchParamsType
@@ -25,5 +25,3 @@ const postMovie =
       dispatch(handleErrorAction(error as string));
     }
   };
-
-export default postMovie;

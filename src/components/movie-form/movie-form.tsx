@@ -1,8 +1,8 @@
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import Button from '../button/button';
+import { Button } from '../button/button';
 import { FormInput } from '../../types/form-input';
 import { FormField } from '../../types/edit-form-field';
-import GenreSelect from '../genre-select/genre-select';
+import { GenreSelect } from '../genre-select/genre-select';
 import './style.css';
 
 type FormProps = {
@@ -20,10 +20,7 @@ const initialParams: FormInput = {
   overview: '',
 };
 
-export default function MovieForm({
-  onSubmit,
-  params = initialParams,
-}: FormProps) {
+export function MovieForm({ onSubmit, params = initialParams }: FormProps) {
   const {
     register,
     handleSubmit,

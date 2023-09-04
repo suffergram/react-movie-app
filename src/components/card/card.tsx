@@ -1,17 +1,17 @@
 import { useContext, memo } from 'react';
 import { Link } from 'react-router-dom';
-import Popover from '../popover/popover';
-import ModalContext from '../../context/modal-context';
+import { Popover } from '../popover/popover';
+import { ModalContext } from '../../context/modal-context';
 import { Movie } from '../../types/movie';
 import { ModalState } from '../../types/modal-state';
-import Button from '../button/button';
+import { Button } from '../button/button';
 import './style.css';
 
 type CardProps = {
   movie: Movie;
 };
 
-const Card = memo(({ movie }: CardProps) => {
+export const Card = memo(({ movie }: CardProps) => {
   const { handleModalOpen } = useContext(ModalContext);
 
   const handleDeleteModalOpen = () => {
@@ -55,5 +55,3 @@ const Card = memo(({ movie }: CardProps) => {
     </div>
   );
 });
-
-export default Card;

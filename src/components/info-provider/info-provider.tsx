@@ -1,5 +1,5 @@
 import { PropsWithChildren, useMemo, useState } from 'react';
-import InfoContext from '../../context/info-context';
+import { InfoContext } from '../../context/info-context';
 import { ModalState } from '../../types/modal-state';
 import { Movie } from '../../types/movie';
 
@@ -8,7 +8,7 @@ export type InfoType = {
   data: Movie;
 };
 
-export default function InfoProvider({ children }: PropsWithChildren) {
+export function InfoProvider({ children }: PropsWithChildren) {
   const [info, setInfo] = useState<InfoType | null>(null);
 
   const infoContextValue = useMemo(

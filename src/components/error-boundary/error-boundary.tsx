@@ -8,7 +8,7 @@ type ErrorBoundaryState = {
   hasError: boolean;
 };
 
-export default class ErrorBoundary extends React.Component<
+export class ErrorBoundary extends React.Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
 > {

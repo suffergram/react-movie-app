@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
-import useGetParams from '../../hooks/use-get-params';
-import SearchParam from '../../types/search-param';
+import { useGetParams } from '../../hooks/use-get-params';
+import { SearchParam } from '../../types/search-param';
 
 interface SortOption {
   id: number;
@@ -12,7 +12,7 @@ type SortSectionProps = {
   sort: SortOption[];
 };
 
-export default function SortSection({ sort }: SortSectionProps) {
+export function SortSection({ sort }: SortSectionProps) {
   const [params, setSearchParams] = useGetParams();
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {

@@ -25,5 +25,3 @@ export const handleUpdateAction = (data: FormInput) => ({
   type: MovieListAction.HandleUpdate,
   payload: data,
 });
-
-export default MovieListAction;

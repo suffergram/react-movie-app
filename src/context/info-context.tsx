@@ -7,7 +7,7 @@ type InfoContextType = {
   info: InfoType | null;
 };
 
-const InfoContext = React.createContext<InfoContextType>({
+export const InfoContext = React.createContext<InfoContextType>({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleInfoOpen: (infoState: InfoType) => {
     // init value
@@ -17,5 +17,3 @@ const InfoContext = React.createContext<InfoContextType>({
   },
   info: null,
 });
-
-export default InfoContext;

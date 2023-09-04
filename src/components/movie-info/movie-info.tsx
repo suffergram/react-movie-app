@@ -1,10 +1,10 @@
 import { useAsyncValue, useNavigate } from 'react-router-dom';
 import { Movie } from '../../types/movie';
-import Logo from '../logo/logo';
+import { Logo } from '../logo/logo';
 import { calculateDuration } from '../../utils/utils';
 import './style.css';
 
-export default function MovieInfo() {
+export function MovieInfo() {
   const navigate = useNavigate();
 
   const movie = useAsyncValue() as Movie;

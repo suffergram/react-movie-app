@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 import { AnyAction, MiddlewareAPI } from 'redux';
 
-const logger =
+export const logger =
   (store: MiddlewareAPI) =>
   (next: Dispatch<AnyAction>) =>
   (action: AnyAction) => {
@@ -13,5 +13,3 @@ const logger =
     // eslint-disable-next-line no-console
     console.log(store.getState());
   };
-
-export default logger;

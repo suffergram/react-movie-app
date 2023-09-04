@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
-import RootState from '../types/root-state';
-import MovieService from '../services/movies-service';
+import { RootState } from '../types/root-state';
+import { MovieService } from '../services/movies-service';
 import {
   handleErrorAction,
   handleLoadingAction,
@@ -9,7 +9,7 @@ import {
 } from './action-creators';
 import { SearchParamsType } from '../hooks/use-get-params';
 
-const removeMovie =
+export const removeMovie =
   (
     id: number,
     params: SearchParamsType
@@ -24,5 +24,3 @@ const removeMovie =
       dispatch(handleErrorAction(error as string));
     }
   };
-
-export default removeMovie;

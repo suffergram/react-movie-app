@@ -3,7 +3,7 @@ import { MoviesDTO } from '../state/action-creators';
 import { FormInput } from '../types/form-input';
 import { SearchParamsType } from '../hooks/use-get-params';
 
-export default class MovieService {
+export class MovieService {
   static host = 'http://localhost:4000/movies';
 
   static async getMovies(params: SearchParamsType): Promise<MoviesDTO> {

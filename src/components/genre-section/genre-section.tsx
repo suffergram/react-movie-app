@@ -1,6 +1,6 @@
-import useGetParams from '../../hooks/use-get-params';
-import SearchParam from '../../types/search-param';
-import Tab from '../tab/tab';
+import { useGetParams } from '../../hooks/use-get-params';
+import { SearchParam } from '../../types/search-param';
+import { Tab } from '../tab/tab';
 
 interface Genre {
   id: number;
@@ -11,7 +11,7 @@ type GenreSectionProps = {
   genres: Genre[];
 };
 
-export default function GenreSection({ genres }: GenreSectionProps) {
+export function GenreSection({ genres }: GenreSectionProps) {
   const [{ [SearchParam.Filter]: filter }] = useGetParams();
 
   return (
