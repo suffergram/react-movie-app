@@ -12,7 +12,8 @@
     "prepare": "husky install",
     "lint-staged": "lint-staged -c lint-staged.config.js",
     "tscheck": "tsc --noEmit",
-    "test": "jest"
+    "test": "jest",
+    "test-e2e": "playwright test"
   },
   "keywords": [],
   "author": "",
@@ -57,6 +58,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.25.1",
+    "@playwright/test": "^1.37.1",
     "clsx": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
