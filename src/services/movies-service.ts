@@ -6,17 +6,21 @@ import { SearchParamsType } from '../hooks/use-get-params';
 export class MovieService {
   static host = 'http://localhost:4000/movies';
 
+  static responseError = 'Bad Response';
+
   static async getMovies(params: SearchParamsType): Promise<MoviesDTO> {
     const urlParams = getUrlParams(params);
     const url = `${this.host}?${urlParams}`;
 
     const response = await fetch(url);
 
+    if (!response.ok) return Promise.reject(new Error(this.responseError));
+
     return response.json();
   }
 
-  static createMovie(data: FormInput) {
-    return fetch(this.host, {
+  static async createMovie(data: FormInput) {
+    const response = await fetch(this.host, {
       method: 'POST',
       headers: {
         accept: 'application/json',
@@ -27,14 +31,15 @@ export class MovieService {
         if (value === '') return undefined;
         return value;
       }),
-    }).then((response) => {
-      if (!response.ok) return Promise.reject(new Error('response is not ok'));
-      return response;
     });
+
+    if (!response.ok) return Promise.reject(new Error(this.responseError));
+
+    return response.json();
   }
 
-  static updateMovie(data: FormInput) {
-    return fetch(this.host, {
+  static async updateMovie(data: FormInput) {
+    const response = await fetch(this.host, {
       method: 'PUT',
       headers: {
         accept: 'application/json',
@@ -46,17 +51,22 @@ export class MovieService {
         if (value === '') return undefined;
         return value;
       }),
-    }).then((response) => {
-      if (!response.ok) return Promise.reject(new Error('response is not ok'));
-      return response.json();
     });
+
+    if (!response.ok) return Promise.reject(new Error(this.responseError));
+
+    return response.json();
   }
 
-  static deleteMovie(id: number) {
+  static async deleteMovie(id: number) {
     const url = `${this.host}/${id}`;
-    return fetch(url, {
+    const response = await fetch(url, {
       method: 'DELETE',
     });
+
+    if (!response.ok) return Promise.reject(new Error(this.responseError));
+
+    return response.json();
   }
 
   static async getMovie(movieId: string | unknown) {
@@ -64,7 +74,7 @@ export class MovieService {
 
     if (!response.ok) {
       return Promise.reject(
-        new Error('Bad Response', {
+        new Error(this.responseError, {
           cause: response,
         })
       );

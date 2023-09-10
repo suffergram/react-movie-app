@@ -18,4 +18,14 @@ module.exports = {
       lines: 70,
     },
   },
+  automock: false,
+  setupFiles: [
+    "./setupJest.js"
+  ],
+  setupFilesAfterEnv: [
+    "./jestSetupFramework.js"
+  ],
+  testMatch: [
+    "**/src/**/*.test.js"
+  ]
 }
