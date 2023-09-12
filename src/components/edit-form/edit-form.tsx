@@ -6,7 +6,7 @@ import { AnyAction } from 'redux';
 import { ModalContext } from '../../context/modal-context';
 import { FormInput } from '../../types/form-input';
 import { RootState } from '../../types/root-state';
-import { putMovie } from '../../state/put-movie';
+import { putMovie } from '../../state/put-movie/put-movie';
 import { MovieForm } from '../movie-form/movie-form';
 import { ModalState } from '../../types/modal-state';
 

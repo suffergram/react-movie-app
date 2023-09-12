@@ -1,5 +1,5 @@
 import fetchMock from 'jest-fetch-mock';
-import { MovieService } from "./movies-service";
+import { MovieService } from "./movie-service";
 
 const mockMovie = {
   id: 5,

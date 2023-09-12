@@ -5,7 +5,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { Modal } from '../modal/modal';
 import { Button } from '../button/button';
 import { ModalContext } from '../../context/modal-context';
-import { removeMovie } from '../../state/remove-movie';
+import { removeMovie } from '../../state/remove-movie/remove-movie';
 import { RootState } from '../../types/root-state';
 import { ModalState } from '../../types/modal-state';
 import { useGetParams } from '../../hooks/use-get-params';

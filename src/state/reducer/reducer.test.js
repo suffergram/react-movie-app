@@ -51,9 +51,7 @@ describe('Reducer', () => {
       },
     });
   });
-});
 
-describe('Reducer', () => {
   it('Handles error', () => {
     expect(
       reducer(
@@ -70,9 +68,7 @@ describe('Reducer', () => {
       },
     });
   });
-});
 
-describe('Reducer', () => {
   it('Handles loading state', () => {
     expect(
       reducer(
@@ -89,9 +85,7 @@ describe('Reducer', () => {
       },
     });
   });
-});
 
-describe('Reducer', () => {
   it('Updates the movie', () => {
     expect(
       reducer(
@@ -126,9 +120,7 @@ describe('Reducer', () => {
       },
     });
   });
-});
 
-describe('Reducer', () => {
   it('Handles missing type', () => {
     expect(
       reducer(mockState, () => ({

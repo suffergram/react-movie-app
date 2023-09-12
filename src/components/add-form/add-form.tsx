@@ -5,7 +5,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { ModalContext } from '../../context/modal-context';
 import { FormInput } from '../../types/form-input';
-import { postMovie } from '../../state/post-movie';
+import { postMovie } from '../../state/post-movie/post-movie';
 import { RootState } from '../../types/root-state';
 import { MovieForm } from '../movie-form/movie-form';
 import { ModalState } from '../../types/modal-state';

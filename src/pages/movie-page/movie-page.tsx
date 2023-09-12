@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Await, Params, defer, useLoaderData } from 'react-router-dom';
 import { MovieInfo } from '../../components/movie-info/movie-info';
-import { MovieService } from '../../services/movies-service';
+import { MovieService } from '../../services/movie-service';
 import { Movie } from '../../types/movie';
 import { Loading } from '../../components/loading/loading';
 import { ErrorPage } from '../error-page/error-page';

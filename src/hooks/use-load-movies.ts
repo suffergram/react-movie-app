@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { RootState } from '../types/root-state';
-import { fetchMovies } from '../state/fetch-movies';
+import { fetchMovies } from '../state/fetch-movies/fetch-movies';
 import { useGetParams } from './use-get-params';
 
 export function useLoadMovies() {
