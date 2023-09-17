@@ -1,27 +1,37 @@
 import { getUrlParams, calculateDuration } from "./utils";
 import { LOAD_MOVIES_AMOUNT } from '../state/constants';
 
-const mockOffset = 1;
+const caltulateParamsString = (params = {}) => {
+  let expectedResultString = '';
+
+  /* eslint-disable-next-line */
+  for (let [key, value] of Object.entries(params)) {
+    if (key === 'filter' && value === 'all') value = '';
+    if (key === 'offset') value = (value * LOAD_MOVIES_AMOUNT).toString();
+    expectedResultString += `${key}=${value}&`;
+  }
+
+  if (!params.sortBy) expectedResultString += 'sortBy=release_date&';
+  if (params.filter) expectedResultString += 'searchBy=title&';
+
+  expectedResultString += 'limit=9&sortOrder=desc';
+  return expectedResultString;
+};
 
 describe('Utility getUrlParams', () => {
   it('Should return a string with no input parameters', () => {
-    expect(getUrlParams()).toBe('sortBy=release_date&limit=9&sortOrder=desc');
+    expect(getUrlParams()).toBe(caltulateParamsString());
   });
 
-  it('Should return a string with sortBy parameter', () => {
-    expect(getUrlParams({ sortBy: 'title' })).toBe('sortBy=title&limit=9&sortOrder=desc');
-  });
+  it('Should return a string with url parameters', () => {
+    const mockParams = {
+      sortBy: 'title',
+      filter: 'all',
+      search: 'movie',
+      offset: 1,
+    };
 
-  it('Should return a string with filter parameter', () => {
-    expect(getUrlParams({ filter: 'all' })).toBe('filter=&sortBy=release_date&limit=9&sortOrder=desc');
-  });
-
-  it('Should return a string with search and searchBy parameters', () => {
-    expect(getUrlParams({ search: 'movie' })).toBe('search=movie&sortBy=release_date&searchBy=title&limit=9&sortOrder=desc');
-  });
-
-  it(`Should return a string with offset parameter multiplied by ${LOAD_MOVIES_AMOUNT}`, () => {
-    expect(getUrlParams({ offset: mockOffset.toString() })).toBe(`offset=${mockOffset * LOAD_MOVIES_AMOUNT}&sortBy=release_date&limit=9&sortOrder=desc`);
+    expect(getUrlParams(mockParams)).toBe(caltulateParamsString(mockParams));
   });
 });
 
