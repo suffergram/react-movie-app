@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { HomePage } from './home-page';
 
-jest.mock('../../hooks/use-load-movies', () => ({
+jest.mock('../../hooks/use-load-movies/use-load-movies', () => ({
   useLoadMovies: jest.fn(() => ({
     movies: []
   })),

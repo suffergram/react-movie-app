@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLoadMovies } from './use-load-movies';
-import { useGetParams } from './use-get-params/use-get-params';
+import { useGetParams } from '../use-get-params/use-get-params';
 
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
@@ -9,7 +9,7 @@ jest.mock('react-redux', () => ({
   useDispatch: jest.fn(),
 }));
 
-jest.mock('./use-get-params/use-get-params', () => ({
+jest.mock('../use-get-params/use-get-params', () => ({
   useGetParams: jest.fn(),
 }));
 
