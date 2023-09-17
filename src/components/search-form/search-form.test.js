@@ -21,7 +21,7 @@ describe('Search input', () => {
     expect(searchInputElement).toMatchSnapshot();
   });
 
-  it('Can contain a value', async () => {
+  it('Must contain the entered value', async () => {
     render(
       <MemoryRouter>
         <SearchForm />
@@ -33,7 +33,7 @@ describe('Search input', () => {
 
     await userEvent.type(searchInputElement, inputValue);
 
-    waitFor(() => expect(searchInputElement).toHaveValue(inputValue));
+    await waitFor(() => expect(searchInputElement).toHaveValue(inputValue));
   });
 })
 
@@ -52,7 +52,7 @@ describe('Search button', () => {
 })
 
 describe('Search Form', () => {
-  it('Handles input value on button click', async () => {
+  it('Handles input value on search button click', async () => {
     const setUserSearchParamsMock = jest.fn();
 
     useGetParams.mockImplementation(() => [{}, setUserSearchParamsMock]);

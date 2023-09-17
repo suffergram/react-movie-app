@@ -13,21 +13,21 @@ jest.mock('../use-get-params/use-get-params', () => ({
   useGetParams: jest.fn(),
 }));
 
-const mockState = {
+const mockMovieState = {
   movies: [],
   isLoading: false,
   error: undefined,
   totalAmount: 0,
-}
+};
 
 describe('useLoadMovies', () => {
-  it('Returns movie data', () => {
-    useSelector.mockImplementation(() => mockState);
+  it('Returns movie state', () => {
+    useSelector.mockImplementation(() => mockMovieState);
     useDispatch.mockImplementation(() => jest.fn());
     useGetParams.mockImplementation(() => [{}]);
 
     const { result } = renderHook(() => useLoadMovies());
 
-    expect(result.current).toStrictEqual(mockState);
+    expect(result.current).toStrictEqual(mockMovieState);
   });
 });

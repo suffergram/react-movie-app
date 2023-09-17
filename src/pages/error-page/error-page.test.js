@@ -1,22 +1,24 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter, useNavigate } from 'react-router-dom';
+import { MemoryRouter, useAsyncError, useNavigate } from 'react-router-dom';
 import { ErrorPage } from './error-page';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useAsyncError: jest.fn().mockReturnValueOnce({
-    message: 'Mock message',
-    cause: {
-      status: 400,
-      statusText: 'Mock status text',
-    },
-  }),
+  useAsyncError: jest.fn(),
   useNavigate: jest.fn(),
 }));
 
 describe('Error page', () => {
-  it('Renders status', () => {
+  it('Renders error status', () => {
+    useAsyncError.mockImplementationOnce(() => ({
+      message: 'Mock message',
+      cause: {
+        status: 400,
+        statusText: 'Mock status text',
+      },
+    }));
+
     render(
       <MemoryRouter>
         <ErrorPage />
@@ -25,7 +27,7 @@ describe('Error page', () => {
 
     const errorStatus = screen.getByRole('heading', {
       level: 1,
-    })
+    });
 
     expect(errorStatus).toBeInTheDocument();
   });
@@ -39,7 +41,7 @@ describe('Error page', () => {
 
     const errorStatus = screen.getByRole('heading', {
       level: 1,
-    })
+    });
 
     expect(errorStatus).toBeInTheDocument();
   });
@@ -60,5 +62,5 @@ describe('Error page', () => {
     await userEvent.click(button);
 
     expect(navigate).toHaveBeenCalled();
-  })
+  });
 });

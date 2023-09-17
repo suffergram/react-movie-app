@@ -17,14 +17,12 @@ jest.mock('../../hooks/use-get-params/use-get-params', () => ({
 }));
 
 describe('Add form', () => {
-  beforeEach(() => {
+  it('Renders form', () => {
     useContext.mockImplementationOnce(() => ({
       handleModalOpen: jest.fn(),
       handleModalClose: jest.fn(),
     }));
-  });
 
-  it('Renders form', () => {
     render(
       <AddForm />
     );

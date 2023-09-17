@@ -6,7 +6,7 @@ import { MovieService } from '../../services/movie-service';
 const mockMovie = {
   id: 0,
   title: 'the movie',
-}
+};
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -14,24 +14,24 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Movie page', () => {
-  it('Has button in the document', () => {
+  it('Has a close button in the document', () => {
     render(
       <MemoryRouter>
         <MoviePage />
       </MemoryRouter>
     );
 
-    const button = screen.getByRole('button');
+    const closeButton = screen.getByRole('button');
 
-    expect(button).toBeInTheDocument();
-  })
+    expect(closeButton).toBeInTheDocument();
+  });
 });
 
 describe('Movie loader', () => {
   it('Loads the movie', async () => {
     MovieService.getMovie = jest.fn().mockReturnValue(mockMovie);
 
-    const movie = await movieLoader({ params: { movieId: 0 } })
+    const movie = await movieLoader({ params: { movieId: 0 } });
 
     expect(movie.data).toStrictEqual({ movie: mockMovie });
   });

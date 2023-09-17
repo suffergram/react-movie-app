@@ -1,26 +1,27 @@
 import { putMovie } from "./put-movie";
 import { MovieService } from "../../services/movie-service";
+import * as actions from '../action-creators';
 
-const mockMovie = { id: 10 }
+const mockMovie = { id: 10 };
 
 describe('Fetch Movies', () => {
-  it('Calls dispatch 2 times', async () => {
-    const dispatch = jest.fn();
+  it('Calls handleUpdateAction when the data is valid', async () => {
+    const updateAction = jest.spyOn(actions, 'handleUpdateAction');
 
     MovieService.updateMovie = jest.fn();
 
-    await putMovie(mockMovie)(dispatch, () => ({}));
+    await putMovie(mockMovie)(() => { }, () => ({}));
 
-    expect(dispatch).toHaveBeenCalledTimes(2);
-  })
+    expect(updateAction).toHaveBeenCalled();
+  });
 
-  it('Catches and dispatches an error', async () => {
-    const dispatch = jest.fn();
+  it('Calls handleErrorAction when the data is not valid', async () => {
+    const errorAction = jest.spyOn(actions, 'handleErrorAction');
 
     MovieService.updateMovie = jest.fn().mockRejectedValue('');
 
-    await putMovie(mockMovie)(dispatch, () => ({}));
+    await putMovie(mockMovie)(() => { }, () => ({}));
 
-    expect(dispatch).toHaveBeenCalledTimes(2);
-  })
-})
+    expect(errorAction).toHaveBeenCalled();
+  });
+});

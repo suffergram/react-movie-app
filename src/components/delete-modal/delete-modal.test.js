@@ -56,7 +56,7 @@ describe('Delete modal', () => {
     expect(dispatch).toHaveBeenCalled();
   });
 
-  it('Calls dispatch on confirm button click', async () => {
+  it('Will not call dispatch with invalid modal data', async () => {
     const dispatch = jest.fn();
     useDispatch.mockImplementationOnce(() => dispatch);
     useContext.mockImplementationOnce(() => ({

@@ -13,7 +13,7 @@ const mockGenres = [
 ]
 
 describe('Genre section', () => {
-  it('Checks "All" tab by default', () => {
+  it('Checks the first tab by default', () => {
     render(
       <GenreSection genres={mockGenres} />
     );

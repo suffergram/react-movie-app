@@ -42,7 +42,7 @@ describe('Tab', () => {
     expect(setUserSearchParamsMock).toHaveBeenCalledWith(expectedReturnValue);
   });
 
-  it('Sets exsiting offset to 0', async () => {
+  it('Resets offset filter to 0 when the current is more than 0', async () => {
     const setUserSearchParamsMock = jest.fn();
     useGetParams.mockImplementation(() => [{ offset: '10' }, setUserSearchParamsMock]);
 

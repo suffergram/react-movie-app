@@ -25,7 +25,7 @@ describe('Popover', () => {
     expect(button).toBeInTheDocument();
   });
 
-  it('Renders div element with close button', async () => {
+  it('Renders drop element with close button', async () => {
     useState.mockImplementationOnce(() => [true, setState]);
 
     render(
