@@ -4,8 +4,11 @@ import { LOAD_MOVIES_AMOUNT } from '../state/constants';
 const caltulateParamsString = (params = {}) => {
   let expectedResultString = '';
 
-  /* eslint-disable-next-line */
-  for (let [key, value] of Object.entries(params)) {
+  const paramsKeys = Object.keys(params);
+  for (let i = 0; i < paramsKeys.length; i += 1) {
+    const key = paramsKeys[i];
+    let value = params[paramsKeys[i]];
+
     if (key === 'filter' && value === 'all') value = '';
     if (key === 'offset') value = (value * LOAD_MOVIES_AMOUNT).toString();
     expectedResultString += `${key}=${value}&`;
