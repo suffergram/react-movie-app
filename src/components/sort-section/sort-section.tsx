@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { useGetParams } from '../../hooks/use-get-params';
+import { useGetParams } from '../../hooks/use-get-params/use-get-params';
 import { SearchParam } from '../../types/search-param';
 
 interface SortOption {

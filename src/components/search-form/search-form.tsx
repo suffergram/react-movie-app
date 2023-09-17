@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { Button } from '../button/button';
-import { useGetParams } from '../../hooks/use-get-params';
+import { useGetParams } from '../../hooks/use-get-params/use-get-params';
 import { SearchParam } from '../../types/search-param';
 
 type SearchFormType = {

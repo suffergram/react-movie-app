@@ -36,7 +36,11 @@ export function MovieForm({ onSubmit, params = initialParams }: FormProps) {
   const handleReset = () => reset();
 
   return (
-    <form className="modal-edit-form" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      aria-label="movie-form"
+      className="modal-edit-form"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <label className="movie-form-label">
         title
         <input

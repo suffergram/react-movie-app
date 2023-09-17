@@ -128,4 +128,17 @@ describe('Reducer', () => {
       }))
     ).toEqual(mockState);
   });
+
+  it('Returns initial state', () => {
+    expect(reducer(undefined, () => ({
+      type: 'mock type',
+    }))).toStrictEqual({
+      movieState: {
+        movies: [],
+        isLoading: false,
+        error: undefined,
+        totalAmount: 0,
+      },
+    })
+  });
 });

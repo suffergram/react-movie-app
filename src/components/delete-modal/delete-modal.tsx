@@ -8,7 +8,7 @@ import { ModalContext } from '../../context/modal-context';
 import { removeMovie } from '../../state/remove-movie/remove-movie';
 import { RootState } from '../../types/root-state';
 import { ModalState } from '../../types/modal-state';
-import { useGetParams } from '../../hooks/use-get-params';
+import { useGetParams } from '../../hooks/use-get-params/use-get-params';
 import './style.css';
 
 type DeleteModalProps = {

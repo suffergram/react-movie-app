@@ -1,4 +1,4 @@
-import { SearchParamsType } from '../hooks/use-get-params';
+import { SearchParamsType } from '../hooks/use-get-params/use-get-params';
 import { LOAD_MOVIES_AMOUNT } from '../state/constants';
 import { SearchParam } from '../types/search-param';
 

@@ -7,7 +7,7 @@ import {
   handleLoadingAction,
   handleMoviesAction,
 } from '../action-creators';
-import { SearchParamsType } from '../../hooks/use-get-params';
+import { SearchParamsType } from '../../hooks/use-get-params/use-get-params';
 
 export const fetchMovies =
   (

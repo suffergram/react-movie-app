@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { SearchParam } from '../types/search-param';
+import { SearchParam } from '../../types/search-param';
 
 export type SearchParamsType = Partial<Record<SearchParam, string>>;
 

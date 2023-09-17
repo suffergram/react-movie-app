@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie form Matches the snapshot 1`] = `
+<form
+  aria-label="movie-form"
+  class="modal-edit-form"
+>
+  <label
+    class="movie-form-label"
+  >
+    title
+    <input
+      inputmode="text"
+      name="title"
+      placeholder="Select Title"
+    />
+    <p
+      class="modal-submit-error"
+    />
+  </label>
+  <label
+    class="movie-form-label"
+  >
+    release date
+    <input
+      name="release_date"
+      placeholder="Select Date"
+      type="date"
+    />
+    <p
+      class="modal-submit-error"
+    />
+  </label>
+  <label
+    class="genre-select-container movie-form-label"
+  >
+    genres
+    <input
+      aria-expanded="false"
+      aria-haspopup="dialog"
+      class="genre-select"
+      placeholder="Select Genre"
+      readonly=""
+      value=""
+    />
+    <p
+      class="modal-submit-error"
+    />
+  </label>
+  <label
+    class="movie-form-label"
+  >
+    runtime
+    <input
+      inputmode="numeric"
+      max="999"
+      min="0"
+      name="runtime"
+      placeholder="minutes"
+      step="1"
+      type="number"
+    />
+    <p
+      class="modal-submit-error"
+    />
+  </label>
+  <label
+    class="movie-form-label"
+  >
+    movie url
+    <input
+      inputmode="url"
+      name="poster_path"
+      placeholder="https://"
+    />
+    <p
+      class="modal-submit-error"
+    />
+  </label>
+  <label
+    class="movie-form-label"
+  >
+    rating
+    <input
+      inputmode="numeric"
+      lang="en"
+      max="10"
+      min="0"
+      name="vote_average"
+      placeholder="7.8"
+      step="0.1"
+      type="number"
+    />
+  </label>
+  <label
+    class="movie-form-label"
+  >
+    overview
+    <textarea
+      name="overview"
+      placeholder="Movie description"
+    />
+  </label>
+  <div>
+    <button
+      class="cancel modal-edit-button"
+      type="button"
+    >
+      reset
+    </button>
+    <button
+      class="confirm modal-edit-button"
+      type="submit"
+    >
+      submit
+    </button>
+  </div>
+</form>
+`;

@@ -9,7 +9,7 @@ import { postMovie } from '../../state/post-movie/post-movie';
 import { RootState } from '../../types/root-state';
 import { MovieForm } from '../movie-form/movie-form';
 import { ModalState } from '../../types/modal-state';
-import { useGetParams } from '../../hooks/use-get-params';
+import { useGetParams } from '../../hooks/use-get-params/use-get-params';
 
 export function AddForm() {
   const { handleModalOpen, handleModalClose } = useContext(ModalContext);

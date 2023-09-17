@@ -14,7 +14,7 @@ jest.mock('react-redux', () => ({
   useSelector: jest.fn(() => 0),
 }));
 
-jest.mock('../../hooks/use-get-params', () => ({
+jest.mock('../../hooks/use-get-params/use-get-params', () => ({
   useGetParams: jest.fn(() => [{
     offset: '-1',
   }, jest.fn()]),

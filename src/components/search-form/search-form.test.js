@@ -2,9 +2,9 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SearchForm } from './search-form';
-import { useGetParams } from '../../hooks/use-get-params';
+import { useGetParams } from '../../hooks/use-get-params/use-get-params';
 
-jest.mock('../../hooks/use-get-params', () => ({
+jest.mock('../../hooks/use-get-params/use-get-params', () => ({
   useGetParams: jest.fn(() => [{}]),
 }));
 

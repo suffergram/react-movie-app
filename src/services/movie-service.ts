@@ -1,7 +1,7 @@
 import { getUrlParams } from '../utils/utils';
 import { MoviesDTO } from '../state/action-creators';
 import { FormInput } from '../types/form-input';
-import { SearchParamsType } from '../hooks/use-get-params';
+import { SearchParamsType } from '../hooks/use-get-params/use-get-params';
 
 export class MovieService {
   static host = 'http://localhost:4000/movies';
