@@ -1,16 +1,16 @@
 import ReactPaginate from 'react-paginate';
 import { useSelector } from 'react-redux';
-import RootState from '../../types/root-state';
+import { RootState } from '../../types/root-state';
 import { LOAD_MOVIES_AMOUNT } from '../../state/constants';
-import useGetParams from '../../hooks/use-get-params';
-import SearchParam from '../../types/search-param';
+import { useGetParams } from '../../hooks/use-get-params/use-get-params';
+import { SearchParam } from '../../types/search-param';
 import './style.css';
 
 type HandlePageChangeProps = {
   selected: number;
 };
 
-export default function Pagination() {
+export function Pagination() {
   const [params, setSearchParams] = useGetParams();
 
   const stateMoviesTotalAmount = useSelector(

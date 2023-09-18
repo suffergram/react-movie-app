@@ -1,9 +1,9 @@
 import { useSearchParams } from 'react-router-dom';
-import SearchParam from '../types/search-param';
+import { SearchParam } from '../../types/search-param';
 
 export type SearchParamsType = Partial<Record<SearchParam, string>>;
 
-export default function useGetParams() {
+export function useGetParams() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const params: SearchParamsType = {};

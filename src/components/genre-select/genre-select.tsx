@@ -12,7 +12,7 @@ import {
 } from '@floating-ui/react';
 import { useState, ChangeEvent } from 'react';
 import clsx from 'clsx';
-import Option from '../option/option';
+import { Option } from '../option/option';
 import { genres } from '../main/info';
 import './style.css';
 
@@ -24,7 +24,7 @@ type SelectorProps = {
 
 const emptyValue: string[] = [];
 
-export default function GenreSelect({
+export function GenreSelect({
   value = emptyValue,
   onChange,
   className,

@@ -1,6 +1,6 @@
 import { AnyAction, Reducer } from 'redux';
-import RootState from '../types/root-state';
-import MovieListAction from './action-creators';
+import { RootState } from '../../types/root-state';
+import { MovieListAction } from '../constants';
 
 const initialState: RootState = {
   movieState: {
@@ -14,7 +14,7 @@ const initialState: RootState = {
 const { HandleMovies, HandleError, HandleLoading, HandleUpdate } =
   MovieListAction;
 
-const reducer: Reducer<RootState, AnyAction> = (
+export const reducer: Reducer<RootState, AnyAction> = (
   state: RootState = initialState,
   action: AnyAction
 ): RootState => {
@@ -88,5 +88,3 @@ const reducer: Reducer<RootState, AnyAction> = (
       return state;
   }
 };
-
-export default reducer;

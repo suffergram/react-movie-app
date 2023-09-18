@@ -1,6 +1,6 @@
 import { Movie } from './movie';
 
-type RootState = {
+export type RootState = {
   movieState: {
     movies: Movie[];
     isLoading: boolean;
@@ -8,5 +8,3 @@ type RootState = {
     totalAmount: number;
   };
 };
-
-export default RootState;

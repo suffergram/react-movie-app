@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import Button from '../button/button';
-import ModalContext from '../../context/modal-context';
+import { Button } from '../button/button';
+import { ModalContext } from '../../context/modal-context';
 import { ModalState } from '../../types/modal-state';
-import SearchForm from '../search-form/search-form';
-import Logo from '../logo/logo';
+import { SearchForm } from '../search-form/search-form';
+import { Logo } from '../logo/logo';
 import './style.css';
 
-export default function Header() {
+export function Header() {
   const { handleModalOpen } = useContext(ModalContext);
 
   const handleClick = () => {

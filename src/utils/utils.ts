@@ -1,6 +1,6 @@
-import { SearchParamsType } from '../hooks/use-get-params';
+import { SearchParamsType } from '../hooks/use-get-params/use-get-params';
 import { LOAD_MOVIES_AMOUNT } from '../state/constants';
-import SearchParam from '../types/search-param';
+import { SearchParam } from '../types/search-param';
 
 export function getUrlParams(params: SearchParamsType) {
   const searchParams = new URLSearchParams(params);
@@ -33,7 +33,7 @@ export function getUrlParams(params: SearchParamsType) {
 }
 
 export function calculateDuration(runtime: number) {
-  if (runtime < 0) return 'unexpected data';
+  if (runtime < 0) return 'unexpected runtime';
   const hours = Math.floor(runtime / 60);
   const minutes = runtime - hours * 60;
 

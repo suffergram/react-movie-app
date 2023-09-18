@@ -11,7 +11,7 @@ type ModalProps = {
   icon?: ReactNode;
 };
 
-export default function Modal({
+export function Modal({
   children,
   onModalClose,
   isModalOpen,

@@ -4,7 +4,7 @@ type FoundMovieCounterProps = {
   amount: number;
 };
 
-export default function FoundMovieCounter({ amount }: FoundMovieCounterProps) {
+export function FoundMovieCounter({ amount }: FoundMovieCounterProps) {
   return (
     <div className="results">
       <div className="movie-counter">

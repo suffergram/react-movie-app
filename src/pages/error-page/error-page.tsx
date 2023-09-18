@@ -1,8 +1,8 @@
 import { useAsyncError, useNavigate } from 'react-router-dom';
-import Button from '../../components/button/button';
+import { Button } from '../../components/button/button';
 import './style.css';
 
-export default function ErrorPage() {
+export function ErrorPage() {
   const error = useAsyncError() as Error;
   const cause = error && (error.cause as Response);
   const navigate = useNavigate();

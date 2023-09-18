@@ -1,12 +1,12 @@
-import useGetParams from '../../hooks/use-get-params';
-import SearchParam from '../../types/search-param';
+import { useGetParams } from '../../hooks/use-get-params/use-get-params';
+import { SearchParam } from '../../types/search-param';
 
 interface TabProps {
   children: string;
   checked?: boolean;
 }
 
-export default function Tab({ children, checked = false }: TabProps) {
+export function Tab({ children, checked = false }: TabProps) {
   const [params, setSearchParams] = useGetParams();
 
   const handleClick = (value: string) => () => {

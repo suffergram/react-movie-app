@@ -1,6 +1,6 @@
 export const OFFSET = 1;
 
-enum SearchParam {
+export enum SearchParam {
   Search = 'search',
   SearchBy = 'searchBy',
   Filter = 'filter',
@@ -9,5 +9,3 @@ enum SearchParam {
   Offset = 'offset',
   Limit = 'limit',
 }
-
-export default SearchParam;

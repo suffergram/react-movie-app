@@ -7,7 +7,7 @@ type OptionProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export default function Option({ children, checked, onChange }: OptionProps) {
+export function Option({ children, checked, onChange }: OptionProps) {
   return (
     <div className="option-container">
       <label className="option-label">

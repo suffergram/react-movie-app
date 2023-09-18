@@ -3,15 +3,15 @@ import { SubmitHandler } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import ModalContext from '../../context/modal-context';
+import { ModalContext } from '../../context/modal-context';
 import { FormInput } from '../../types/form-input';
-import postMovie from '../../state/post-movie';
-import RootState from '../../types/root-state';
-import MovieForm from '../movie-form/movie-form';
+import { postMovie } from '../../state/post-movie/post-movie';
+import { RootState } from '../../types/root-state';
+import { MovieForm } from '../movie-form/movie-form';
 import { ModalState } from '../../types/modal-state';
-import useGetParams from '../../hooks/use-get-params';
+import { useGetParams } from '../../hooks/use-get-params/use-get-params';
 
-export default function AddForm() {
+export function AddForm() {
   const { handleModalOpen, handleModalClose } = useContext(ModalContext);
 
   const dispatch: ThunkDispatch<RootState, unknown, AnyAction> = useDispatch();

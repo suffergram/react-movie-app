@@ -7,7 +7,7 @@ type ModalContextType = {
   modal: ModalType | null;
 };
 
-const ModalContext = React.createContext<ModalContextType>({
+export const ModalContext = React.createContext<ModalContextType>({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleModalOpen: (modalState: ModalType) => {
     // init value
@@ -17,5 +17,3 @@ const ModalContext = React.createContext<ModalContextType>({
   },
   modal: null,
 });
-
-export default ModalContext;

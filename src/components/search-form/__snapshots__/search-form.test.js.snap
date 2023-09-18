@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search button Matches the snapshot 1`] = `
+<button
+  class="confirm"
+  type="submit"
+>
+  search
+</button>
+`;
+
+exports[`Search input Matches the snapshot 1`] = `
+<input
+  name="search"
+  placeholder="What do you want to watch?"
+  type="search"
+/>
+`;

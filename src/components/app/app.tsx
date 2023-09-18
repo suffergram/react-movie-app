@@ -4,10 +4,10 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-import Layout from '../layout/layout';
-import HomePage from '../../pages/home-page/home-page';
-import MoviePage, { movieLoader } from '../../pages/movie-page/movie-page';
-import ErrorPage from '../../pages/error-page/error-page';
+import { Layout } from '../layout/layout';
+import { HomePage } from '../../pages/home-page/home-page';
+import { MoviePage, movieLoader } from '../../pages/movie-page/movie-page';
+import { ErrorPage } from '../../pages/error-page/error-page';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +23,6 @@ const router = createBrowserRouter(
   )
 );
 
-export default function App() {
+export function App() {
   return <RouterProvider router={router} />;
 }
