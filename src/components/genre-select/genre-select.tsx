@@ -11,15 +11,14 @@ import {
   useRole,
 } from '@floating-ui/react';
 import { useState, ChangeEvent } from 'react';
-import clsx from 'clsx';
 import { Option } from '../option/option';
 import { genres } from '../main/info';
-import './style.css';
+import { Container, StyledInput, SelectOptionContainer } from './style';
 
 type SelectorProps = {
   value: string[];
   onChange: (newValues: string[]) => void;
-  className?: string;
+  error?: boolean;
 };
 
 const emptyValue: string[] = [];
@@ -27,11 +26,11 @@ const emptyValue: string[] = [];
 export function GenreSelect({
   value = emptyValue,
   onChange,
-  className,
+  error,
 }: SelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { refs, y, strategy, context } = useFloating<HTMLInputElement>({
+  const { refs, y, context } = useFloating<HTMLInputElement>({
     open: isOpen,
     onOpenChange: setIsOpen,
     middleware: [offset(10), flip(), shift()],
@@ -57,42 +56,36 @@ export function GenreSelect({
     };
 
   return (
-    <>
-      <input
+    <Container>
+      <StyledInput
+        $error={error}
         readOnly
         ref={refs.setReference}
         {...getReferenceProps()}
-        className={clsx('genre-select', className)}
         value={value.join(', ')}
         placeholder="Select Genre"
       />
       {isOpen ? (
         <FloatingFocusManager context={context} modal={false}>
-          <div
+          <SelectOptionContainer
             ref={refs.setFloating}
             {...getFloatingProps()}
-            className="genre-select-list"
-            style={{
-              position: strategy,
-              top: y ?? 57,
-            }}
+            $offset={y}
           >
-            <div className="genre-select-list">
-              {genres.map((item) => (
-                <Option
-                  key={item.id}
-                  checked={value.some(
-                    (genre) => genre.toUpperCase() === item.name.toUpperCase()
-                  )}
-                  onChange={handleOptionChange(item.name)}
-                >
-                  {item.name}
-                </Option>
-              ))}
-            </div>
-          </div>
+            {genres.map((item) => (
+              <Option
+                key={item.id}
+                checked={value.some(
+                  (genre) => genre.toUpperCase() === item.name.toUpperCase()
+                )}
+                onChange={handleOptionChange(item.name)}
+              >
+                {item.name}
+              </Option>
+            ))}
+          </SelectOptionContainer>
         </FloatingFocusManager>
       ) : null}
-    </>
+    </Container>
   );
 }

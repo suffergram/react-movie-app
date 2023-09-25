@@ -1,10 +1,9 @@
 import { useContext } from 'react';
-import { Button } from '../button/button';
 import { ModalContext } from '../../context/modal-context';
 import { ModalState } from '../../types/modal-state';
 import { SearchForm } from '../search-form/search-form';
 import { Logo } from '../logo/logo';
-import './style.css';
+import { Container, Content, HeaderLogo, AddButton, Title } from './style';
 
 export function Header() {
   const { handleModalOpen } = useContext(ModalContext);
@@ -16,19 +15,19 @@ export function Header() {
   };
 
   return (
-    <header className="header-container">
-      <div className="header-content">
-        <div className="logo-pos">
+    <Container>
+      <Content>
+        <HeaderLogo>
           <Logo />
-        </div>
-        <Button className="add" onClick={handleClick}>
+        </HeaderLogo>
+        <AddButton onClick={handleClick} variant="add">
           + add movie
-        </Button>
+        </AddButton>
         <div>
-          <h1>FIND YOUR MOVIE</h1>
+          <Title>FIND YOUR MOVIE</Title>
           <SearchForm />
         </div>
-      </div>
-    </header>
+      </Content>
+    </Container>
   );
 }

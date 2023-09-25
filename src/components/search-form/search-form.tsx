@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
-import { Button } from '../button/button';
 import { useGetParams } from '../../hooks/use-get-params/use-get-params';
 import { SearchParam } from '../../types/search-param';
+import { StyledForm, StyledInput, StyledButton } from './style';
 
 type SearchFormType = {
   search: string;
@@ -25,15 +25,15 @@ export function SearchForm() {
   };
 
   return (
-    <form className="search-line" onSubmit={handleSubmit(searchSubmit)}>
-      <input
+    <StyledForm className="search-line" onSubmit={handleSubmit(searchSubmit)}>
+      <StyledInput
         type={SearchParam.Search}
         placeholder="What do you want to watch?"
         {...register(SearchParam.Search)}
       />
-      <Button type="submit" className="confirm">
+      <StyledButton type="submit" variant="primary">
         search
-      </Button>
-    </form>
+      </StyledButton>
+    </StyledForm>
   );
 }

@@ -1,10 +1,9 @@
-import ReactPaginate from 'react-paginate';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../types/root-state';
 import { LOAD_MOVIES_AMOUNT } from '../../state/constants';
 import { useGetParams } from '../../hooks/use-get-params/use-get-params';
 import { SearchParam } from '../../types/search-param';
-import './style.css';
+import { PaginateContainer, Paginate } from './style';
 
 type HandlePageChangeProps = {
   selected: number;
@@ -28,9 +27,8 @@ export function Pagination() {
   };
 
   return (
-    <div className="pagination">
-      <ReactPaginate
-        className="pagination-container"
+    <PaginateContainer>
+      <Paginate
         forcePage={Number(params[SearchParam.Offset] ?? 0)}
         pageCount={pageCount}
         breakLabel="..."
@@ -39,11 +37,7 @@ export function Pagination() {
         previousLabel="<<"
         nextLabel=">>"
         renderOnZeroPageCount={null}
-        breakClassName="pagination-item"
-        pageLinkClassName="pagination-item"
-        previousLinkClassName="pagination-item"
-        nextLinkClassName="pagination-item"
       />
-    </div>
+    </PaginateContainer>
   );
 }

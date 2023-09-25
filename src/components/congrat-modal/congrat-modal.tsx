@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import { Modal } from '../modal/modal';
 import { ModalContext } from '../../context/modal-context';
-import './style.css';
+import { CheckIcon } from '../check-icon/check-icon';
+import { Content, Paragraph } from './style';
 
 type CongratModalProps = {
   isModalOpen: boolean;
@@ -15,17 +16,11 @@ export function CongratModal({ isModalOpen }: CongratModalProps) {
       isModalOpen={isModalOpen}
       onModalClose={handleModalClose}
       title="congratulations"
-      icon={
-        <div className="modal-icon">
-          <div className="modal-icon-check" />
-        </div>
-      }
+      icon={<CheckIcon />}
     >
-      <div className="congrat-modal-content">
-        <p className="congrat-modal-p">
-          The movie has been added to database successfully
-        </p>
-      </div>
+      <Content>
+        <Paragraph>The movie has been added to database successfully</Paragraph>
+      </Content>
     </Modal>
   );
 }

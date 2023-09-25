@@ -43,6 +43,10 @@ module.exports = (argv) => {
           test: /\.(woff|woff2|eot|ttf|otf)$/i,
           type: 'asset/resource',
         },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+          use: ['file-loader', 'webp-loader'],
+        },
       ],
     },
     resolve: {

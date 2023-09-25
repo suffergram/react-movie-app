@@ -5,7 +5,6 @@ import { MovieService } from '../../services/movie-service';
 import { Movie } from '../../types/movie';
 import { Loading } from '../../components/loading/loading';
 import { ErrorPage } from '../error-page/error-page';
-import './style.css';
 
 type MovieLoaderParams = {
   params: Params;

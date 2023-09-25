@@ -1,12 +1,19 @@
 import React from 'react';
-import './style.css';
+import { StyledButton } from './style';
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  variant?: 'primary' | 'secondary' | 'add';
+};
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children = '╳', ...delegatedProps }, ref) => (
-    <button type="button" ref={ref} {...delegatedProps}>
+  ({ children = '╳', variant, ...delegatedProps }, ref) => (
+    <StyledButton
+      type="button"
+      ref={ref}
+      $variant={variant}
+      {...delegatedProps}
+    >
       {children}
-    </button>
+    </StyledButton>
   )
 );

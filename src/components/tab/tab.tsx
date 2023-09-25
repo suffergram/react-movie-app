@@ -1,36 +1,24 @@
-import { useGetParams } from '../../hooks/use-get-params/use-get-params';
-import { SearchParam } from '../../types/search-param';
+import { ChangeEvent } from 'react';
+import { StyledTab, StyledInput } from './style';
 
 interface TabProps {
   children: string;
   checked?: boolean;
+  name: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function Tab({ children, checked = false }: TabProps) {
-  const [params, setSearchParams] = useGetParams();
-
-  const handleClick = (value: string) => () => {
-    const newParams = new URLSearchParams({
-      ...params,
-      [SearchParam.Filter]: value,
-    });
-
-    if (params[SearchParam.Offset]) newParams.set(SearchParam.Offset, '0');
-
-    setSearchParams(newParams);
-  };
-
+export function Tab({ children, checked = false, name, onChange }: TabProps) {
   return (
-    <div>
-      <input
-        className="radio"
-        name={SearchParam.Filter}
+    <StyledTab>
+      <StyledInput
+        name={name}
         type="radio"
         value={children}
         checked={checked}
-        onChange={handleClick(children)}
+        onChange={onChange}
       />
       {children}
-    </div>
+    </StyledTab>
   );
 }

@@ -3,13 +3,12 @@ import { AnyAction } from 'redux';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Modal } from '../modal/modal';
-import { Button } from '../button/button';
 import { ModalContext } from '../../context/modal-context';
 import { removeMovie } from '../../state/remove-movie/remove-movie';
 import { RootState } from '../../types/root-state';
 import { ModalState } from '../../types/modal-state';
 import { useGetParams } from '../../hooks/use-get-params/use-get-params';
-import './style.css';
+import { Paragraph, StyledButton } from './style';
 
 type DeleteModalProps = {
   isModalOpen: boolean;
@@ -38,10 +37,10 @@ export function DeleteModal({ isModalOpen }: DeleteModalProps) {
       onModalClose={handleModalClose}
       title="delete movie"
     >
-      <p>Are you sure you want to delete this movie?</p>
-      <Button className="confirm delete-modal" onClick={handleButtonClick}>
+      <Paragraph>Are you sure you want to delete this movie?</Paragraph>
+      <StyledButton variant="primary" onClick={handleButtonClick}>
         confirm
-      </Button>
+      </StyledButton>
     </Modal>
   );
 }

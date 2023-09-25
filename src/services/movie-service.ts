@@ -66,7 +66,7 @@ export class MovieService {
 
     if (!response.ok) return Promise.reject(new Error(this.responseError));
 
-    return response.json();
+    return response;
   }
 
   static async getMovie(movieId: string | unknown) {

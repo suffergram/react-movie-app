@@ -1,8 +1,12 @@
-import ReactModal from 'react-modal';
 import { PropsWithChildren, ReactNode } from 'react';
-import './style.css';
+import {
+  StyledModal,
+  modalBackground,
+  ModalCloseButton,
+  ModalTitle,
+} from './style';
 
-ReactModal.setAppElement('body');
+StyledModal.setAppElement('body');
 
 type ModalProps = {
   onModalClose: () => void;
@@ -19,24 +23,17 @@ export function Modal({
   icon,
 }: PropsWithChildren<ModalProps>) {
   return (
-    <ReactModal
-      className="modal"
-      overlayClassName="overlay"
+    <StyledModal
+      style={modalBackground}
       isOpen={isModalOpen}
       onRequestClose={onModalClose}
     >
-      <button
-        type="button"
-        onClick={onModalClose}
-        className="close modal-close"
-      >
-        ╳
-      </button>
+      <ModalCloseButton onClick={onModalClose}>╳</ModalCloseButton>
       <div>
         {icon}
-        <h2 className="modal-title">{title}</h2>
+        <ModalTitle>{title}</ModalTitle>
         {children}
       </div>
-    </ReactModal>
+    </StyledModal>
   );
 }

@@ -1,4 +1,6 @@
-footer {
+import styled from 'styled-components';
+
+export const StyledFooter = styled.footer`
   height: 70px;
   width: 100%;
   background-color: var(--color-2);
@@ -7,4 +9,4 @@ footer {
   align-items: center;
   justify-content: center;
   font-size: 20px;
-}
+`;

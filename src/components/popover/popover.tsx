@@ -11,8 +11,7 @@ import {
   useRole,
 } from '@floating-ui/react';
 import { ReactNode, useState } from 'react';
-import { Button } from '../button/button';
-import './style.css';
+import { StyledMenuButton, Menu, MenuCloseButton } from './style';
 
 type PopoverProps = {
   children: ReactNode;
@@ -42,13 +41,12 @@ export function Popover({ children }: PopoverProps) {
 
   return (
     <>
-      <Button {...getReferenceProps()} ref={refs.setReference} className="menu">
+      <StyledMenuButton {...getReferenceProps()} ref={refs.setReference}>
         ⋮
-      </Button>
-
+      </StyledMenuButton>
       {isOpen ? (
         <FloatingFocusManager context={context} modal={false}>
-          <div
+          <Menu
             {...getFloatingProps()}
             className="menuPopover"
             ref={refs.floating as React.RefObject<HTMLDivElement>}
@@ -58,12 +56,9 @@ export function Popover({ children }: PopoverProps) {
               right: 16,
             }}
           >
-            <button type="button" className="close" onClick={handleClick}>
-              ╳
-            </button>
-
+            <MenuCloseButton onClick={handleClick}>╳</MenuCloseButton>
             {children}
-          </div>
+          </Menu>
         </FloatingFocusManager>
       ) : null}
     </>

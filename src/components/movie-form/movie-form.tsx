@@ -3,7 +3,15 @@ import { Button } from '../button/button';
 import { FormInput } from '../../types/form-input';
 import { FormField } from '../../types/edit-form-field';
 import { GenreSelect } from '../genre-select/genre-select';
-import './style.css';
+import {
+  StyledForm,
+  StyledLabel,
+  StyledInput,
+  SubmitErrorMessage,
+  TextareaContainer,
+  StyledTextarea,
+  ButtonContainer,
+} from './style';
 
 type FormProps = {
   onSubmit: SubmitHandler<FormInput>;
@@ -36,42 +44,34 @@ export function MovieForm({ onSubmit, params = initialParams }: FormProps) {
   const handleReset = () => reset();
 
   return (
-    <form
-      aria-label="movie-form"
-      className="modal-edit-form"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <label className="movie-form-label">
+    <StyledForm aria-label="movie-form" onSubmit={handleSubmit(onSubmit)}>
+      <StyledLabel>
         title
-        <input
-          className={
-            errors[FormField.Title]?.message ? 'modal-input-error' : undefined
-          }
+        <StyledInput
+          $error={!!errors[FormField.Title]?.message}
           placeholder="Select Title"
           inputMode="text"
           {...register(FormField.Title, { required: requiredMessage })}
         />
-        <p className="modal-submit-error">{errors[FormField.Title]?.message}</p>
-      </label>
-      <label className="movie-form-label">
+        <SubmitErrorMessage>
+          {errors[FormField.Title]?.message}
+        </SubmitErrorMessage>
+      </StyledLabel>
+      <StyledLabel>
         release date
-        <input
-          className={
-            errors[FormField.ReleaseDate]?.message
-              ? 'modal-input-error'
-              : undefined
-          }
+        <StyledInput
+          $error={!!errors[FormField.ReleaseDate]?.message}
           type="date"
           placeholder="Select Date"
           {...register(FormField.ReleaseDate, {
             required: requiredMessage,
           })}
         />
-        <p className="modal-submit-error">
+        <SubmitErrorMessage>
           {errors[FormField.ReleaseDate]?.message}
-        </p>
-      </label>
-      <label className="genre-select-container movie-form-label">
+        </SubmitErrorMessage>
+      </StyledLabel>
+      <StyledLabel>
         genres
         <Controller
           control={control}
@@ -80,23 +80,21 @@ export function MovieForm({ onSubmit, params = initialParams }: FormProps) {
             validate: (value) => (value.length === 0 ? requiredMessage : true),
           }}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
-            <GenreSelect
-              value={value}
-              onChange={onChange}
-              className={error ? 'modal-input-error' : undefined}
-            />
-          )}
+              <GenreSelect
+                value={value}
+                onChange={onChange}
+                error={!!error}
+              />
+            )}
         />
-        <p className="modal-submit-error">
+        <SubmitErrorMessage>
           {errors[FormField.Genres]?.message}
-        </p>
-      </label>
-      <label className="movie-form-label">
+        </SubmitErrorMessage>
+      </StyledLabel>
+      <StyledLabel>
         runtime
-        <input
-          className={
-            errors[FormField.Runtime]?.message ? 'modal-input-error' : undefined
-          }
+        <StyledInput
+          $error={!!errors[FormField.Runtime]?.message}
           placeholder="minutes"
           inputMode="numeric"
           type="number"
@@ -105,18 +103,13 @@ export function MovieForm({ onSubmit, params = initialParams }: FormProps) {
           max="999"
           {...register(FormField.Runtime, { required: requiredMessage })}
         />
-        <p className="modal-submit-error">
+        <SubmitErrorMessage>
           {errors[FormField.Runtime]?.message}
-        </p>
-      </label>
-      <label className="movie-form-label">
+        </SubmitErrorMessage>
+      </StyledLabel>
+      <StyledLabel>
         movie url
-        <input
-          className={
-            errors[FormField.PosterPath]?.message
-              ? 'modal-input-error'
-              : undefined
-          }
+        <StyledInput
           placeholder="https://"
           inputMode="url"
           {...register(FormField.PosterPath, {
@@ -127,13 +120,13 @@ export function MovieForm({ onSubmit, params = initialParams }: FormProps) {
             },
           })}
         />
-        <p className="modal-submit-error">
+        <SubmitErrorMessage>
           {errors[FormField.PosterPath]?.message}
-        </p>
-      </label>
-      <label className="movie-form-label">
+        </SubmitErrorMessage>
+      </StyledLabel>
+      <StyledLabel>
         rating
-        <input
+        <StyledInput
           placeholder="7.8"
           inputMode="numeric"
           type="number"
@@ -147,22 +140,22 @@ export function MovieForm({ onSubmit, params = initialParams }: FormProps) {
             max: 10,
           })}
         />
-      </label>
-      <label className="movie-form-label">
+      </StyledLabel>
+      <TextareaContainer>
         overview
-        <textarea
+        <StyledTextarea
           placeholder="Movie description"
           {...register(FormField.Overview, { required: false })}
         />
-      </label>
-      <div>
-        <Button className="cancel modal-edit-button" onClick={handleReset}>
+      </TextareaContainer>
+      <ButtonContainer>
+        <Button onClick={handleReset} variant="secondary">
           reset
         </Button>
-        <Button className="confirm modal-edit-button" type="submit">
+        <Button type="submit" variant="primary">
           submit
         </Button>
-      </div>
-    </form>
+      </ButtonContainer>
+    </StyledForm>
   );
 }

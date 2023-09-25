@@ -1,6 +1,12 @@
 import { ChangeEvent } from 'react';
 import { useGetParams } from '../../hooks/use-get-params/use-get-params';
 import { SearchParam } from '../../types/search-param';
+import {
+  Container,
+  StyledParagraph,
+  StyledSelect,
+  StyledOption,
+} from './style';
 
 interface SortOption {
   id: number;
@@ -24,21 +30,18 @@ export function SortSection({ sort }: SortSectionProps) {
   };
 
   return (
-    <div className="results sort">
-      <p>SORT BY</p>
-
-      <select
+    <Container>
+      <StyledParagraph>SORT BY</StyledParagraph>
+      <StyledSelect
         onChange={handleChange}
         value={params[SearchParam.SortBy] ?? 'release_date'}
       >
         {sort.map((item) => (
-          <option key={item.id} value={item.name}>
+          <StyledOption key={item.id} value={item.name}>
             {item.displayLabel}
-          </option>
+          </StyledOption>
         ))}
-
-        {/* <div className="arrow">▼</div> */}
-      </select>
-    </div>
+      </StyledSelect>
+    </Container>
   );
 }

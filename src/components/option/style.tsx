@@ -1,28 +1,31 @@
-.option-container {
-  display: flex;
-  align-items: center;
-  height: 46px;
-  color: var(--color-white);
-}
+import styled from 'styled-components';
 
-.option-label {
+export const Container = styled.label`
   display: flex;
   align-items: center;
   padding-left: 2.6em;
-  height: 100%;
-  width: 100%;
+  width: calc(100% - 2.6em);
+  height: 46px;
+  color: var(--color-white);
   cursor: pointer;
-}
+  text-transform: uppercase;
+`;
 
-.option-check-input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
+export const StyledInput = styled.input`
   appearance: none;
   position: absolute;
-  padding: 0 !important;
-}
+  padding: 0;
 
-.option-check-box {
+  &:checked {
+    + {
+      span {
+        background-color: var(--color-1);
+      }
+    }
+  }
+`;
+
+export const StyledCheckbox = styled.span`
   position: absolute;
   width: 1em;
   height: 1em;
@@ -32,13 +35,9 @@
   justify-content: center;
   align-items: center;
   border-radius: 0.15em;
-}
+`;
 
-.option-check-input:checked + .option-check-box {
-  background-color: var(--color-1);
-}
-
-.option-icon {
+export const StyledCheck = styled.div`
   width: 0.5em;
   height: 0.2em;
   border-left: 3px solid var(--color-white);
@@ -46,4 +45,4 @@
   transform: rotate(-45deg);
   margin-bottom: 0.2em;
   margin-right: 0.05em;
-}
+`;
