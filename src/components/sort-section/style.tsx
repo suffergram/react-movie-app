@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.label`
   display: inline-flex;
   float: right;
   gap: 30px;
@@ -22,6 +22,7 @@ export const StyledSelect = styled.select`
   color: var(--color-5);
   outline: none;
   width: 159px;
+  cursor: pointer;
 `;
 
 export const StyledOption = styled.option`

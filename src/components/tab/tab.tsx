@@ -11,14 +11,16 @@ interface TabProps {
 export function Tab({ children, checked = false, name, onChange }: TabProps) {
   return (
     <StyledTab>
-      <StyledInput
-        name={name}
-        type="radio"
-        value={children}
-        checked={checked}
-        onChange={onChange}
-      />
-      {children}
+      <label>
+        <StyledInput
+          name={name}
+          type="radio"
+          value={children}
+          checked={checked}
+          onChange={onChange}
+        />
+        {children}
+      </label>
     </StyledTab>
   );
 }

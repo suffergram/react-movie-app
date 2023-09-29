@@ -47,6 +47,11 @@ module.exports = (argv) => {
           test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
           use: ['file-loader', 'webp-loader'],
         },
+        {
+          test: /\.m?js$/,
+          enforce: 'pre',
+          use: ['source-map-loader'],
+        },
       ],
     },
     resolve: {
