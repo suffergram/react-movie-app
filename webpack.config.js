@@ -6,8 +6,9 @@ module.exports = (argv) => {
   const isProduction = argv.mode === 'production';
   return {
     entry: './src/index.tsx',
+    devtool: 'source-map',
     output: {
-      filename: 'main.js',
+      filename: '[name].[contenthash].js',
       path: path.resolve(__dirname, 'build'),
       publicPath: '/',
     },
@@ -45,17 +46,25 @@ module.exports = (argv) => {
         },
         {
           test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
-          use: ['file-loader', 'webp-loader'],
-        },
-        {
-          test: /\.m?js$/,
-          enforce: 'pre',
-          use: ['source-map-loader'],
+          type: 'asset/resource',
         },
       ],
     },
     resolve: {
       extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.css'],
+    },
+    optimization: {
+      runtimeChunk: 'single',
+      minimize: true,
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      },
     },
   };
 };

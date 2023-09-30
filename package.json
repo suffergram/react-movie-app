@@ -67,7 +67,6 @@
     "style-loader": "^3.3.2",
     "ts-loader": "^9.4.2",
     "typescript": "^5.2.2",
-    "webp-loader": "^0.6.0",
     "webpack": "^5.76.3",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.13.1"
@@ -84,7 +83,6 @@
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
-    "source-map-loader": "^4.0.1",
     "styled-components": "^6.0.8"
   }
 }

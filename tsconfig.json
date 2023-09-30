@@ -9,6 +9,7 @@
         "skipLibCheck": true,
         "lib": ["es2022", "dom"],
         "types": ["node", "jest", "@testing-library/jest-dom"],
+        "sourceMap": true,
     },
     "include": ["src", "src/declaration.d.ts"],
     "exclude": ["node_modules", "./lint-staged.config.js", "./webpack.config.js"],
