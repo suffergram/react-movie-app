@@ -31,7 +31,7 @@ export function MovieInfo() {
       <Content>
         <Header>
           <Logo />
-          <StyledButton onClick={handleClick}>
+          <StyledButton aria-label="search-button" onClick={handleClick}>
             <SearchIcon />
           </StyledButton>
         </Header>
