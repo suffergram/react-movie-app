@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import './style.css';
+import { Container, StyledInput, StyledCheckbox, StyledCheck } from './style';
 
 type OptionProps = {
   children: string;
@@ -9,20 +9,17 @@ type OptionProps = {
 
 export function Option({ children, checked, onChange }: OptionProps) {
   return (
-    <div className="option-container">
-      <label className="option-label">
-        <input
-          id={children}
-          className="option-check-input"
-          type="checkbox"
-          onChange={onChange}
-          checked={checked}
-        />
-        <span className="option-check-box">
-          <div className="option-icon" />
-        </span>
-        {children}
-      </label>
-    </div>
+    <Container>
+      <StyledInput
+        id={children}
+        type="checkbox"
+        onChange={onChange}
+        checked={checked}
+      />
+      <StyledCheckbox>
+        <StyledCheck />
+      </StyledCheckbox>
+      {children}
+    </Container>
   );
 }

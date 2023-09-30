@@ -2,7 +2,13 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: normal;
-  src: url('./fonts/Montserrat.ttf') format('truetype');
+  src: url('./assets/fonts/Montserrat.woff2') format('woff2');
+  font-display: swap;
+}
+
+html {
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 body {

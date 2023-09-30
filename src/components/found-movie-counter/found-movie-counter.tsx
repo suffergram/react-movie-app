@@ -1,4 +1,4 @@
-import './style.css';
+import { Counter } from './style';
 
 type FoundMovieCounterProps = {
   amount: number;
@@ -6,10 +6,9 @@ type FoundMovieCounterProps = {
 
 export function FoundMovieCounter({ amount }: FoundMovieCounterProps) {
   return (
-    <div className="results">
-      <div className="movie-counter">
-        <strong>{amount}</strong> movies found
-      </div>
-    </div>
+    <Counter>
+      <strong>{amount}</strong>
+      <p>movies found</p>
+    </Counter>
   );
 }

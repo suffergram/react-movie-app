@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-
-import './style.css';
+import { ErrorMessage } from './style';
 
 type ErrorBoundaryProps = PropsWithChildren;
 
@@ -26,7 +25,7 @@ export class ErrorBoundary extends React.Component<
     const { children } = this.props;
 
     if (hasError) {
-      return <h1 className="error-message">Something went wrong ☹</h1>;
+      return <ErrorMessage>Something went wrong ☹</ErrorMessage>;
     }
 
     return children;

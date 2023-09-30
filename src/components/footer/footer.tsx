@@ -1,10 +1,10 @@
 import { Logo } from '../logo/logo';
-import './style.css';
+import { StyledFooter } from './style';
 
 export function Footer() {
   return (
-    <footer>
+    <StyledFooter>
       <Logo />
-    </footer>
+    </StyledFooter>
   );
 }

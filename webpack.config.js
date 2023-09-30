@@ -6,8 +6,9 @@ module.exports = (argv) => {
   const isProduction = argv.mode === 'production';
   return {
     entry: './src/index.tsx',
+    devtool: 'source-map',
     output: {
-      filename: 'main.js',
+      filename: '[name].[contenthash].js',
       path: path.resolve(__dirname, 'build'),
       publicPath: '/',
     },
@@ -43,10 +44,27 @@ module.exports = (argv) => {
           test: /\.(woff|woff2|eot|ttf|otf)$/i,
           type: 'asset/resource',
         },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+          type: 'asset/resource',
+        },
       ],
     },
     resolve: {
       extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.css'],
+    },
+    optimization: {
+      runtimeChunk: 'single',
+      minimize: true,
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      },
     },
   };
 };

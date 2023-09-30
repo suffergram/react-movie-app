@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
-import './style.css';
+import { StyledParagraph } from './style';
 
 export function Logo() {
   return (
     <Link style={{ textDecoration: 'none' }} to="/">
-      <p className="logo">
+      <StyledParagraph>
         <strong>netflix</strong>
         roulette
-      </p>
+      </StyledParagraph>
     </Link>
   );
 }

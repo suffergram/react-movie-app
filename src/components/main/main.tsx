@@ -6,28 +6,29 @@ import * as info from './info';
 import { useLoadMovies } from '../../hooks/use-load-movies/use-load-movies';
 import { Movie } from '../../types/movie';
 import { Pagination } from '../pagination/pagination';
-import './style.css';
+import { StyledMain, Content, Row, StyledHorizontalRule, Grid } from './style';
 
 export function Main() {
   const { isLoading, error, movies, totalAmount } = useLoadMovies();
+
   return (
-    <main>
-      <div className="content">
-        <div className="row">
+    <StyledMain>
+      <Content>
+        <Row>
           <GenreSection genres={info.genres} />
           <SortSection sort={info.sortBy} />
-        </div>
-        <hr />
-        <div className="row">
+        </Row>
+        <StyledHorizontalRule />
+        <Row>
           <FoundMovieCounter amount={totalAmount} />
-        </div>
-        <div className="found">
+        </Row>
+        <Grid>
           {!isLoading &&
             !error &&
             movies.map((item: Movie) => <Card key={item.id} movie={item} />)}
-        </div>
+        </Grid>
         <Pagination />
-      </div>
-    </main>
+      </Content>
+    </StyledMain>
   );
 }

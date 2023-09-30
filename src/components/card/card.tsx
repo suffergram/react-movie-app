@@ -4,8 +4,16 @@ import { Popover } from '../popover/popover';
 import { ModalContext } from '../../context/modal-context';
 import { Movie } from '../../types/movie';
 import { ModalState } from '../../types/modal-state';
-import { Button } from '../button/button';
-import './style.css';
+import {
+  StyledCard,
+  ImageContainer,
+  StyledImage,
+  Description,
+  Year,
+  Title,
+  Genre,
+  PopoverButton,
+} from './style';
 
 type CardProps = {
   movie: Movie;
@@ -29,29 +37,21 @@ export const Card = memo(({ movie }: CardProps) => {
   };
 
   return (
-    <div className="card">
+    <StyledCard>
       <Link to={`movies/${movie.id}`}>
-        <div className="card-image-container">
-          <img
-            className="card-image"
-            src={movie.poster_path}
-            alt={movie.title}
-          />
-        </div>
-        <div className="description">
-          <div className="year">{movie.release_date.slice(0, 4)}</div>
-          <p className="title">{movie.title}</p>
-          <p className="genre">{movie.genres.join(', ')}</p>
-        </div>
+        <ImageContainer>
+          <StyledImage src={movie.poster_path} alt={movie.title} />
+        </ImageContainer>
+        <Description>
+          <Year>{movie.release_date.slice(0, 4)}</Year>
+          <Title>{movie.title}</Title>
+          <Genre>{movie.genres.join(', ')}</Genre>
+        </Description>
       </Link>
       <Popover>
-        <Button className="edit" onClick={handleEditModalOpen}>
-          edit
-        </Button>
-        <Button className="delete" onClick={handleDeleteModalOpen}>
-          delete
-        </Button>
+        <PopoverButton onClick={handleEditModalOpen}>edit</PopoverButton>
+        <PopoverButton onClick={handleDeleteModalOpen}>delete</PopoverButton>
       </Popover>
-    </div>
+    </StyledCard>
   );
 });

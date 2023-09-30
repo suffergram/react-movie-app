@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import { Footer } from '../footer/footer';
-import './style.css';
+import { OutletContainer } from './style';
 
 export function Layout() {
   return (
     <>
-      <div className="outlet">
+      <OutletContainer>
         <Outlet />
-      </div>
+      </OutletContainer>
       <Footer />
     </>
   );
