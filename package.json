@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.tsx",
   "scripts": {
-    "build": "webpack --mode production",
-    "build-dev": "webpack --mode development",
-    "start": "webpack serve --mode development",
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start",
     "lint": "eslint --ext .jsx,.js,.json,.ts,.tsx src/",
     "lint-fix": "eslint --ext .jsx,.js,.json,.ts,.tsx --fix src/",
     "prepare": "husky install",
@@ -73,6 +73,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.25.1",
+    "next": "^13.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.1",

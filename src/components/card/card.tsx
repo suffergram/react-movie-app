@@ -1,5 +1,5 @@
 import { useContext, memo } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Popover } from '../popover/popover';
 import { ModalContext } from '../../context/modal-context';
 import { Movie } from '../../types/movie';
@@ -38,7 +38,7 @@ export const Card = memo(({ movie }: CardProps) => {
 
   return (
     <StyledCard>
-      <Link to={`movies/${movie.id}`}>
+      <Link href={`movies/${movie.id}`}>
         <ImageContainer>
           <StyledImage src={movie.poster_path} alt={movie.title} />
         </ImageContainer>
