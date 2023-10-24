@@ -1,6 +1,4 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../types/root-state';
-import { LOAD_MOVIES_AMOUNT } from '../../state/constants';
+import { LOAD_MOVIES_AMOUNT } from '../../constants';
 import { useGetParams } from '../../hooks/use-get-params/use-get-params';
 import { SearchParam } from '../../types/search-param';
 import { PaginateContainer, Paginate } from './style';
@@ -9,14 +7,14 @@ type HandlePageChangeProps = {
   selected: number;
 };
 
-export function Pagination() {
+type PaginationProps = {
+  amount: number;
+};
+
+export function Pagination({ amount }: PaginationProps) {
   const [params, setSearchParams] = useGetParams();
 
-  const stateMoviesTotalAmount = useSelector(
-    (state: RootState) => state.movieState.totalAmount
-  );
-
-  const pageCount = Math.ceil(stateMoviesTotalAmount / LOAD_MOVIES_AMOUNT);
+  const pageCount = Math.ceil(amount / LOAD_MOVIES_AMOUNT);
 
   const handlePageChange = ({ selected }: HandlePageChangeProps) => {
     const newParams = new URLSearchParams({

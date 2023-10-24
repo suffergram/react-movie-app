@@ -1,25 +1,27 @@
-import { ChangeEvent } from 'react';
+import { MouseEvent } from 'react';
 import { StyledTab, StyledInput } from './style';
 
 interface TabProps {
-  children: string;
   checked?: boolean;
   name: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  onClick: (event: MouseEvent<HTMLInputElement>) => void;
 }
 
-export function Tab({ children, checked = false, name, onChange }: TabProps) {
+export function Tab({ checked = false, name, value, onClick }: TabProps) {
   return (
     <StyledTab>
       <label>
         <StyledInput
           name={name}
           type="radio"
-          value={children}
+          value={value}
+          aria-checked={checked}
           checked={checked}
-          onChange={onChange}
+          onClick={onClick}
+          readOnly
         />
-        {children}
+        {value}
       </label>
     </StyledTab>
   );

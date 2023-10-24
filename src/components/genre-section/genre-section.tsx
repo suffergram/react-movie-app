@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { MouseEvent } from 'react';
 import { useGetParams } from '../../hooks/use-get-params/use-get-params';
 import { SearchParam } from '../../types/search-param';
 import { Tab } from '../tab/tab';
@@ -16,10 +16,11 @@ type GenreSectionProps = {
 export function GenreSection({ genres }: GenreSectionProps) {
   const [params, setSearchParams] = useGetParams();
 
-  const handleClick = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleClick = (event: MouseEvent<HTMLInputElement>) => {
+    const target = event.target as HTMLInputElement;
     const newParams = new URLSearchParams({
       ...params,
-      [SearchParam.Filter]: event.target.value,
+      [SearchParam.Filter]: target.value,
     });
     if (params[SearchParam.Offset]) newParams.set(SearchParam.Offset, '0');
     setSearchParams(newParams);
@@ -27,25 +28,17 @@ export function GenreSection({ genres }: GenreSectionProps) {
 
   return (
     <StyledFieldset>
-      <Tab
-        checked={
-          !params[SearchParam.Filter] || params[SearchParam.Filter] === 'all'
-        }
-        name={SearchParam.Filter}
-        onChange={handleClick}
-      >
-        all
-      </Tab>
-
-      {genres.slice(0, 4).map((item) => (
+      {genres.map((item) => (
         <Tab
           key={item.id}
-          checked={params[SearchParam.Filter] === item.name}
+          checked={
+            (!params[SearchParam.Filter] && item.name === 'all') ||
+            params[SearchParam.Filter] === item.name
+          }
           name={SearchParam.Filter}
-          onChange={handleClick}
-        >
-          {item.name}
-        </Tab>
+          onClick={handleClick}
+          value={item.name}
+        />
       ))}
     </StyledFieldset>
   );

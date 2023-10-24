@@ -1,33 +1,40 @@
+'use client';
+
+import { Suspense } from 'react';
 import { Card } from '../card/card';
 import { GenreSection } from '../genre-section/genre-section';
 import { SortSection } from '../sort-section/sort-section';
 import { FoundMovieCounter } from '../found-movie-counter/found-movie-counter';
-import * as info from './info';
-import { useLoadMovies } from '../../hooks/use-load-movies/use-load-movies';
+import { tabGenres, sortBy } from './info';
 import { Movie } from '../../types/movie';
 import { Pagination } from '../pagination/pagination';
+import { MoviesDTO } from '../../types/movies-dto';
 import { StyledMain, Content, Row, StyledHorizontalRule, Grid } from './style';
 
-export function Main() {
-  const { isLoading, error, movies, totalAmount } = useLoadMovies();
+export function Main(props: MoviesDTO) {
+  const movieData = props;
 
   return (
     <StyledMain>
       <Content>
         <Row>
-          <GenreSection genres={info.genres} />
-          <SortSection sort={info.sortBy} />
+          <GenreSection genres={tabGenres} />
+          <SortSection sort={sortBy} />
         </Row>
         <StyledHorizontalRule />
         <Row>
-          <FoundMovieCounter amount={totalAmount} />
+          {movieData.totalAmount ? (
+            <FoundMovieCounter amount={movieData.totalAmount} />
+          ) : undefined}
         </Row>
-        <Grid>
-          {!isLoading &&
-            !error &&
-            movies.map((item: Movie) => <Card key={item.id} movie={item} />)}
-        </Grid>
-        <Pagination />
+        <Suspense>
+          <Grid>
+            {movieData.data?.map((item: Movie) => (
+              <Card key={item.id} movie={item} />
+            ))}
+          </Grid>
+        </Suspense>
+        <Pagination amount={movieData.totalAmount} />
       </Content>
     </StyledMain>
   );

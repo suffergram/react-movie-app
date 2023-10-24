@@ -18,8 +18,7 @@ export const Paginate = styled(ReactPaginate)`
 
   li {
     margin: 10px;
-    padding: 10px;
-    height: 22px;
+    height: 44px;
     aspect-ratio: 1 / 1;
     cursor: pointer;
     border-radius: 50%;
@@ -29,6 +28,15 @@ export const Paginate = styled(ReactPaginate)`
     flex-shrink: 0;
     align-items: center;
     user-select: none;
+
+    a {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   li.selected {

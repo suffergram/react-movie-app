@@ -1,13 +1,15 @@
-import { Outlet } from 'react-router-dom';
+import { ReactNode } from 'react';
 import { Footer } from '../footer/footer';
 import { OutletContainer } from './style';
 
-export function Layout() {
+type LayoutProps = {
+  children?: ReactNode;
+};
+
+export function Layout({ children }: LayoutProps) {
   return (
     <>
-      <OutletContainer>
-        <Outlet />
-      </OutletContainer>
+      <OutletContainer>{children}</OutletContainer>
       <Footer />
     </>
   );

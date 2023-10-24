@@ -26,13 +26,13 @@ const mockResponse = {
 describe('Host name', () => {
   it('Corresponds to localhost', () => {
     expect(MovieService.host).toBe('http://localhost:4000/movies');
-  })
-})
+  });
+});
 
 describe('Get movies', () => {
   beforeEach(() => {
     fetchMock.resetMocks();
-  })
+  });
 
   it('Returns response with movies data', async () => {
     fetchMock.mockResolvedValueOnce({
@@ -44,7 +44,7 @@ describe('Get movies', () => {
     const response = await MovieService.getMovies();
 
     expect(response).toBe(mockResponse);
-  })
+  });
 
   it('Throws an error if bad response', async () => {
     try {
@@ -57,13 +57,13 @@ describe('Get movies', () => {
     } catch (error) {
       expect(error).toStrictEqual(new Error('Bad Response'));
     }
-  })
-})
+  });
+});
 
 describe('Create movie', () => {
   beforeEach(() => {
     fetchMock.resetMocks();
-  })
+  });
 
   it('Returns response with movies data', async () => {
     fetchMock.mockResolvedValueOnce({
@@ -81,7 +81,7 @@ describe('Create movie', () => {
       ...mockResponse,
       data: [mockMovie]
     });
-  })
+  });
 
   it('Throws an error if bad response', async () => {
     try {
@@ -94,13 +94,13 @@ describe('Create movie', () => {
     } catch (error) {
       expect(error).toStrictEqual(new Error('Bad Response'));
     }
-  })
-})
+  });
+});
 
 describe('Update movie', () => {
   beforeEach(() => {
     fetchMock.resetMocks();
-  })
+  });
 
   it('Returns response with movies data', async () => {
     fetchMock.mockResolvedValueOnce({
@@ -118,7 +118,7 @@ describe('Update movie', () => {
       ...mockResponse,
       data: [mockMovie]
     });
-  })
+  });
 
   it('Throws an error if bad response', async () => {
     try {
@@ -131,13 +131,13 @@ describe('Update movie', () => {
     } catch (error) {
       expect(error).toStrictEqual(new Error('Bad Response'));
     }
-  })
-})
+  });
+});
 
 describe('Delete movie', () => {
   beforeEach(() => {
     fetchMock.resetMocks();
-  })
+  });
 
   it('Returns response with movies data', async () => {
     fetchMock.mockResolvedValueOnce({
@@ -148,8 +148,8 @@ describe('Delete movie', () => {
 
     const response = await MovieService.deleteMovie(5);
 
-    expect(response).toBe(mockResponse);
-  })
+    expect(await response.json()).toBe(mockResponse);
+  });
 
   it('Throws an error if bad response', async () => {
     try {
@@ -162,13 +162,13 @@ describe('Delete movie', () => {
     } catch (error) {
       expect(error).toStrictEqual(new Error('Bad Response'));
     }
-  })
-})
+  });
+});
 
 describe('Get movie', () => {
   beforeEach(() => {
     fetchMock.resetMocks();
-  })
+  });
 
   it('Returns response with movies data', async () => {
     fetchMock.mockResolvedValueOnce({
@@ -186,7 +186,7 @@ describe('Get movie', () => {
       ...mockResponse,
       data: [mockMovie]
     });
-  })
+  });
 
   it('Throws an error if bad response', async () => {
     try {
@@ -202,5 +202,5 @@ describe('Get movie', () => {
         cause: mockResponse,
       }));
     }
-  })
-})
+  });
+});

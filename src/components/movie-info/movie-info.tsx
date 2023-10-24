@@ -1,4 +1,6 @@
-import { useAsyncValue, useNavigate } from 'react-router-dom';
+'use client';
+
+import { useRouter } from 'next/navigation';
 import { Movie } from '../../types/movie';
 import { Logo } from '../logo/logo';
 import { calculateDuration } from '../../utils/utils';
@@ -19,12 +21,11 @@ import {
   Description,
 } from './style';
 
-export function MovieInfo() {
-  const navigate = useNavigate();
-  const movie = useAsyncValue() as Movie;
+export function MovieInfo({ movie }: { movie: Movie }) {
   const duration = calculateDuration(movie?.runtime);
+  const { back } = useRouter();
 
-  const handleClick = () => navigate(-1);
+  const handleClick = () => back();
 
   return (
     <Container>

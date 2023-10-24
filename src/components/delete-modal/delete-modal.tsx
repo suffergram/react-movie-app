@@ -1,14 +1,11 @@
 import { useContext } from 'react';
-import { AnyAction } from 'redux';
-import { useDispatch } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Modal } from '../modal/modal';
 import { ModalContext } from '../../context/modal-context';
-import { removeMovie } from '../../state/remove-movie/remove-movie';
-import { RootState } from '../../types/root-state';
 import { ModalState } from '../../types/modal-state';
 import { useGetParams } from '../../hooks/use-get-params/use-get-params';
 import { Paragraph, StyledButton } from './style';
+import { MovieService } from '../../services/movie-service';
 
 type DeleteModalProps = {
   isModalOpen: boolean;
@@ -17,16 +14,20 @@ type DeleteModalProps = {
 export function DeleteModal({ isModalOpen }: DeleteModalProps) {
   const { handleModalClose, modal } = useContext(ModalContext);
 
-  const dispatch: ThunkDispatch<RootState, unknown, AnyAction> = useDispatch();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const [params] = useGetParams();
 
-  const handleButtonClick = async () => {
+  const handleButtonClick = () => {
+    const path = `${pathname}?${searchParams.toString()}`;
+    router.push(path);
+
     if (modal?.name === ModalState.Delete) {
-      await new Promise<void>((resolve) => {
-        dispatch(removeMovie(modal.data.id, params));
-        resolve();
-      });
+      MovieService.deleteMovie(modal.data.id)
+        .then(() => MovieService.getMovies(params))
+        .then(() => router.refresh());
       handleModalClose();
     }
   };

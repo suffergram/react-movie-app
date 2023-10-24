@@ -1,13 +1,20 @@
-import { useAsyncError, useNavigate } from 'react-router-dom';
-import { Button } from '../../components/button/button';
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { Button } from '../button/button';
 import { Container, ErrorData, Status } from './style';
 
-export function ErrorPage() {
-  const error = useAsyncError() as Error;
-  const cause = error && (error.cause as Response);
-  const navigate = useNavigate();
+type ErrorContentProps = {
+  error?: Error & {
+    cause?: Response;
+  };
+};
 
-  const handleClick = () => navigate(-1);
+export function ErrorContent({ error }: ErrorContentProps) {
+  const cause = error && (error.cause as Response);
+  const { back } = useRouter();
+
+  const handleClick = () => back();
 
   return (
     <Container>

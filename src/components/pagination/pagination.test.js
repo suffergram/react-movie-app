@@ -1,17 +1,17 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import { Pagination } from './pagination';
 
-jest.mock('react-redux', () => ({
-  useSelector: jest.fn(() => 1),
+jest.mock('next/navigation', () => ({
+  ...jest.requireActual('next/navigation'),
+  useSearchParams: jest.fn().mockImplementation(() => new URLSearchParams()),
+  useRouter: jest.fn().mockImplementation(() => ({})),
+  usePathname: jest.fn().mockImplementation(() => ''),
 }));
 
 describe('Pagination', () => {
   it('Has ul element', () => {
     render(
-      <MemoryRouter>
-        <Pagination />
-      </MemoryRouter>
+      <Pagination />
     );
 
     const ul = screen.getByRole('navigation');

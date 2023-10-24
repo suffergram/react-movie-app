@@ -1,4 +1,3 @@
-import { MemoryRouter } from 'react-router-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SearchForm } from './search-form';
@@ -11,9 +10,7 @@ jest.mock('../../hooks/use-get-params/use-get-params', () => ({
 describe('Search input', () => {
   it('Matches the snapshot', () => {
     render(
-      <MemoryRouter>
-        <SearchForm />
-      </MemoryRouter>
+      <SearchForm />
     );
 
     const searchInputElement = screen.getByRole('searchbox');
@@ -23,9 +20,7 @@ describe('Search input', () => {
 
   it('Must contain the entered value', async () => {
     render(
-      <MemoryRouter>
-        <SearchForm />
-      </MemoryRouter>
+      <SearchForm />
     );
 
     const inputValue = 'the';
@@ -35,21 +30,19 @@ describe('Search input', () => {
 
     await waitFor(() => expect(searchInputElement).toHaveValue(inputValue));
   });
-})
+});
 
 describe('Search button', () => {
   it('Matches the snapshot', () => {
     render(
-      <MemoryRouter>
-        <SearchForm />
-      </MemoryRouter>
+      <SearchForm />
     );
 
     const searchButtonElement = screen.getByRole('button');
 
     expect(searchButtonElement).toMatchSnapshot();
   });
-})
+});
 
 describe('Search Form', () => {
   it('Handles input value on search button click', async () => {
@@ -58,9 +51,7 @@ describe('Search Form', () => {
     useGetParams.mockImplementation(() => [{}, setUserSearchParamsMock]);
 
     render(
-      <MemoryRouter>
-        <SearchForm />
-      </MemoryRouter>
+      <SearchForm />
     );
 
     const inputValue = 'the';

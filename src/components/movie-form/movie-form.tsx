@@ -80,12 +80,8 @@ export function MovieForm({ onSubmit, params = initialParams }: FormProps) {
             validate: (value) => (value.length === 0 ? requiredMessage : true),
           }}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
-              <GenreSelect
-                value={value}
-                onChange={onChange}
-                error={!!error}
-              />
-            )}
+            <GenreSelect value={value} onChange={onChange} error={!!error} />
+          )}
         />
         <SubmitErrorMessage>
           {errors[FormField.Genres]?.message}

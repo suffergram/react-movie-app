@@ -11,7 +11,7 @@ const meta = {
   },
 
   argTypes: {
-    onChange: { action: 'handleClick' },
+    onClick: { action: 'handleClick' },
     checked: { control: 'boolean' },
   },
   decorators: [
@@ -29,7 +29,7 @@ type Story = StoryObj<typeof meta>;
 export const Tab: Story = {
   args: {
     checked: false,
-    children: 'comedy',
+    value: 'comedy',
     name: 'comedy',
   },
 };

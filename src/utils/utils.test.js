@@ -1,5 +1,5 @@
 import { getUrlParams, calculateDuration } from "./utils";
-import { LOAD_MOVIES_AMOUNT } from '../state/constants';
+import { LOAD_MOVIES_AMOUNT } from "../constants";
 
 const caltulateParamsString = (params = {}) => {
   let expectedResultString = '';
