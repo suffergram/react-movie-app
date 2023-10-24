@@ -5,3 +5,6 @@ coverage
 /playwright-report/
 /playwright/.cache/
 .next
+tsconfig.tsbuildinfo
+next-env.d.ts
+build

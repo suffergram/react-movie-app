@@ -79,11 +79,6 @@
     "react-hook-form": "^7.45.1",
     "react-modal": "^3.16.1",
     "react-paginate": "^8.2.0",
-    "react-redux": "^8.0.7",
-    "react-router-dom": "^6.15.0",
-    "redux": "^4.2.1",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.2",
     "styled-components": "^6.0.8"
   }
 }

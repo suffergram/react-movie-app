@@ -1,28 +1,27 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter, useAsyncError, useNavigate } from 'react-router-dom';
-import { ErrorPage } from './error-page';
+import { useRouter } from 'next/navigation';
+import { ErrorContent } from './error-content';
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useAsyncError: jest.fn(),
-  useNavigate: jest.fn(),
+jest.mock('next/navigation', () => ({
+  ...jest.requireActual('next/navigation'),
+  useRouter: jest.fn().mockImplementation(() => ({
+    back: jest.fn(),
+  }))
 }));
 
-describe('Error page', () => {
+describe('Error content component', () => {
   it('Renders error status', () => {
-    useAsyncError.mockImplementationOnce(() => ({
+    const error = {
       message: 'Mock message',
       cause: {
         status: 400,
         statusText: 'Mock status text',
       },
-    }));
+    };
 
     render(
-      <MemoryRouter>
-        <ErrorPage />
-      </MemoryRouter>
+      <ErrorContent error={error} />
     );
 
     const errorStatus = screen.getByRole('heading', {
@@ -34,9 +33,7 @@ describe('Error page', () => {
 
   it('Renders default status', () => {
     render(
-      <MemoryRouter>
-        <ErrorPage />
-      </MemoryRouter>
+      <ErrorContent />
     );
 
     const errorStatus = screen.getByRole('heading', {
@@ -47,20 +44,18 @@ describe('Error page', () => {
   });
 
   it('Handles button click', async () => {
-    const navigate = jest.fn();
+    const mockBack = jest.fn();
 
-    useNavigate.mockImplementation(() => navigate);
+    useRouter.mockImplementationOnce(() => ({ back: mockBack }));
 
     render(
-      <MemoryRouter>
-        <ErrorPage />
-      </MemoryRouter>
+      <ErrorContent />
     );
 
     const button = screen.getByRole('button');
 
     await userEvent.click(button);
 
-    expect(navigate).toHaveBeenCalled();
+    expect(mockBack).toHaveBeenCalled();
   });
 });

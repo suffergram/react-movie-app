@@ -1,6 +1,6 @@
 'use client';
 
-import { ErrorPage } from '../pages/error-page/error-page';
+import { ErrorContent } from '../components/error-content/error-content';
 
 type ErrorProps = {
   error?: Error & {
@@ -9,5 +9,5 @@ type ErrorProps = {
 };
 
 export default function Error({ error }: ErrorProps) {
-  return <ErrorPage error={error} />;
+  return <ErrorContent error={error} />;
 }

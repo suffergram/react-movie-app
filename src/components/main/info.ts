@@ -66,3 +66,11 @@ export const sortBy = [
     displayLabel: 'name',
   },
 ];
+
+export const tabGenres = [
+  {
+    id: 10,
+    name: 'all',
+  },
+  ...genres.slice(0, 4),
+];

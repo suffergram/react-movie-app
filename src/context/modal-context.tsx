@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ModalType } from '../components/modal-provider/modal-provider';
 

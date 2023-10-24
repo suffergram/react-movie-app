@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 import { Movie } from '../../types/movie';
 import { Logo } from '../logo/logo';

@@ -1,5 +1,5 @@
 import { SearchParamsType } from '../hooks/use-get-params/use-get-params';
-import { LOAD_MOVIES_AMOUNT } from '../state/constants';
+import { LOAD_MOVIES_AMOUNT } from '../constants';
 import { SearchParam } from '../types/search-param';
 
 export function getUrlParams(params: SearchParamsType) {

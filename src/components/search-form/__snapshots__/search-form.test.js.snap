@@ -2,7 +2,7 @@
 
 exports[`Search button Matches the snapshot 1`] = `
 <button
-  class="confirm"
+  class="sc-beyTiQ iwJzVu sc-dmyDmy hVEAxv"
   type="submit"
 >
   search
@@ -11,6 +11,7 @@ exports[`Search button Matches the snapshot 1`] = `
 
 exports[`Search input Matches the snapshot 1`] = `
 <input
+  class="sc-guDMob hntGaG"
   name="search"
   placeholder="What do you want to watch?"
   type="search"

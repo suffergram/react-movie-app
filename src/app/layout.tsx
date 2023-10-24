@@ -1,3 +1,6 @@
+import { ErrorBoundary } from '../components/error-boundary/error-boundary';
+import { Layout } from '../components/layout/layout';
+import StyledComponentsRegistry from '../lib/registry';
 import '../style.css';
 
 export const metadata = {
@@ -13,7 +16,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <StyledComponentsRegistry>
+          <ErrorBoundary>
+            <Layout>{children}</Layout>
+          </ErrorBoundary>
+        </StyledComponentsRegistry>
+      </body>
     </html>
   );
 }

@@ -1,5 +1,5 @@
 import { getUrlParams } from '../utils/utils';
-import { MoviesDTO } from '../state/action-creators';
+import { MoviesDTO } from '../types/movies-dto';
 import { FormInput } from '../types/form-input';
 import { SearchParamsType } from '../hooks/use-get-params/use-get-params';
 
@@ -10,17 +10,20 @@ export class MovieService {
 
   static async getMovies(params: SearchParamsType): Promise<MoviesDTO> {
     const urlParams = getUrlParams(params);
-    const url = `${this.host}?${urlParams}`;
+    const url = `${MovieService.host}?${urlParams}`;
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      cache: 'no-store',
+    });
 
-    if (!response.ok) return Promise.reject(new Error(this.responseError));
+    if (!response.ok)
+      return Promise.reject(new Error(MovieService.responseError));
 
     return response.json();
   }
 
   static async createMovie(data: FormInput) {
-    const response = await fetch(this.host, {
+    const response = await fetch(MovieService.host, {
       method: 'POST',
       headers: {
         accept: 'application/json',
@@ -33,13 +36,14 @@ export class MovieService {
       }),
     });
 
-    if (!response.ok) return Promise.reject(new Error(this.responseError));
+    if (!response.ok)
+      return Promise.reject(new Error(MovieService.responseError));
 
     return response.json();
   }
 
   static async updateMovie(data: FormInput) {
-    const response = await fetch(this.host, {
+    const response = await fetch(MovieService.host, {
       method: 'PUT',
       headers: {
         accept: 'application/json',
@@ -53,28 +57,32 @@ export class MovieService {
       }),
     });
 
-    if (!response.ok) return Promise.reject(new Error(this.responseError));
+    if (!response.ok)
+      return Promise.reject(new Error(MovieService.responseError));
 
     return response.json();
   }
 
   static async deleteMovie(id: number) {
-    const url = `${this.host}/${id}`;
+    const url = `${MovieService.host}/${id}`;
     const response = await fetch(url, {
       method: 'DELETE',
     });
 
-    if (!response.ok) return Promise.reject(new Error(this.responseError));
+    if (!response.ok)
+      return Promise.reject(new Error(MovieService.responseError));
 
     return response;
   }
 
   static async getMovie(movieId: string | unknown) {
-    const response = await fetch(`${this.host}/${movieId}`);
+    const response = await fetch(`${MovieService.host}/${movieId}`, {
+      cache: 'no-store',
+    });
 
     if (!response.ok) {
       return Promise.reject(
-        new Error(this.responseError, {
+        new Error(MovieService.responseError, {
           cause: response,
         })
       );

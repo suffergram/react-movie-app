@@ -1,5 +1,5 @@
-import { ErrorPage } from '../pages/error-page/error-page';
+import { ErrorContent } from '../components/error-content/error-content';
 
 export default function NotFound() {
-  return <ErrorPage />;
+  return <ErrorContent />;
 }

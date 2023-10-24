@@ -1,16 +1,16 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Button } from '../../components/button/button';
+import { Button } from '../button/button';
 import { Container, ErrorData, Status } from './style';
 
-type ErrorPageProps = {
+type ErrorContentProps = {
   error?: Error & {
     cause?: Response;
   };
 };
 
-export function ErrorPage({ error }: ErrorPageProps) {
+export function ErrorContent({ error }: ErrorContentProps) {
   const cause = error && (error.cause as Response);
   const { back } = useRouter();
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useMemo, PropsWithChildren } from 'react';
 import { EditMovieModal } from '../edit-movie-modal/edit-movie-modal';
 import { AddMovieModal } from '../add-movie-modal/add-movie-modal';

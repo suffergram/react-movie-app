@@ -1,4 +1,4 @@
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { SearchParam } from '../../types/search-param';
 
 export type SearchParamsType = Partial<Record<SearchParam, string>>;
@@ -6,10 +6,11 @@ export type SearchParamsType = Partial<Record<SearchParam, string>>;
 export function useGetParams() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const pathname = usePathname();
 
   const setSearchParams = (newParams: URLSearchParams) => {
     const routerString = `?${newParams.toString()}`;
-    router.push(routerString);
+    router.replace(`${pathname}${routerString}`);
   };
 
   const params: SearchParamsType = {};

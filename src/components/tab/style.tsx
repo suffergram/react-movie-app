@@ -17,7 +17,7 @@ export const StyledInput = styled.input`
   appearance: none;
   cursor: pointer;
 
-  &:checked,
+  &[aria-checked='true'],
   &:hover {
     box-shadow: 0 4px 0 0 var(--color-1);
   }

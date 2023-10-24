@@ -1,19 +1,24 @@
-'use client';
+import { Main } from '../components/main/main';
+import { Header } from '../components/header/header';
+import { ModalProvider } from '../components/modal-provider/modal-provider';
+import { SearchParamsType } from '../hooks/use-get-params/use-get-params';
+import { MovieService } from '../services/movie-service';
 
-import { Provider } from 'react-redux';
-import { ErrorBoundary } from '../components/error-boundary/error-boundary';
-import { store } from '../state/store';
-import { HomePage } from '../pages/home-page/home-page';
-import { Layout } from '../components/layout/layout';
+async function getData(params: SearchParamsType) {
+  return MovieService.getMovies(params);
+}
 
-export default function Page() {
+type PageType = {
+  searchParams: SearchParamsType;
+};
+
+export default async function Page({ searchParams }: PageType) {
+  const data = await getData(searchParams);
+
   return (
-    <ErrorBoundary>
-      <Provider store={store}>
-        <Layout>
-          <HomePage />
-        </Layout>
-      </Provider>
-    </ErrorBoundary>
+    <ModalProvider>
+      <Header />
+      <Main {...data} />
+    </ModalProvider>
   );
 }

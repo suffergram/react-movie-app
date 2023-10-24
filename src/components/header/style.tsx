@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Button } from '../button/button';
-import img from '../../assets/images/header-background.webp';
 
 export const AddButton = styled(Button)`
   width: 177px;
@@ -59,7 +58,7 @@ export const Container = styled.div`
     overflow: hidden;
     z-index: 1;
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-      url(${img});
+      url('/header-background.webp');
     filter: blur(2px);
     transform: scale(1.7);
   }

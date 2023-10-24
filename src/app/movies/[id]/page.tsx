@@ -1,8 +1,5 @@
-'use client';
-
-import { MoviePage } from '../../../pages/movie-page/movie-page';
+import { MovieInfo } from '../../../components/movie-info/movie-info';
 import { MovieService } from '../../../services/movie-service';
-import { Layout } from '../../../components/layout/layout';
 
 type PageParams = {
   params: {
@@ -10,12 +7,13 @@ type PageParams = {
   };
 };
 
-export default async function Page({ params }: PageParams) {
-  const movie = await MovieService.getMovie(params.id);
+async function getData(id: number) {
+  return MovieService.getMovie(id);
+}
 
-  return (
-    <Layout>
-      <MoviePage movie={movie} />
-    </Layout>
-  );
+export const revalidate = 1;
+
+export default async function Page({ params }: PageParams) {
+  const movie = await getData(params.id);
+  return <MovieInfo movie={movie} />;
 }
